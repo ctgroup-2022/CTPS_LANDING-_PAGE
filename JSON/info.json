@@ -1,0 +1,119 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "title": "Science Exhibition 2025",
+        "image": "assets/images/events/event1.jpg",
+        "badge": "This Week",
+        "badgeType": "week",
+        "category": "academic",
+        "date": "April 15, 2025",
+        "location": "Main Auditorium",
+        "description": "Showcasing innovative projects from our talented students across all grades. Parents and science enthusiasts welcome!",
+        "link": "#"
+      },
+      {
+        "id": 2,
+        "title": "Annual Sports Meet",
+        "image": "assets/images/events/sports1.jpg",
+        "badge": "Upcoming",
+        "badgeType": "upcoming",
+        "category": "sports",
+        "date": "May 20, 2025",
+        "location": "School Grounds",
+        "description": "Our biggest sporting event of the year featuring competitions across various disciplines for all age groups.",
+        "link": "#"
+      },
+      {
+        "id": 3,
+        "title": "Annual Day Celebration",
+        "image": "assets/images/events/cultural1.jpg",
+        "badge": "Featured",
+        "badgeType": "featured",
+        "category": "cultural",
+        "date": "July 15, 2025",
+        "location": "Main Auditorium",
+        "description": "Join us for a cultural extravaganza showcasing our students' talents in dance, drama, music, and more.",
+        "link": "#"
+      }
+    ],
+    "notices": [
+      {
+        "id": 1,
+        "title": "Summer Vacation Dates",
+        "image": "assets/images/notices/notice1.jpg",
+        "badge": "Important",
+        "badgeType": "important",
+        "category": "important",
+        "date": "May 25 - July 5",
+        "audience": "All Classes",
+        "description": "Summer vacation will commence from May 25 and school will reopen on July 6, 2025. Holiday homework details will be shared soon.",
+        "link": "#"
+      },
+      {
+        "id": 2,
+        "title": "Final Exam Schedule",
+        "image": "assets/images/notices/academic1.jpg",
+        "badge": "Urgent",
+        "badgeType": "urgent",
+        "category": "academic",
+        "date": "March 10 - March 25",
+        "audience": "All Classes",
+        "description": "Final examination schedule has been released. Please check the detailed timetable for subject-wise dates and timings.",
+        "link": "#"
+      },
+      {
+        "id": 3,
+        "title": "Uniform Policy Update",
+        "image": "assets/images/notices/notice2.jpg",
+        "badge": "New",
+        "badgeType": "new",
+        "category": "general",
+        "date": "Effective June 1",
+        "audience": "All Students",
+        "description": "Updated uniform policy will be implemented from the next academic session. Details about the changes are available in the circular.",
+        "link": "#"
+      }
+    ],
+    "spotlight": [
+      {
+        "id": 1,
+        "title": "National Science Olympiad Winners",
+        "image": "assets/images/spotlight/spotlight1.jpg",
+        "badge": "Achievement",
+        "badgeType": "achievement",
+        "category": "academic",
+        "award": "1st Place",
+        "team": "Senior Team",
+        "description": "Our senior science team won the National Science Olympiad, showcasing exceptional talent and dedication in scientific innovation.",
+        "link": "#",
+        "linkText": "Read Their Story"
+      },
+      {
+        "id": 2,
+        "title": "International Art Exhibition",
+        "image": "assets/images/spotlight/spotlight2.jpg",
+        "badge": "Special Event",
+        "badgeType": "event",
+        "category": "arts",
+        "award": "Student Showcase",
+        "location": "City Gallery",
+        "description": "Selected artworks from our talented students are being displayed at the prestigious International Youth Art Exhibition.",
+        "link": "#",
+        "linkText": "See Gallery"
+      },
+      {
+        "id": 3,
+        "title": "Tree Plantation Drive",
+        "image": "assets/images/spotlight/spotlight3.jpg",
+        "badge": "Community",
+        "badgeType": "community",
+        "category": "service",
+        "initiative": "Environmental Initiative",
+        "participants": "Entire School",
+        "description": "Our students planted over 1,000 trees as part of our commitment to environmental sustainability and community service.",
+        "link": "#",
+        "linkText": "Learn More"
+      }
+    ]
+  }
