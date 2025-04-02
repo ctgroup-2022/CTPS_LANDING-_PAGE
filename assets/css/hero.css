@@ -1,0 +1,201 @@
+.hero-section {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 40px 5%;
+    position: relative;
+    overflow: hidden;
+    background: none; /* Remove existing background */
+}
+
+.bg-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.bg-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.bg-slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    width: 50%;
+    z-index: 2;
+    margin-left: 80px; /* Added left margin */
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    color: white;  /* Changed back to white */
+    margin-bottom: 20px; /* Increased from 10px */
+    line-height: 1.2;
+    text-align: left; /* Ensure left alignment */
+}
+
+.hero-title span {
+    color: var(--primary); /* Changed to primary color for the span */
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: white;  /* Changed back to white */
+    margin-bottom: 30px;
+    max-width: 80%;
+}
+
+.hero-form-container {
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 2;
+    backdrop-filter: blur(5px);
+}
+
+.hero-form-title {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.hero-form-subtitle {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.form-input-container {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.form-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    background-color: var(--accent);
+    color: white;
+}
+
+.form-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent);
+}
+
+.floating-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+}
+
+.icon-balloon {
+    top: 15%;
+    left: 15%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.icon-book {
+    top: 20%;
+    right: 15%;
+    animation: float 7s ease-in-out infinite;
+}
+
+.icon-bee {
+    bottom: 25%;
+    left: 10%;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .hero-content, .hero-form-container {
+        width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-content {
+        margin-left: 40px; /* Reduced margin for smaller screens */
+    }
+}

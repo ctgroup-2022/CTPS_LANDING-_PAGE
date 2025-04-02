@@ -1,0 +1,385 @@
+/* About Section Styles */
+.about-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    position: relative;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.about-section.visible .floating-element {
+    animation-play-state: running;
+}
+
+.about-section .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-section .decoration {
+    position: absolute;
+    font-size: 50px;
+    color: #e0e0e0;
+    z-index: 1;
+    transition: transform 0.3s ease-out, opacity 0.3s ease;
+    opacity: 0.2;
+    filter: blur(1px);
+    transition: all 0.3s ease;
+}
+
+.about-section .decoration:hover {
+    transform: translateZ(20px) scale(1.2);
+    opacity: 0.6;
+    filter: blur(0);
+    cursor: pointer;
+}
+
+.decoration-car {
+    top: 10%;
+    left: 5%;
+}
+
+.decoration-questions {
+    top: 20%;
+    right: 10%;
+}
+
+.decoration-books {
+    bottom: 15%;
+    left: 10%;
+}
+
+.decoration-pencil {
+    bottom: 10%;
+    right: 5%;
+}
+
+.decoration-child {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* Left Section (Images) */
+.image-section {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.image-section .main-image-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.image-section .main-image-wrapper:hover {
+    transform: rotateY(5deg) rotateX(3deg);
+}
+
+.image-section .image-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 5px solid #2196f3;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: rotate 20s linear infinite, float 6s ease-in-out infinite alternate;
+}
+
+.image-section .main-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.image-section .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-section .floating-element {
+    position: absolute;
+    font-size: 30px;
+    color: #2196f3;
+    animation: float 3s ease-in-out infinite;
+}
+
+.image-section .floating-element.books {
+    top: -20px;
+    left: -20px;
+}
+
+.image-section .floating-element.pencil {
+    bottom: -20px;
+    right: -20px;
+}
+
+.secondary-image-container {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.secondary-image-container .secondary-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right Section (Content) */
+.content-section {
+    flex: 1;
+    padding: 20px;
+    z-index: 2;
+}
+
+.content-section .subtitle {
+    font-size: 18px;
+    color: #2196f3;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.content-section .main-title {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.content-section .description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.feature-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e3f2fd;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #2196f3;
+    font-weight: bold;
+    transform: translateY(0);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-pill:hover {
+    transform: translateY(-5px) scale(1.05);
+    background-color: #2196f3;
+    color: white;
+    box-shadow: 0 10px 20px rgba(33, 150, 243, 0.3);
+}
+
+.feature-pill.active {
+    background-color: #2196f3;
+    color: white;
+    transform: scale(1.05);
+}
+
+.feature-pill i {
+    font-size: 18px;
+}
+
+.feature-content {
+    background-color: #f0f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid #2196f3;
+    transition: opacity 0.3s ease;
+}
+
+.cta-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2196f3;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #1976d2;
+}
+
+.contact-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-icon {
+    font-size: 24px;
+    color: #2196f3;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.contact-number {
+    font-size: 16px;
+    color: #2196f3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-number:hover {
+    text-decoration: underline;
+}
+
+/* Add this CSS rule to match the new structure */
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Add Statistics Counter Styles */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 60px;
+    padding: 40px 0;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: 20px 15px;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    color: #2196f3;
+    margin-bottom: 15px;
+}
+
+.stat-counter {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Add responsive styling for content container */
+@media (max-width: 992px) {
+    .content-container {
+        flex-direction: column;
+    }
+    
+    .image-section, .content-section {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+/* Add responsive styling for stats */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .stat-item {
+        padding: 15px 0;
+    }
+}
+
+/* Animations */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(33, 150, 243, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+}
