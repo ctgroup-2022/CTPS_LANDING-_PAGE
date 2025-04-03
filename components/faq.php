@@ -35,7 +35,7 @@
                             <div class="answer-content">
                                 <p>CT Public School offers comprehensive education from pre-nursery to senior secondary level with a focus on holistic development through academic excellence, sports, arts, and character building.</p>
                                 <div class="faq-img">
-                                    <img src="assets/images/faq/programs.jpg" alt="CT School Programs">
+                                    <img src="assets/about/ctps.png" alt="CT School Programs">
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="answer-content">
                                 <p>You can apply by visiting our admissions office or through our website. Fill out the application form, submit required documents, and attend an entrance test and interview if applicable.</p>
                                 <div class="faq-img">
-                                    <img src="assets/images/faq/admission.jpg" alt="Admission Process">
+                                    <img src="assets/faq/reception (1).jpg" alt="Admission Process">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             <div class="answer-content">
                                 <p>We follow the CBSE curriculum with additional focus on practical learning, digital literacy, and skill development. Our teaching methodology combines traditional wisdom with modern educational approaches.</p>
                                 <div class="faq-img">
-                                    <img src="assets/images/faq/curriculum.jpg" alt="School Curriculum">
+                                    <img src="assets/faq/music (1).jpg" alt="School Curriculum">
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="answer-content">
                                 <p>Yes, we provide safe and comfortable bus transportation services covering all major areas of the city. Our buses are GPS-equipped and have trained attendants for student safety.</p>
                                 <div class="faq-img">
-                                    <img src="assets/images/faq/transport.jpg" alt="School Transportation">
+                                    <img src="assets/faq/transport.jpg" alt="School Transportation">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                             <div class="answer-content">
                                 <p>We offer a wide range of activities including sports (cricket, basketball, tennis), performing arts (dance, music, theater), academic clubs (robotics, coding, debate), and community service opportunities.</p>
                                 <div class="faq-img">
-                                    <img src="assets/images/faq/activities.jpg" alt="Extracurricular Activities">
+                                    <img src="assets/faq/extracriculam.JPG" alt="Extracurricular Activities">
                                 </div>
                             </div>
                         </div>

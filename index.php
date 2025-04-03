@@ -14,17 +14,23 @@
     <link rel="stylesheet" href="assets/css/hero.css">
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/counter.css">
-    <link rel="stylesheet" href="assets/css/info.css">
+    <!-- <link rel="stylesheet" href="assets/css/info.css"> -->
     <link rel="stylesheet" href="assets/css/faq.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <!-- <link rel="stylesheet" href="assets/css/programs.css"> -->
+
 </head>
 
 <body>
     <?php include 'includes/header.php'; ?>
     <?php include 'components/hero.php'; ?>
     <?php include 'components/about.php'; ?>
-    <?php include 'components/info.php'; ?>
+    <!-- <?php include 'components/info.php'; ?>  -->
     <?php include 'components/counter.php'; ?>
     <?php include 'components/faq.php'; ?>
+    <?php include 'components/gallery.php'; ?>
+    <!-- <?php include 'components/programs.php'; ?> -->
+
 
 
 
@@ -46,8 +52,10 @@
     <script src="assets/js/header.js"></script>
     <script src="assets/js/about.js"></script>
     <script src="assets/js/counter.js"></script>
-    <script src="assets/js/info.js"></script>
+    <!-- <script src="assets/js/info.js"></script> -->
     <script src="assets/js/faq.js"></script>
+    <!-- <script src="assets/js/programs.js"></script> -->
+    
 </body>
 
 </html>

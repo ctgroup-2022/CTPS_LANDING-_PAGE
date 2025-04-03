@@ -1,11 +1,11 @@
 <section class="hero-section">
         <!-- Background Slider -->
         <div class="bg-slider">
-            <div class="bg-slide active" style="background-image: url('../assets/images/29.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('../assets/images/30.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('../assets/images/31.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('../assets/images/27.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('../assets/images/32.JPG')"></div>
+            <div class="bg-slide active" style="background-image: url('assets/hero/hero1.JPG')"></div>
+            <div class="bg-slide" style="background-image: url('assets/hero/hero.JPG')"></div>
+            <div class="bg-slide" style="background-image: url('assets/hero/hero2.JPG')"></div>
+            <div class="bg-slide" style="background-image: url('assets/hero/hero3.JPG')"></div>
+            <div class="bg-slide" style="background-image: url('assets/hero/hero4.JPG')"></div>
         </div>
 
         <!-- 3D Floating Icons -->
