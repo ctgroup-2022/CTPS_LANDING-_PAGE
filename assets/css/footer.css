@@ -1,0 +1,152 @@
+/* Footer Styles */
+.footer-section {
+    background-color: #E7F8FE;
+    color: var(--text-dark);
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+}
+
+.footer-logo {
+    height: auto;
+    max-height: 56px;
+    width: auto;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+.footer-naac-logo {
+    height: auto;
+    max-width: 100px;
+    transition: transform 0.3s ease;
+}
+
+.footer-naac-logo:hover {
+    transform: scale(1.05);
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color:var(--primary-dark);
+    color: var(--primary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon:hover {
+    background-color: var(--button-color);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon i {
+    font-size: 1.25rem;
+}
+
+.footer-copyright {
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.border-light-subtle {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 767.98px) {
+    .footer-section {
+        padding-top: 2rem;
+    }
+    
+    .footer-logo {
+        max-height: 48px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-naac-logo {
+        max-width: 80px;
+    }
+    
+    .social-icons {
+        justify-content: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .social-icon i {
+        font-size: 1rem;
+    }
+    
+    .footer-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Desktop improvements for footer */
+@media (min-width: 992px) {
+    .footer-section {
+        padding: 4rem 0 2rem;
+    }
+    
+    .footer-text {
+        font-size: 0.95rem;
+        margin-right: 2rem;
+    }
+    
+    .footer-logo {
+        max-height: 60px;
+    }
+    
+    .social-icon {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-section {
+        padding: 5rem 0 2rem;
+    }
+    
+    .footer-logo {
+        max-height: 64px;
+    }
+    
+    .social-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .social-icon i {
+        font-size: 1.35rem;
+    }
+}

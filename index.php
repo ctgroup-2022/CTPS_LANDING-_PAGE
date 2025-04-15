@@ -9,14 +9,19 @@
     <!-- Link Bootstrap CSS from CDN for reliability -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Global Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/global-responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/hero.css">
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/counter.css">
+    <link rel="stylesheet" href="assets/css/legacy.css">
     <!-- <link rel="stylesheet" href="assets/css/info.css"> -->
     <link rel="stylesheet" href="assets/css/faq.css">
     <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/testimonial.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <!-- <link rel="stylesheet" href="assets/css/programs.css"> -->
 
 </head>
@@ -27,9 +32,13 @@
     <?php include 'components/about.php'; ?>
     <!-- <?php include 'components/info.php'; ?>  -->
     <?php include 'components/counter.php'; ?>
-    <?php include 'components/faq.php'; ?>
+    <?php include 'components/legacy.php'; ?>
+   
     <?php include 'components/gallery.php'; ?>
+    <?php include 'components/testimonial.php'; ?>
+    <?php include 'components/faq.php'; ?>
     <!-- <?php include 'components/programs.php'; ?> -->
+    <?php include 'components/footer.php'; ?>
 
 
 
@@ -52,6 +61,8 @@
     <script src="assets/js/header.js"></script>
     <script src="assets/js/about.js"></script>
     <script src="assets/js/counter.js"></script>
+    <script src="assets/js/legacy.js"></script>
+    <script src="assets/js/testimonial.js"></script>
     <!-- <script src="assets/js/info.js"></script> -->
     <script src="assets/js/faq.js"></script>
     <!-- <script src="assets/js/programs.js"></script> -->

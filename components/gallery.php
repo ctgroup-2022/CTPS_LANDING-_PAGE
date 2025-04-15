@@ -1,4 +1,7 @@
 <section class="pg-hero-section">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
         <div class="pg-hero-content">
             <h1 class="pg-hero-title">
                 <span>Welcome to </span>
