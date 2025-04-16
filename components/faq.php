@@ -1,7 +1,7 @@
 <section class="faq-section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Frequently <span>Asked Questions</span></h2>
+            <h2 class="section-title1">Frequently <span>Asked Questions</span></h2>
             <p class="section-subtitle">Find answers to common questions about CT Public School</p>
         </div>
         

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Open the clicked tab
             $(this).addClass('active');
-            $(this).find('.tab-content').css('max-height', '500px');
+            $(this).find('.tab-content').css('max-height', '800px'); // Increased for better visibility
             
             // Handle images
             $('.tab-image-wrapper').hide();
@@ -62,65 +62,49 @@ document.addEventListener('DOMContentLoaded', function() {
         const faqItems = document.querySelectorAll('.faq-item');
         const categoryBtns = document.querySelectorAll('.category-btn');
         
-        // Set up GSAP animations if available
-        if (typeof gsap !== 'undefined') {
-            try {
-                // Animate section header
-                gsap.from('.faq-section .section-header', {
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
+        // Apply simple CSS animations
+        setTimeout(() => {
+            applySimpleAnimations();
+        }, 100);
+        
+        function applySimpleAnimations() {
+            // Get elements
+            const sectionHeader = document.querySelector('.section-header');
+            const categoriesContainer = document.querySelector('.faq-categories');
+            const faqCta = document.querySelector('.faq-cta');
+            const shapes = document.querySelectorAll('.shape');
+            
+            // Add fade-in to section header
+            if (sectionHeader) {
+                sectionHeader.classList.add('fade-in');
+            }
+            
+            // Add animations to category buttons
+            if (categoryBtns) {
+                categoryBtns.forEach((btn, index) => {
+                    btn.style.animationDelay = (0.1 * index) + 's';
+                    btn.classList.add('fade-in');
                 });
-                
-                // Animate category buttons
-                gsap.from('.category-btn', {
-                    y: 20,
-                    opacity: 0,
-                    duration: 0.5,
-                    stagger: 0.1,
-                    ease: 'back.out(1.5)',
-                    delay: 0.3
+            }
+            
+            // Add animations to FAQ items
+            if (faqItems) {
+                faqItems.forEach((item, index) => {
+                    item.style.animationDelay = (0.1 * index) + 's';
+                    item.classList.add('fade-in');
                 });
-                
-                // Animate FAQ items with stagger
-                gsap.from('.faq-item', {
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.6,
-                    stagger: 0.1,
-                    ease: 'power2.out',
-                    delay: 0.5
+            }
+            
+            // Add animation to CTA
+            if (faqCta) {
+                faqCta.classList.add('fade-in');
+            }
+            
+            // Add floating animation to shapes
+            if (shapes) {
+                shapes.forEach(shape => {
+                    shape.classList.add('floating');
                 });
-                
-                // Animate CTA box
-                const ctaElement = document.querySelector('.faq-cta');
-                if (ctaElement) {
-                    gsap.from('.faq-cta', {
-                        scale: 0.9,
-                        opacity: 0,
-                        duration: 0.8,
-                        ease: 'elastic.out(1, 0.5)',
-                        delay: 0.8
-                    });
-                }
-                
-                // Animate shapes
-                const shapes = document.querySelectorAll('.shape');
-                if (shapes.length) {
-                    gsap.to('.shape', {
-                        y: 'random(-20, 20)',
-                        x: 'random(-20, 20)',
-                        rotation: 'random(-10, 10)',
-                        duration: 'random(5, 8)',
-                        ease: 'sine.inOut',
-                        repeat: -1,
-                        yoyo: true,
-                        stagger: 0.3
-                    });
-                }
-            } catch (animError) {
-                console.warn('GSAP animation error:', animError);
             }
         }
         
@@ -158,24 +142,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.classList.add('active');
                 
                 // Calculate the correct height for the answer
-                // Add a small buffer to ensure content is fully visible
-                answer.style.maxHeight = (content.offsetHeight + 20) + 'px';
+                answer.style.maxHeight = (content.offsetHeight + 30) + 'px'; // Added more buffer
                 
-                // Scroll item into view if not fully visible (with animation)
+                // Scroll item into view if needed
                 const itemRect = item.getBoundingClientRect();
                 if (itemRect.bottom > window.innerHeight) {
-                    const scrollOptions = {
+                    window.scrollTo({
                         top: window.pageYOffset + itemRect.top - 100,
                         behavior: 'smooth'
-                    };
-                    window.scrollTo(scrollOptions);
+                    });
                 }
             });
         });
         
-        // Category Filter Functionality - Fixed version
+        // Category Filter Functionality - Enhanced version
         if (categoryBtns.length > 0) {
-            // Ensure at least one button is active initially
+            // Make sure there's always an active button
             let hasActiveButton = false;
             categoryBtns.forEach(btn => {
                 if (btn.classList.contains('active')) {
@@ -187,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 categoryBtns[0].classList.add('active');
             }
             
+            // Add click handlers to category buttons
             categoryBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
@@ -198,7 +181,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     this.classList.add('active');
                     
-                    // Filter items with animation
+                    // Count visible items to ensure smooth animation
+                    let visibleCount = 0;
+                    
+                    // Filter items with CSS transitions
                     faqItems.forEach(item => {
                         if (!item) return;
                         
@@ -211,16 +197,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Show/hide based on category
                         if (category === 'all' || itemCategory === category) {
+                            visibleCount++;
+                            
+                            // Reset display and set initial state for animation
                             item.style.display = '';
                             item.style.opacity = '0';
                             item.style.transform = 'translateY(20px)';
                             
-                            // Simple animation fallback if GSAP isn't available
+                            // Animate in with staggered delay
                             setTimeout(() => {
                                 item.style.opacity = '1';
                                 item.style.transform = 'translateY(0)';
                                 item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                            }, 50 * Array.from(faqItems).indexOf(item)); // Stagger effect
+                            }, 50 * visibleCount); // Stagger based on visible count
                         } else {
                             item.style.display = 'none';
                         }
@@ -228,29 +217,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            // Trigger initial filtering if a category button is already active
+            // Trigger click on the active button to initialize
             const activeBtn = document.querySelector('.category-btn.active');
             if (activeBtn) {
-                // Use setTimeout to ensure DOM is fully ready
-                setTimeout(() => {
-                    activeBtn.click();
-                }, 100);
+                setTimeout(() => activeBtn.click(), 300);
             }
         }
         
-        // Add resize listener to correctly update maxHeight of opened answers
+        // Add resize listener for responsive adjustments
         window.addEventListener('resize', () => {
             const activeItems = document.querySelectorAll('.faq-item.active');
             activeItems.forEach(item => {
                 const answer = item.querySelector('.faq-answer');
                 const content = item.querySelector('.answer-content');
                 if (answer && content) {
-                    answer.style.maxHeight = (content.offsetHeight + 20) + 'px';
+                    answer.style.maxHeight = (content.offsetHeight + 30) + 'px';
                 }
             });
         });
         
     } catch (error) {
         console.error('Error in FAQ initialization:', error);
+        // Provide fallback for critical functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                this.closest('.faq-item')?.classList.toggle('active');
+            });
+        });
     }
 });

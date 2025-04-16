@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('global-vars.css');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-}o
+}
 
-:rot {
+:root {
     --primary: #0056b3;
     --primary-dark: #003d7a;
     --primary-light: #4a90e2;
@@ -192,7 +193,7 @@ body {
     align-items: center;
     gap: 8px;
     z-index: 3;
-    animation: float 6s ease-in-out infinite;
+    animation: float var(--transition-slow) ease-in-out infinite;
 }
 
 .floating-card.card-1 {
@@ -330,6 +331,20 @@ body {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    animation: fadeIn calc(var(--transition-slow) + 0.2s) forwards;
+    opacity: 0;
+}
+
+.feature-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.6s;
 }
 
 .feature-card:hover {
@@ -601,6 +616,17 @@ body {
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .about-content {
         grid-template-columns: 1fr;
@@ -691,5 +717,25 @@ body {
     .stats-banner {
         flex-direction: column;
         gap: 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .stats-banner {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .main-heading {
+        font-size: 1.6rem;
+    }
+    
+    .description {
+        font-size: 0.9rem;
+    }
+    
+    .floating-card {
+        transform: scale(0.7);
     }
 }

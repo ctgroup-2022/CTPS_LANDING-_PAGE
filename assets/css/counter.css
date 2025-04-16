@@ -1,13 +1,14 @@
-/* Counter Section Styles */
+@import url('global-vars.css');
+
 .counter-section {
-    padding: 100px 5%;
     position: relative;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/CTPS/assets/images/31.JPG');
-    background-attachment: fixed;
-    background-position: center;
+    padding: var(--space-xl) 0;
+    background-image: url('../images/counter-bg.jpg');
     background-size: cover;
-    color: white;
+    background-position: center;
+    background-attachment: fixed;
     overflow: hidden;
+    z-index: 1;
 }
 
 .counter-overlay {
@@ -16,58 +17,65 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(29, 67, 131, 0.85);
-    z-index: 1;
-}
-
-.counter-section .container {
-    position: relative;
-    z-index: 10;
-    max-width: 1200px;
-    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(0, 86, 179, 0.95) 0%, rgba(0, 168, 255, 0.85) 100%);
+    z-index: -1;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
 }
 
 .counter-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
     position: relative;
     display: inline-block;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.counter-title:after {
+.counter-title::after {
     content: '';
     position: absolute;
-    width: 70px;
-    height: 4px;
-    background-color: #2196f3;
-    bottom: -10px;
     left: 50%;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: white;
     transform: translateX(-50%);
+    border-radius: 2px;
 }
 
 .counter-subtitle {
-    font-size: 1.1rem;
-    color: #e0e0e0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .counter-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
 }
 
 .counter-item {
-    flex: 1;
-    min-width: 220px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-lg);
     text-align: center;
-    padding: 30px 15px;
-    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all var(--transition-medium);
+    opacity: 0;
+    transform: translateY(30px);
     position: relative;
     overflow: hidden;
 }
@@ -75,115 +83,144 @@
 .counter-item::before {
     content: '';
     position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(33, 150, 243, 0.1);
-    transition: all 0.5s ease;
-    z-index: -1;
-    border-radius: 0 0 50% 50%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: 0;
 }
 
 .counter-item:hover::before {
-    top: 0;
-    border-radius: 0;
+    opacity: 1;
 }
 
 .counter-item:hover {
     transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.counter-item:nth-child(1) {
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+.counter-item:nth-child(2) {
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+
+.counter-item:nth-child(3) {
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+}
+
+.counter-item:nth-child(4) {
+    animation: fadeIn 0.6s ease-out 0.8s forwards;
 }
 
 .counter-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: #2196f3;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
-    transition: all 0.3s ease;
-}
-
-.counter-item:hover .counter-icon {
-    transform: rotateY(180deg);
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    position: relative;
+    z-index: 1;
+    animation: pulse 3s infinite ease-in-out;
 }
 
 .counter-number {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    background: linear-gradient(45deg, #2196f3, #64b5f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--space-sm);
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .counter-text {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #e0e0e0;
+    font-size: 1.1rem;
     position: relative;
-    padding-bottom: 10px;
+    z-index: 1;
 }
 
-.counter-text::after {
-    content: '';
+/* Particle Effect */
+.counter-particles {
     position: absolute;
-    width: 40px;
-    height: 2px;
-    background-color: #2196f3;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-/* Add sparkle effect */
-.counter-item::after {
-    content: '';
+.particle {
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    background-color: white;
-    opacity: 0;
-    animation: sparkle 5s infinite;
+    animation: float 15s infinite ease-in-out;
 }
 
-.counter-item:nth-child(1)::after { top: 20%; left: 20%; animation-delay: 0s; }
-.counter-item:nth-child(2)::after { top: 70%; left: 30%; animation-delay: 1s; }
-.counter-item:nth-child(3)::after { top: 30%; left: 70%; animation-delay: 2s; }
-.counter-item:nth-child(4)::after { top: 80%; left: 80%; animation-delay: 3s; }
-
-@keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(0); }
-    50% { opacity: 1; transform: scale(1); }
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
     .counter-container {
-        flex-wrap: wrap;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-sm);
+        padding: 0 var(--space-lg);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .counter-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+    }
+    
+    .counter-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .counter-section {
+        padding: var(--space-lg) 0;
+    }
+    
+    .counter-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
     }
     
     .counter-item {
-        flex: 0 0 calc(50% - 30px);
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 768px) {
-    .counter-section {
-        padding: 60px 5%;
+        padding: var(--space-md);
     }
     
     .counter-title {
         font-size: 2rem;
     }
     
-    .counter-item {
-        flex: 0 0 100%;
+    .counter-subtitle {
+        font-size: 1rem;
+    }
+    
+    .counter-number {
+        font-size: 2.8rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .counter-title {
+        font-size: 1.8rem;
+    }
+    
+    .counter-icon {
+        font-size: 2.5rem;
+    }
+    
+    .counter-number {
+        font-size: 2.5rem;
+    }
+    
+    .counter-text {
+        font-size: 1rem;
     }
 }
