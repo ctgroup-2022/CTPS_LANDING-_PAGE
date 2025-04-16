@@ -1,31 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800;900&family=Playfair+Display:wght@700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 <section class="pg-hero-section">
     <!-- 3D layers container -->
     <div class="pg-hero-perspective">
-        <!-- Morphing background layer -->
-        <div class="pg-morphing-bg">
-            <div class="morph-shape morph1"></div>
-            <div class="morph-shape morph2"></div>
-            <div class="morph-shape morph3"></div>
-        </div>
+     
         
-        <!-- Dynamic image slider -->
+        <!-- Single background image instead of slider -->
         <div class="pg-hero-slider">
-            <div class="pg-slide active" style="background-image: url('assets/gallery/gallery7.jpg')"></div>
-            <div class="pg-slide" style="background-image: url('assets/gallery/gallery2.jpg')"></div>
-            <div class="pg-slide" style="background-image: url('assets/gallery/gallery6.jpg')"></div>
+            <div class="pg-slide active" style="background-image: url('assets/gallery/gallery4.jpg')"></div>
         </div>
         
-        <!-- Interactive particles container -->
-        <div class="pg-particles" id="particles-js"></div>
-        
-        <!-- Floating geometric elements -->
-        <div class="pg-floating-elements">
-            <div class="floating-element el1"></div>
-            <div class="floating-element el2"></div>
-            <div class="floating-element el3"></div>
-            <div class="floating-element el4"></div>
-            <div class="floating-element el5"></div>
-        </div>
+
         
         <!-- Central content container -->
         <div class="pg-hero-content-wrapper">
@@ -261,3 +255,5 @@
       
     </div>
 </section>
+</body>
+</html>

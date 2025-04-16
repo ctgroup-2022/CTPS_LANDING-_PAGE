@@ -1,19 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Background Slider
+    // Background Slider - simplified since we only have one image
     const slides = document.querySelectorAll('.pg-slide');
-    let currentSlide = 0;
-
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
-
-    // Initialize first slide
-    slides[0].classList.add('active');
     
-    // Auto slide change
-    setInterval(nextSlide, 7000);
+    // Initialize first slide (only slide in this case)
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
+    }
 
     // Enhanced particles system
     const particles = document.querySelector('.pg-particles');
