@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/counter.css">
     <link rel="stylesheet" href="assets/css/legacy.css">
-    
+    <link rel="stylesheet" href="assets/css/programs.css">
     <link rel="stylesheet" href="assets/css/faq.css">
     <link rel="stylesheet" href="assets/css/gallery.css">
     
@@ -39,6 +39,7 @@
  
     <?php include 'components/counter.php'; ?>
     <?php include 'components/legacy.php'; ?>
+    <?php include 'components/programs.php'; ?>
    
     <?php include 'components/gallery.php'; ?>
     <?php include 'components/testimonial.php'; ?>
@@ -70,7 +71,7 @@
     <script src="assets/js/gallery.js"></script>
     <script src="assets/js/legacy.js"></script>
     <script src="assets/js/testimonial.js"></script>
-
+<script src ="assets/js/programs.js"></script>
     <script src="assets/js/faq.js"></script>
     <!-- <script src="assets/js/programs.js"></script> -->
     

@@ -1,5 +1,3 @@
-// <!-- Add Vanilla Tilt for 3D Card Effects -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS
     AOS.init({
@@ -32,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     
     // Set first testimonial as active
-    testimonials[0].classList.add('active');
+    if(testimonials.length > 0) {
+        testimonials[0].classList.add('active');
+    }
     
     function showTestimonial(index) {
         testimonials.forEach(testimonial => {
@@ -48,18 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function nextTestimonial() {
+        if(testimonials.length === 0) return;
         currentIndex = (currentIndex + 1) % testimonials.length;
         showTestimonial(currentIndex);
     }
     
     function prevTestimonial() {
+        if(testimonials.length === 0) return;
         currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
         showTestimonial(currentIndex);
     }
     
     // Add event listeners for controls
-    nextBtn.addEventListener('click', nextTestimonial);
-    prevBtn.addEventListener('click', prevTestimonial);
+    if(prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+    if(nextBtn) nextBtn.addEventListener('click', nextTestimonial);
     
     // Add event listeners for dots
     dots.forEach((dot, index) => {
@@ -70,5 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Auto-rotate testimonials
-    setInterval(nextTestimonial, 6000);
+    if(testimonials.length > 0) {
+        setInterval(nextTestimonial, 6000);
+    }
 });

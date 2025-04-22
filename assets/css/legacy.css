@@ -268,60 +268,56 @@
     transform-origin: left;
 }
 
-/* Feature Card Icons Enhancement */
-.legacy-card-icon {
-    width: 75px;
-    height: 75px;
-    background: linear-gradient(135deg, #e6f2ff 0%, #f0f7ff 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto;
-    border-radius: 50%;
-    color: var(--primary-light);
-    font-size: 28px;
-    transition: all 0.5s ease;
+/* Feature Card Images Enhancement */
+.legacy-card-image {
     position: relative;
-    z-index: 1;
-    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.15);
-    animation: float 4s ease-in-out infinite;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
 }
 
-.legacy-card:hover .legacy-card-icon {
-    color: white;
-    transform: scale(1.15) translateY(-5px);
+.legacy-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.legacy-card-icon::before {
+.legacy-card:hover .legacy-card-image img {
+    transform: scale(1.1);
+}
+
+.legacy-card-image::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    transform: scale(0);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: -1;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), transparent);
+    z-index: 1;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.legacy-card:hover .legacy-card-image::after {
+    opacity: 0.5;
+}
+
+.legacy-card-icon {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 2;
 }
 
 .legacy-card-content {
-    padding: 0 25px 25px;
+    padding: 35px 25px 25px;
     text-align: center;
-}
-
-.legacy-card-title {
-    font-size: 1.3rem;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.legacy-card-text {
-    color: var(--text-light);
-    line-height: 1.6;
-    font-size: 0.95rem;
 }
 
 /* Timeline */
@@ -579,6 +575,10 @@
     .timeline-item:nth-child(even) .timeline-dot {
         left: 30px;
     }
+    
+    .legacy-card-image {
+        height: 160px;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -616,6 +616,20 @@
     
     .cta-button {
         padding: 12px 30px;
+    }
+    
+    .legacy-card-image {
+        height: 140px;
+    }
+    
+    .legacy-card-icon {
+        width: 50px;
+        height: 50px;
+        bottom: -20px;
+    }
+    
+    .legacy-card-content {
+        padding: 30px 20px 20px;
     }
 }
 

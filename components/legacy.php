@@ -7,9 +7,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <section class="legacy-section">
+    <!-- Background image container -->
+    <div class="legacy-bg-image"></div>
+    
     <!-- Animated background icons -->
  
-    
     <!-- 3D Animated Background -->
     <div class="animated-bg">
         <div class="wave"></div>
@@ -130,8 +132,11 @@
         <!-- Enhanced Feature Cards -->
         <div class="legacy-features">
             <div class="legacy-card" data-tilt data-tilt-max="10" data-aos="zoom-in" data-aos-delay="100">
-                <div class="legacy-card-icon">
-                    <i class="fas fa-lightbulb fa-bounce"></i>
+                <div class="legacy-card-image">
+                    <img src="assets\about\study.JPG" alt="Innovative Education">
+                    <div class="legacy-card-icon">
+                        <i class="fas fa-lightbulb fa-bounce"></i>
+                    </div>
                 </div>
                 <div class="legacy-card-content">
                     <h3 class="legacy-card-title"><i class="fas fa-bolt fa-xs me-1 text-warning"></i> Innovative Education</h3>
@@ -144,8 +149,11 @@
             </div>
             
             <div class="legacy-card" data-tilt data-tilt-max="10" data-aos="zoom-in" data-aos-delay="200">
-                <div class="legacy-card-icon">
-                    <i class="fas fa-chart-line fa-fade"></i>
+                <div class="legacy-card-image">
+                    <img src="assets/legacy/legacy1.JPG" alt="Student Growth">
+                    <div class="legacy-card-icon">
+                        <i class="fas fa-chart-line fa-fade"></i>
+                    </div>
                 </div>
                 <div class="legacy-card-content">
                     <h3 class="legacy-card-title"><i class="fas fa-seedling fa-xs me-1 text-success"></i> Student Growth</h3>
@@ -158,8 +166,11 @@
             </div>
             
             <div class="legacy-card" data-tilt data-tilt-max="10" data-aos="zoom-in" data-aos-delay="300">
-                <div class="legacy-card-icon">
-                    <i class="fas fa-handshake fa-beat"></i>
+                <div class="legacy-card-image">
+                    <img src="assets\legacy\legacy2.jpg" alt="Industry Partners">
+                    <div class="legacy-card-icon">
+                        <i class="fas fa-handshake fa-beat"></i>
+                    </div>
                 </div>
                 <div class="legacy-card-content">
                     <h3 class="legacy-card-title"><i class="fas fa-link fa-xs me-1 text-primary"></i> Industry Partners</h3>
@@ -239,7 +250,6 @@
     <!-- Add Custom CSS for Enhanced Effects -->
     <style>
         /* Base Styles from previous CSS */
-        /* ...existing code... */
         
         /* 3D Stats Section - Enhanced */
         .stats-3d-wrapper {
@@ -249,7 +259,7 @@
         
         .stats-3d-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* Fixed 3 columns per row */
             gap: 30px;
             justify-content: center;
         }
@@ -944,15 +954,11 @@
         /* Responsive fixes */
         @media screen and (max-width: 992px) {
             .stats-3d-container {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns */
             }
             
             .stat-3d-box {
                 height: 180px;
-            }
-            
-            .stat-3d-number {
-                font-size: 2.5rem;
             }
             
             .campus-gallery {
@@ -962,7 +968,7 @@
         
         @media screen and (max-width: 768px) {
             .stats-3d-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
             }
             
             .legacy-features {
@@ -976,7 +982,7 @@
         
         @media screen and (max-width: 576px) {
             .stats-3d-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Switch to 1 column */
                 max-width: 300px;
                 margin: 30px auto;
             }
@@ -1096,4 +1102,7 @@
     
     <!-- Add Vanilla Tilt for 3D Card Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    
+    <!-- Load the legacy.js file -->
+    <script src="assets/js/legacy.js"></script>
 </section>
