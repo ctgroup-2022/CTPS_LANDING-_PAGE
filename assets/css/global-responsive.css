@@ -10,7 +10,7 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-body {
+html, body {
     overflow-x: hidden;
     width: 100%;
     margin: 0;
@@ -33,6 +33,13 @@ img {
     margin-left: auto;
 }
 
+@media (max-width: 1200px) {
+    .container {
+        max-width: 96%;
+        padding: 0 15px;
+    }
+}
+
 /* Responsive typography */
 h1 {
     font-size: 2.5rem;
@@ -51,6 +58,32 @@ h5 {
 }
 h6 {
     font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    h1, .h1 {
+        font-size: calc(2rem + 1vw);
+    }
+    
+    h2, .h2 {
+        font-size: calc(1.5rem + 1vw);
+    }
+    
+    h3, .h3 {
+        font-size: calc(1.2rem + 0.5vw);
+    }
+    
+    body {
+        font-size: 0.95rem;
+    }
+    
+    .section-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    section {
+        padding: 50px 0;
+    }
 }
 
 /* Responsive iframe */
@@ -81,6 +114,18 @@ a.btn,
 a.button {
     min-height: 44px;
     min-width: 44px;
+}
+
+@media (max-width: 992px) {
+    input, select, textarea, button {
+        font-size: 16px; /* Prevents zoom on focus in iOS */
+    }
+    
+    a, button {
+        min-height: 44px; /* Better touch targets */
+        display: inline-flex;
+        align-items: center;
+    }
 }
 
 /* Spacing utilities */
@@ -126,12 +171,77 @@ a.button {
     padding-bottom: 3rem;
 }
 
+@media (max-width: 576px) {
+    .btn, button {
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .col, [class*="col-"] {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .mb-5 {
+        margin-bottom: 2rem !important;
+    }
+    
+    .mt-5 {
+        margin-top: 2rem !important;
+    }
+    
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
 /* Responsive table */
 .table-responsive {
     display: block;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+/* Improved mobile navigation handling */
+@media (max-width: 768px) {
+    .back-to-top {
+        right: 15px;
+        bottom: 15px;
+    }
+    
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+}
+
+/* Responsive utilities */
+.d-sm-none {
+    display: none !important;
+}
+
+@media (min-width: 576px) {
+    .d-sm-none {
+        display: initial !important;
+    }
+    .d-sm-block {
+        display: block !important;
+    }
+}
+
+.text-sm-center {
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+    .text-sm-left {
+        text-align: left !important;
+    }
 }
 
 /* Responsive media queries - larger breakpoints */

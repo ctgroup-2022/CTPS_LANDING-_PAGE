@@ -415,4 +415,177 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Replace the carousel functionality with bento grid functionality
+    // Initialize category filtering for bento grid
+    initializeBentoFiltering();
+    
+    // Initialize lightbox for bento grid
+    initializeBentoLightbox();
+    
+    // Initialize 3D icon effects
+    initialize3DIconEffects();
+    
+    /**
+     * Initialize the category filtering system for the bento grid
+     */
+    function initializeBentoFiltering() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const bentoItems = document.querySelectorAll('.bento-item');
+        
+        if (!filterButtons.length || !bentoItems.length) return;
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get selected category
+                const category = this.getAttribute('data-filter');
+                
+                // Filter gallery items
+                bentoItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+    
+    /**
+     * Initialize lightbox functionality for bento grid
+     */
+    function initializeBentoLightbox() {
+        const viewButtons = document.querySelectorAll('.view-details');
+        const lightbox = document.querySelector('.gallery-lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const closeButton = document.querySelector('.lightbox-close');
+        
+        if (!viewButtons.length || !lightbox || !lightboxImage || !closeButton) return;
+        
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const imageSrc = this.getAttribute('data-image');
+                if (!imageSrc) return;
+                
+                // Preload image
+                const img = new Image();
+                img.onload = function() {
+                    lightboxImage.src = imageSrc;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+                img.src = imageSrc;
+            });
+        });
+        
+        // Close lightbox
+        closeButton.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Clear image after transition
+            setTimeout(() => {
+                lightboxImage.src = '';
+            }, 300);
+        });
+        
+        // Close on background click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Clear image after transition
+                setTimeout(() => {
+                    lightboxImage.src = '';
+                }, 300);
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    /**
+     * Initialize 3D effects for icons
+     */
+    function initialize3DIconEffects() {
+        const iconWrappers = document.querySelectorAll('.icon-3d-wrapper');
+        
+        if (!iconWrappers.length) return;
+        
+        iconWrappers.forEach(wrapper => {
+            const parent = wrapper.closest('.feature-block');
+            
+            parent.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Convert to percentage
+                const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
+                const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
+                
+                // Tilt effect (subtle)
+                wrapper.style.transform = `rotateX(${yPercent * -10}deg) rotateY(${xPercent * 10}deg)`;
+            });
+            
+            parent.addEventListener('mouseleave', function() {
+                wrapper.style.transform = 'rotateX(0) rotateY(0)';
+            });
+        });
+    }
+    
+    // Apply parallax effect to bento grid images
+    const bentoItems = document.querySelectorAll('.bento-item');
+    
+    bentoItems.forEach(item => {
+        item.addEventListener('mousemove', function(e) {
+            const img = this.querySelector('img');
+            if (!img) return;
+            
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Convert to percentage
+            const xPercent = (x / rect.width);
+            const yPercent = (y / rect.height);
+            
+            // Parallax effect
+            img.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
+            img.style.transform = `scale(1.1) translate(${(xPercent - 0.5) * -10}px, ${(yPercent - 0.5) * -10}px)`;
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            const img = this.querySelector('img');
+            if (!img) return;
+            
+            img.style.transformOrigin = 'center center';
+            img.style.transform = 'scale(1)';
+        });
+    });
 });

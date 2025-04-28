@@ -1,526 +1,546 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Split the title text into individual letters for the wave animation
-    const programsTitle = document.querySelector('.programs-title');
-    if (programsTitle) {
-        const text = programsTitle.innerText;
-        let newHTML = '';
-        
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] === ' ') {
-                newHTML += ' ';
-            } else {
-                newHTML += `<span style="--i:${i}">${text[i]}</span>`;
-            }
-        }
-        
-        programsTitle.innerHTML = newHTML;
-    }
-
-    // Animate program cards when they come into view
+    // Get all program cards
     const programCards = document.querySelectorAll('.program-card');
-    const programsCta = document.querySelector('.programs-cta');
     
-    // Create tilt effect on cards
+    // Add shine effect element to each card
+    programCards.forEach(card => {
+        const shineEffect = document.createElement('div');
+        shineEffect.className = 'shine-effect';
+        card.appendChild(shineEffect);
+        
+        // Process all cards to set icon colors
+        const colorAttribute = card.getAttribute('data-color');
+        const icon = card.querySelector('.program-icon');
+        if (icon) {
+            icon.setAttribute('data-color', colorAttribute);
+        }
+    });
+    
+    // Enhanced hover effects with dynamic shadows and transforms
     programCards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
+            // Get position of mouse relative to card
             const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element
-            const y = e.clientY - rect.top; // y position within the element
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
             
+            // Calculate rotation based on mouse position
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            const deltaX = (x - centerX) / centerX;
-            const deltaY = (y - centerY) / centerY;
+            const rotateY = ((x - centerX) / centerX) * 3; // max 3 degrees
+            const rotateX = ((centerY - y) / centerY) * 2; // max 2 degrees
             
-            const rotateX = deltaY * -8; // Reduced from -10 to work better with the shape
-            const rotateY = deltaX * 8;  // Reduced from 10
+            // Apply subtle rotation with translateZ for more depth
+            this.style.transform = `translateY(-12px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
             
-            // Only apply rotation without vertical movement
-            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            // Enhanced shadow based on mouse position
+            const shadowX = (x - centerX) / 8;
+            const shadowY = (y - centerY) / 8;
+            this.style.boxShadow = `${shadowX}px ${shadowY + 25}px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2) inset`;
             
-            // Add dynamic lighting effect adjusted for blue theme
+            // Enhanced light reflection on icon
             const iconWrapper = this.querySelector('.program-icon-wrapper');
             if (iconWrapper) {
-                const lightX = x / rect.width * 100;
-                const lightY = y / rect.height * 100;
-                iconWrapper.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, var(--accent), var(--primary-dark))`;
-                // Keep the rotation for rhombus shape
-                iconWrapper.style.transform = `rotate(45deg) scale(1.1)`;
-            }
-            
-            // Add magnetic effect to button
-            const link = this.querySelector('.program-link');
-            if (link) {
-                const linkRect = link.getBoundingClientRect();
-                const linkCenterX = linkRect.left + linkRect.width / 2;
-                const linkCenterY = linkRect.top + linkRect.height / 2;
-                
-                const linkDeltaX = (e.clientX - linkCenterX) / (rect.width / 2) * 10;
-                const linkDeltaY = (e.clientY - linkCenterY) / (rect.height / 2) * 5;
-                
-                // Only apply magnetic effect when close to button
-                const distance = Math.sqrt(Math.pow(e.clientX - linkCenterX, 2) + Math.pow(e.clientY - linkCenterY, 2));
-                if (distance < 100) {
-                    link.style.transform = `translate(${linkDeltaX}px, ${linkDeltaY}px) scale(1.05)`;
-                } else {
-                    link.style.transform = '';
-                }
-            }
-            
-            // Add shine effect direction
-            const mouseX = e.pageX - rect.left;
-            const mouseY = e.pageY - rect.top;
-            const reflectionDeg = Math.atan2(mouseY, mouseX) * (180 / Math.PI) + 90;
-            
-            // Update reflection position based on mouse
-            const shine = this.querySelector('.card-shine');
-            if (shine) {
-                shine.style.transform = `rotate(${reflectionDeg}deg)`;
+                const lightX = (x / rect.width) * 100;
+                const lightY = (y / rect.height) * 100;
+                iconWrapper.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, white 10%, #f8f9fa 70%)`;
             }
         });
         
-        card.addEventListener('mouseleave', function() {
-            // Reset to initial state without any transform
-            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            const iconWrapper = this.querySelector('.program-icon-wrapper');
-            if (iconWrapper) {
-                iconWrapper.style.background = '';
-                iconWrapper.style.transform = 'rotate(45deg)';
+        card.addEventListener('mouseenter', function() {
+            // Slightly adjust image on hover for subtle effect
+            const bgImage = this.querySelector('.card-bg-image');
+            if (bgImage) {
+                bgImage.style.transform = 'scale(1.05)';
+                bgImage.style.filter = 'brightness(0.75) contrast(1.15)';
             }
             
-            // Reset link transform
-            const link = this.querySelector('.program-link');
-            if (link) {
-                link.style.transform = '';
-            }
-        });
-    });
-    
-    // Enhanced hover effects for program cards
-    programCards.forEach(card => {
-        card.addEventListener('mouseenter', function(e) {
-            // Create sparkle effect
-            createSparkles(this);
-            createAdvancedSparkles(this);
-            
-            // Add hover class for additional animations
-            this.classList.add('card-hover');
-            
-            // Animate the description to "float up"
-            const description = this.querySelector('.program-description');
-            if (description) {
-                description.style.transform = 'translateZ(30px)';
-                description.style.opacity = '1';
-            }
-            
-            // Make the icon pulse
+            // Add pulse animation to icon
             const icon = this.querySelector('.program-icon');
             if (icon) {
-                icon.style.animation = 'iconPulse 1s infinite alternate';
+                icon.style.animation = 'pulseIcon 1.5s infinite alternate';
             }
             
-            // Animated entrance sequence for card elements
-            const iconWrapper = this.querySelector('.program-icon-wrapper');
+            // Enhance text readability when image is visible
             const title = this.querySelector('.program-title');
-            const desc = this.querySelector('.program-description');
-            const link = this.querySelector('.program-link');
-            
-            if (iconWrapper) {
-                iconWrapper.style.animation = 'popIn 0.5s forwards cubic-bezier(0.34, 1.56, 0.64, 1)';
-                iconWrapper.style.animationDelay = '0s';
-            }
+            const description = this.querySelector('.program-description');
             
             if (title) {
-                title.style.animation = 'popIn 0.5s forwards cubic-bezier(0.34, 1.56, 0.64, 1)';
-                title.style.animationDelay = '0.1s';
+                title.style.textShadow = '0 2px 8px rgba(0, 0, 0, 0.8)';
             }
             
-            if (desc) {
-                desc.style.animation = 'popIn 0.5s forwards cubic-bezier(0.34, 1.56, 0.64, 1)';
-                desc.style.animationDelay = '0.2s';
-            }
-            
-            if (link) {
-                link.style.animation = 'popIn 0.5s forwards cubic-bezier(0.34, 1.56, 0.64, 1)';
-                link.style.animationDelay = '0.3s';
+            if (description) {
+                description.style.textShadow = '0 2px 8px rgba(0, 0, 0, 0.8)';
             }
         });
         
         card.addEventListener('mouseleave', function() {
-            // Reset to initial state without any transform
-            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            // Reset all dynamic styles
+            this.style.transform = '';
+            this.style.boxShadow = '';
+            
+            // Reset icon wrapper background
             const iconWrapper = this.querySelector('.program-icon-wrapper');
             if (iconWrapper) {
                 iconWrapper.style.background = '';
-                iconWrapper.style.transform = 'rotate(45deg)';
             }
             
-            // Remove hover class
-            this.classList.remove('card-hover');
-            
-            // Reset description
-            const description = this.querySelector('.program-description');
-            if (description) {
-                description.style.transform = 'translateZ(0)';
+            // Reset image scaling
+            const bgImage = this.querySelector('.card-bg-image');
+            if (bgImage) {
+                bgImage.style.transform = '';
+                bgImage.style.filter = 'brightness(0.7) contrast(1.2)';
             }
             
-            // Reset icon animation
+            // Remove pulse animation from icon
             const icon = this.querySelector('.program-icon');
             if (icon) {
-                icon.style.animation = 'float 3s ease-in-out infinite';
+                icon.style.animation = '';
             }
             
-            // Remove any sparkles
-            const sparkles = this.querySelectorAll('.card-sparkle');
-            sparkles.forEach(sparkle => sparkle.remove());
+            // Reset text shadows
+            const title = this.querySelector('.program-title');
+            const description = this.querySelector('.program-description');
+            
+            if (title) {
+                title.style.textShadow = '';
+            }
+            
+            if (description) {
+                description.style.textShadow = '';
+            }
         });
-        
-        // Add decorative elements to cards
-        const decoration1 = document.createElement('div');
-        decoration1.classList.add('card-decoration');
-        card.appendChild(decoration1);
-        
-        const decoration2 = document.createElement('div');
-        decoration2.classList.add('card-decoration');
-        card.appendChild(decoration2);
-        
-        // Highlight first word in title
-        const title = card.querySelector('.program-title');
-        if (title) {
-            const text = title.innerText;
-            const firstWord = text.split(' ')[0];
-            const restOfText = text.slice(firstWord.length);
-            title.innerHTML = `<span class="highlight">${firstWord}</span>${restOfText}`;
-        }
     });
     
-    // Function to create sparkle effects on card hover
-    function createSparkles(card) {
-        // Create 5 sparkles at random positions
-        for (let i = 0; i < 5; i++) {
-            setTimeout(() => {
-                if (!card.matches(':hover')) return;
-                
-                const sparkle = document.createElement('div');
-                sparkle.className = 'card-sparkle';
-                
-                // Random position within the card
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                // Style the sparkle
-                sparkle.style.cssText = `
-                    position: absolute;
-                    left: ${x}%;
-                    top: ${y}%;
-                    width: 12px;
-                    height: 12px;
-                    background: transparent;
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 10;
-                    box-shadow: 0 0 10px 2px var(--accent);
-                `;
-                
-                // Add sparkle animation
-                sparkle.animate(
-                    [
-                        { 
-                            transform: 'scale(0) rotate(0deg)',
-                            opacity: 0 
-                        },
-                        { 
-                            transform: 'scale(1) rotate(180deg)',
-                            opacity: 0.8,
-                            boxShadow: '0 0 20px 2px var(--accent)'
-                        },
-                        { 
-                            transform: 'scale(0) rotate(360deg)',
-                            opacity: 0 
-                        }
-                    ], 
-                    { 
-                        duration: 700,
-                        easing: 'cubic-bezier(0.45, 0.05, 0.55, 0.95)'
-                    }
-                );
-                
-                // Add to card and remove after animation
-                card.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 700);
-            }, i * 100); // Stagger the sparkle creation
-        }
-    }
-    
-    // Create advanced sparkle effects
-    function createAdvancedSparkles(card) {
-        // Create different types of sparkles
-        const sparkleTypes = [
-            { size: '8px', color: 'var(--primary)', duration: 1.5, delay: 0 },
-            { size: '12px', color: 'var(--accent)', duration: 2, delay: 0.3 },
-            { size: '6px', color: 'var(--primary-light)', duration: 1.8, delay: 0.6 }
-        ];
-        
-        // Create 10 sparkles
-        for (let i = 0; i < 10; i++) {
-            setTimeout(() => {
-                if (!card.matches(':hover')) return;
-                
-                // Get random sparkle type
-                const sparkleType = sparkleTypes[Math.floor(Math.random() * sparkleTypes.length)];
-                
-                // Create sparkle element
-                const sparkle = document.createElement('div');
-                sparkle.className = 'card-sparkle';
-                
-                // Random position
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                // Style sparkle
-                sparkle.style.cssText = `
-                    position: absolute;
-                    left: ${x}%;
-                    top: ${y}%;
-                    width: ${sparkleType.size};
-                    height: ${sparkleType.size};
-                    background-color: ${sparkleType.color};
-                    border-radius: 50%;
-                    filter: blur(1px);
-                    pointer-events: none;
-                    z-index: 100;
-                    opacity: 0;
-                `;
-                
-                // Add to card
-                card.appendChild(sparkle);
-                
-                // Animate sparkle
-                sparkle.animate([
-                    { 
-                        transform: 'scale(0) rotate(0deg)', 
-                        opacity: 0,
-                        filter: 'blur(2px)' 
-                    },
-                    { 
-                        transform: 'scale(1) rotate(180deg)', 
-                        opacity: 0.9,
-                        filter: 'blur(0px)',
-                        offset: 0.6
-                    },
-                    { 
-                        transform: 'scale(0) rotate(360deg)', 
-                        opacity: 0,
-                        filter: 'blur(2px)' 
-                    }
-                ], {
-                    duration: sparkleType.duration * 1000,
-                    easing: 'cubic-bezier(0.45, 0.05, 0.55, 0.95)',
-                    delay: sparkleType.delay * 1000
-                });
-                
-                // Remove sparkle after animation
-                setTimeout(() => {
-                    if(sparkle.parentNode === card) {
-                        card.removeChild(sparkle);
-                    }
-                }, (sparkleType.duration + sparkleType.delay) * 1000);
-            }, i * 200);
-        }
-    }
-    
-    // Add keyframe animation for the icon pulse
-    const styleSheet = document.createElement('style');
-    styleSheet.innerHTML = `
-        @keyframes iconPulse {
-            0% { transform: rotate(-45deg) scale(1); }
-            100% { transform: rotate(-45deg) scale(1.2); }
+    // Add keyframes for icon pulse animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulseIcon {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+            }
+            100% {
+                transform: scale(1.2) rotate(-5deg);
+                filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.2));
+            }
         }
     `;
-    document.head.appendChild(styleSheet);
+    document.head.appendChild(style);
     
-    // Add keyframe for pop-in animation
-    const popInStyle = document.createElement('style');
-    popInStyle.innerHTML = `
-        @keyframes popIn {
-            0% { transform: scale(0.9); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-    `;
-    document.head.appendChild(popInStyle);
-    
-    // Check if IntersectionObserver is supported
+    // Animate cards when they come into view with staggered effect
     if ('IntersectionObserver' in window) {
         const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -10% 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, idx) => {
                 if (entry.isIntersecting) {
-                    // Add animation with delay for staggered effect
-                    const index = Array.from(programCards).indexOf(entry.target);
                     setTimeout(() => {
-                        entry.target.style.animation = 'fadeIn 0.8s forwards cubic-bezier(0.21, 0.61, 0.35, 1)';
                         entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                    }, index * 150);
-                    
-                    // Unobserve after animation
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, idx * 150); // Increased delay between cards
                     observer.unobserve(entry.target);
-                    
-                    // Add entrance animation to card elements
-                    const icon = entry.target.querySelector('.program-icon-wrapper');
-                    const title = entry.target.querySelector('.program-title');
-                    const desc = entry.target.querySelector('.program-description');
-                    const link = entry.target.querySelector('.program-link');
-                    
-                    if (icon) setTimeout(() => { icon.style.animation = 'pulse 3s infinite'; }, index * 150 + 300);
-                    if (title) setTimeout(() => { title.style.animation = 'fadeInUp 0.5s forwards'; }, index * 150 + 400);
-                    if (desc) setTimeout(() => { desc.style.animation = 'fadeInUp 0.5s forwards'; }, index * 150 + 500);
-                    if (link) setTimeout(() => { link.style.animation = 'fadeInUp 0.5s forwards'; }, index * 150 + 600);
                 }
             });
         }, observerOptions);
         
-        // Observe each program card
-        programCards.forEach(card => {
+        // Observe each program card with enhanced initial state
+        programCards.forEach((card, index) => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
+            card.style.transform = 'translateY(50px) scale(0.95)';
+            card.style.transition = 'all 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
             observer.observe(card);
         });
-        
-        // Separate observer for CTA section with more dramatic effect
-        const ctaObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                programsCta.style.animation = 'fadeInUp 1s cubic-bezier(0.21, 0.61, 0.35, 1) forwards';
-                programsCta.style.opacity = '1';
-                programsCta.style.transform = 'translateY(0)';
-                
-                // Add particle effects when CTA appears
-                createParticles();
-                
-                ctaObserver.unobserve(programsCta);
-            }
-        }, { threshold: 0.5 });
-        
-        if (programsCta) {
-            programsCta.style.opacity = '0';
-            programsCta.style.transform = 'translateY(30px)';
-            ctaObserver.observe(programsCta);
-        }
     } else {
         // Fallback for browsers that don't support IntersectionObserver
-        programCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            }, index * 100);
+        programCards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
         });
-        
-        if (programsCta) {
-            programsCta.style.opacity = '1';
-            programsCta.style.transform = 'translateY(0)';
-        }
     }
     
-    // Create particle effects for the CTA section
-    function createParticles() {
-        const programsSection = document.getElementById('programs-section');
-        if (!programsSection) return;
-        
-        // Create container for particles
-        const particleContainer = document.createElement('div');
-        particleContainer.className = 'particle-container';
-        particleContainer.style.position = 'absolute';
-        particleContainer.style.top = '0';
-        particleContainer.style.left = '0';
-        particleContainer.style.width = '100%';
-        particleContainer.style.height = '100%';
-        particleContainer.style.pointerEvents = 'none';
-        particleContainer.style.overflow = 'hidden';
-        particleContainer.style.zIndex = '0';
-        
-        programsSection.appendChild(particleContainer);
-        
+    // Add floating particles to background
+    const container = document.querySelector('.programs-container');
+    if (container) {
         // Create particles
-        for (let i = 0; i < 30; i++) {
-            createParticle(particleContainer);
+        for (let i = 0; i < 15; i++) {
+            createParticle(container);
         }
     }
     
     function createParticle(container) {
         const particle = document.createElement('div');
+        particle.classList.add('particle');
         
-        // Random size between 5px and 15px
-        const size = Math.random() * 10 + 5;
-        
-        // Style the particle
-        particle.style.position = 'absolute';
+        // Random size
+        const size = Math.random() * 6 + 2;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
-        particle.style.background = getRandomColor();
-        particle.style.borderRadius = '50%';
-        particle.style.opacity = (Math.random() * 0.5 + 0.1).toString();
-        particle.style.pointerEvents = 'none';
         
-        // Random starting position
-        const startPositionX = Math.random() * 100;
-        const startPositionY = Math.random() * 100;
-        particle.style.left = `${startPositionX}%`;
-        particle.style.top = `${startPositionY}%`;
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
         
-        // Add animation
-        const duration = Math.random() * 20 + 10; // Between 10-30s
-        const delay = Math.random() * 5; // Between 0-5s
-        
-        particle.style.animation = `floatParticle ${duration}s ${delay}s infinite linear`;
-        
-        // Add keyframe animation dynamically
-        if (!document.getElementById('particle-animation')) {
-            const style = document.createElement('style');
-            style.id = 'particle-animation';
-            style.innerHTML = `
-                @keyframes floatParticle {
-                    0% {
-                        transform: translateY(0) translateX(0) rotate(0deg);
-                        opacity: 0;
-                    }
-                    10% {
-                        opacity: 0.5;
-                    }
-                    90% {
-                        opacity: 0.5;
-                    }
-                    100% {
-                        transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Random animation duration and delay
+        const duration = Math.random() * 15 + 5;
+        const delay = Math.random() * 5;
+        particle.style.animation = `float-particle ${duration}s ${delay}s infinite ease-in-out`;
         
         container.appendChild(particle);
-        
-        // Remove particle after animation completes
-        setTimeout(() => {
-            container.removeChild(particle);
-            createParticle(container); // Create a new particle to replace it
-        }, (duration + delay) * 1000);
     }
     
-    // Update particle colors to use the blue theme
-    function getRandomColor() {
-        const colors = [
-            'rgba(0, 86, 179, 0.7)',   // primary
-            'rgba(0, 168, 255, 0.7)',  // accent
-            'rgba(74, 144, 226, 0.7)', // primary-light
-            'rgba(0, 61, 122, 0.7)',   // darker variation
-            'rgba(173, 216, 230, 0.7)' // lighter variation
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
+    // Create background elements
+    createBackgroundElements();
+    
+    // Add keyframes for shape animation
+    const shapeAnimStyle = document.createElement('style');
+    shapeAnimStyle.textContent = `
+        @keyframes floatShape {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+    `;
+    document.head.appendChild(shapeAnimStyle);
+
+    // Remove the click event from cards and only add it to the icon wrappers
+    programCards.forEach(card => {
+        const iconWrapper = card.querySelector('.program-icon-wrapper');
+        
+        // Add click event only to the icon wrapper
+        if (iconWrapper) {
+            iconWrapper.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event bubbling
+                
+                // Get program data from parent card
+                const card = this.closest('.program-card');
+                const programId = card.getAttribute('data-id');
+                const programTitle = card.querySelector('.program-title') ? 
+                    card.querySelector('.program-title').textContent :
+                    card.querySelector('.card-title').textContent;
+                const programDescription = card.querySelector('.program-description') ? 
+                    card.querySelector('.program-description').textContent : '';
+                const programIconClass = card.querySelector('.program-icon').classList[1];
+                const programImageSrc = card.querySelector('.card-bg-image').getAttribute('src');
+                
+                // Create circular popup with this program's data
+                createCircularPopup(programId, programTitle, programDescription, programIconClass, programImageSrc);
+            });
+        }
+    });
+    
+    // Function to create and show circular program popup that matches the image exactly
+    function createCircularPopup(id, title, description, iconClass, imageSrc) {
+        // Create popup container if it doesn't exist
+        let popup = document.getElementById('program-popup');
+        
+        if (!popup) {
+            popup = document.createElement('div');
+            popup.id = 'program-popup';
+            popup.className = 'program-popup';
+            document.body.appendChild(popup);
+        }
+
+        // Generate HTML for circular popup content matching the image exactly
+        const popupHTML = `
+            <div class="popup-content circular-popup">
+                <div class="popup-close"><i class="fas fa-times"></i></div>
+                <div class="popup-inner">
+                    <h3 class="popup-title">Sign Up For 5% Off</h3>
+                    <h4 class="popup-subtitle">Your 1st Order</h4>
+                    <p class="popup-description">
+                        Approved by you - No spammy promotional emails, just cool stuff we think you'll like ♥
+                    </p>
+                    <div class="popup-action">
+                        <input type="email" placeholder="Your Email" class="popup-input">
+                        <button class="popup-button">Yes, Please! <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="popup-footer">
+                        <a href="#" class="popup-no-thanks">No, Thanks</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Set popup content
+        popup.innerHTML = popupHTML;
+        
+        // Add event listeners for closing popup
+        const closeBtn = popup.querySelector('.popup-close');
+        closeBtn.addEventListener('click', closePopup);
+        
+        const noThanksBtn = popup.querySelector('.popup-no-thanks');
+        if (noThanksBtn) {
+            noThanksBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                closePopup();
+            });
+        }
+        
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+        
+        // Add keyboard support (Escape key)
+        document.addEventListener('keydown', handleEscKey);
+        
+        // Show popup with animation
+        setTimeout(() => {
+            popup.classList.add('active');
+        }, 10);
+        
+        // Prevent page scrolling when popup is open
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Function to close popup
+    function closePopup() {
+        const popup = document.getElementById('program-popup');
+        if (popup) {
+            popup.classList.remove('active');
+            
+            // Wait for animation to finish before removing
+            setTimeout(() => {
+                popup.remove();
+                document.body.style.overflow = '';
+            }, 300);
+            
+            // Remove keyboard listener
+            document.removeEventListener('keydown', handleEscKey);
+        }
+    }
+    
+    // Handle Escape key press
+    function handleEscKey(e) {
+        if (e.key === 'Escape') {
+            closePopup();
+        }
+    }
+    
+    // Enhanced icon animation
+    programCards.forEach(card => {
+        // Create 3D animation effect for icons
+        const icon = card.querySelector('.program-icon');
+        const iconWrapper = card.querySelector('.program-icon-wrapper');
+        
+        if (icon && iconWrapper) {
+            // Add floating animation to icons
+            const iconFloatAnimation = `
+                @keyframes iconFloat${Math.floor(Math.random() * 1000)} {
+                    0%, 100% { transform: translateZ(20px); }
+                    50% { transform: translateZ(30px) rotate(5deg); }
+                }
+            `;
+            const iconStyle = document.createElement('style');
+            iconStyle.textContent = iconFloatAnimation;
+            document.head.appendChild(iconStyle);
+            
+            // Apply unique animation to each icon
+            icon.style.animation = `iconFloat${Math.floor(Math.random() * 1000)} 3s infinite ease-in-out`;
+        }
+    });
+    
+    // Add click event to all "Read More" buttons
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
+            
+            // Get program data from parent card
+            const card = this.closest('.program-card');
+            const programId = card.getAttribute('data-id');
+            const programTitle = card.querySelector('.program-title') ? 
+                card.querySelector('.program-title').textContent :
+                card.querySelector('.card-title').textContent;
+            const programDescription = card.querySelector('.program-description') ? 
+                card.querySelector('.program-description').textContent : '';
+            
+            // Create circular popup with this program's data
+            createExactCircularPopup(programId, programTitle, programDescription);
+        });
+    });
+    
+    // Function to create circular popup exactly matching the reference image
+    function createExactCircularPopup(id, title, description) {
+        // Create popup container if it doesn't exist
+        let popup = document.getElementById('program-popup');
+        
+        if (!popup) {
+            popup = document.createElement('div');
+            popup.id = 'program-popup';
+            popup.className = 'program-popup';
+            document.body.appendChild(popup);
+        }
+        
+        // Generate HTML for circular popup content
+        const popupHTML = `
+            <div class="popup-content circular-popup">
+                <div class="popup-close"><i class="fas fa-times"></i></div>
+                <div class="popup-inner">
+                    <h3 class="popup-title">Sign Up For 5% Off</h3>
+                    <h4 class="popup-subtitle">Your 1st Order</h4>
+                    <p class="popup-description">
+                        Approved by you - No spammy promotional emails, just cool stuff we think you'll like ♥
+                    </p>
+                    <div class="popup-action">
+                        <input type="email" placeholder="Your Email" class="popup-input">
+                        <button class="popup-button">Yes, Please! <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="popup-footer">
+                        <a href="#" class="popup-no-thanks">No, Thanks</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Set popup content
+        popup.innerHTML = popupHTML;
+        
+        // Add event listeners for closing popup
+        const closeBtn = popup.querySelector('.popup-close');
+        closeBtn.addEventListener('click', closePopup);
+        
+        const noThanksBtn = popup.querySelector('.popup-no-thanks');
+        if (noThanksBtn) {
+            noThanksBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                closePopup();
+            });
+        }
+        
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+        
+        // Add keyboard support (Escape key)
+        document.addEventListener('keydown', handleEscKey);
+        
+        // Show popup with animation
+        setTimeout(() => {
+            popup.classList.add('active');
+        }, 10);
+        
+        // Prevent page scrolling when popup is open
+        document.body.style.overflow = 'hidden';
     }
 });
+
+// Add additional floating particles to background with better distribution
+function createBackgroundElements() {
+    const container = document.querySelector('.programs-container');
+    if (!container) return;
+
+    // Create particles with different sizes and colors
+    for (let i = 0; i < 25; i++) {
+        createFloatingParticle(container, i);
+    }
+    
+    // Create additional decorative elements
+    for (let i = 0; i < 3; i++) {
+        createGeometricShape(container, i);
+    }
+}
+
+function createFloatingParticle(container, index) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    
+    // Varied sizes for visual interest
+    const size = Math.random() * 6 + 2;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Better distribution across the container
+    const posX = 5 + (Math.random() * 90); // 5-95% to keep away from edges
+    const posY = 5 + (Math.random() * 90);
+    particle.style.left = `${posX}%`;
+    particle.style.top = `${posY}%`;
+    
+    // Alternate colors between primary and accent
+    if (index % 3 === 0) {
+        particle.style.background = 'var(--primary-light)';
+        particle.style.opacity = '0.15';
+    } else if (index % 3 === 1) {
+        particle.style.background = 'var(--accent)';
+        particle.style.opacity = '0.12';
+    } else {
+        particle.style.background = 'var(--primary)';
+        particle.style.opacity = '0.08';
+    }
+    
+    // Varied animation duration and delay for natural movement
+    const duration = Math.random() * 20 + 10;
+    const delay = Math.random() * 10;
+    particle.style.animation = `float-particle ${duration}s ${delay}s infinite ease-in-out`;
+    
+    container.appendChild(particle);
+}
+
+function createGeometricShape(container, index) {
+    const shape = document.createElement('div');
+    shape.classList.add('geo-shape');
+    
+    // Different shapes
+    if (index % 3 === 0) {
+        // Square
+        shape.style.width = '40px';
+        shape.style.height = '40px';
+        shape.style.borderRadius = '4px';
+        shape.style.transform = 'rotate(45deg)';
+    } else if (index % 3 === 1) {
+        // Triangle (using border trick)
+        shape.style.width = '0';
+        shape.style.height = '0';
+        shape.style.borderLeft = '25px solid transparent';
+        shape.style.borderRight = '25px solid transparent';
+        shape.style.borderBottom = '40px solid rgba(0, 168, 255, 0.05)';
+        shape.style.background = 'transparent';
+    } else {
+        // Hexagon
+        shape.style.width = '35px';
+        shape.style.height = '20px';
+        shape.style.background = 'rgba(0, 86, 179, 0.04)';
+        shape.style.position = 'relative';
+        shape.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
+    }
+    
+    // Position
+    const posX = 10 + (Math.random() * 80);
+    const posY = 10 + (Math.random() * 80);
+    shape.style.left = `${posX}%`;
+    shape.style.top = `${posY}%`;
+    
+    // Common styles
+    shape.style.position = 'absolute';
+    shape.style.background = index % 2 === 0 ? 'rgba(0, 86, 179, 0.04)' : 'rgba(0, 168, 255, 0.03)';
+    shape.style.pointerEvents = 'none';
+    shape.style.zIndex = '-1';
+    
+    // Animation
+    const duration = 30 + (index * 10);
+    shape.style.animation = `floatShape ${duration}s infinite linear`;
+    
+    container.appendChild(shape);
+}

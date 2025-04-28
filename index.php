@@ -24,9 +24,10 @@
     <link rel="stylesheet" href="assets/css/programs.css">
     <link rel="stylesheet" href="assets/css/faq.css">
     <link rel="stylesheet" href="assets/css/gallery.css">
-    
+    <link rel="stylesheet" href="assets/css/events-slider.css">
     <link rel="stylesheet" href="assets/css/testimonial.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/circular-events.css">
 
     <!-- <link rel="stylesheet" href="assets/css/programs.css"> -->
 
@@ -42,9 +43,10 @@
     <?php include 'components/programs.php'; ?>
    
     <?php include 'components/gallery.php'; ?>
+    <?php include 'components/events-slider.php'; ?>
     <?php include 'components/testimonial.php'; ?>
     <?php include 'components/faq.php'; ?>
-    <!-- <?php include 'components/programs.php'; ?> -->
+  
     <?php include 'components/footer.php'; ?>
 
 
@@ -71,8 +73,10 @@
     <script src="assets/js/gallery.js"></script>
     <script src="assets/js/legacy.js"></script>
     <script src="assets/js/testimonial.js"></script>
-<script src ="assets/js/programs.js"></script>
+    <script src="assets/js/programs.js"></script>
     <script src="assets/js/faq.js"></script>
+    <script src="assets/js/events-slider.js"></script>
+    <script src="assets/js/circular-events.js"></script>
     <!-- <script src="assets/js/programs.js"></script> -->
     
 </body>

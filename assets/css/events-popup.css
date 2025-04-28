@@ -1,0 +1,1025 @@
+/* Modern Events Popup with Enhanced Visual Appeal */
+:root {
+  --popup-primary: #0056b3;
+  --popup-accent: #00a8ff;
+  --popup-light: #4a90e2;
+  --popup-gradient: linear-gradient(135deg, var(--popup-accent), var(--popup-primary));
+  --popup-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --popup-radius: 20px;
+  --popup-transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Popup Overlay with Glass Morphism Effect */
+.enhanced-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 10, 30, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.enhanced-popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modern Card-Style Popup Container */
+.enhanced-event-popup {
+  width: 95%; /* Slightly wider for better spacing */
+  max-width: 1000px;
+  min-height: 600px;
+  max-height: 90vh; /* Slightly taller to use more screen space on mobile */
+  background: #fff;
+  border-radius: var(--popup-radius);
+  box-shadow: var(--popup-shadow), 
+              0 0 0 1px rgba(255, 255, 255, 0.1), 
+              0 0 30px rgba(0, 86, 179, 0.2),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) scale(0.8) translateY(50px);
+  opacity: 0;
+  transition: var(--popup-transition);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.enhanced-popup-overlay.active .enhanced-event-popup {
+  transform: rotateX(0) scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Elegant Close Button */
+.enhanced-popup-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 20px;
+  color: var(--popup-primary);
+  transform: translateZ(40px);
+}
+
+.enhanced-popup-close:hover {
+  background: white;
+  transform: translateZ(50px) rotate(90deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Vibrant Eye-Catching Sidebar */
+.enhanced-popup-sidebar {
+  background: var(--popup-gradient);
+  padding: 50px 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  flex-shrink: 0;
+  border-radius: var(--popup-radius) 0 0 var(--popup-radius);
+}
+
+.sidebar-content {
+  position: relative;
+  z-index: 3;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Event Category Badge with Glass Effect */
+.popup-category {
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transform: translateZ(30px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  animation: fadeZoomIn 0.7s forwards;
+  opacity: 0;
+  transform: scale(0.8) translateZ(30px);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Bold Attractive Event Title */
+.popup-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+  transform: translateZ(25px);
+  animation: fadeZoomIn 0.7s 0.15s forwards;
+  opacity: 0;
+  transform: scale(0.9) translateZ(25px);
+  position: relative;
+  word-break: break-word;
+  letter-spacing: -0.5px;
+}
+
+.popup-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 80px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Clear Event Description */
+.popup-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  animation: fadeZoomIn 0.7s 0.25s forwards;
+  opacity: 0;
+  transform: scale(0.9) translateZ(20px);
+  max-height: 150px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 8px;
+}
+
+.popup-description::-webkit-scrollbar {
+  width: 5px;
+}
+
+.popup-description::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.popup-description::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+/* Zoom-in animation for sidebar elements */
+@keyframes fadeZoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(var(--z, 0px));
+  }
+}
+
+/* Event Meta Information with Icons */
+.popup-meta {
+  margin-top: auto;
+  animation: fadeZoomIn 0.7s 0.35s forwards;
+  opacity: 0;
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.popup-meta-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.popup-meta-item:last-child {
+  margin-bottom: 0;
+}
+
+.popup-meta-icon {
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  transform: translateZ(15px);
+  font-size: 1.1rem;
+}
+
+.popup-meta-text {
+  font-size: 1.05rem;
+}
+
+.popup-meta-label {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+
+/* Beautiful Glowing Background Elements */
+.sidebar-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(40px);
+}
+
+.sidebar-shape.shape1 {
+  width: 350px;
+  height: 350px;
+  bottom: -200px;
+  right: -150px;
+  animation: pulse 15s infinite alternate ease-in-out;
+}
+
+.sidebar-shape.shape2 {
+  width: 200px;
+  height: 200px;
+  top: -70px;
+  left: -100px;
+  opacity: 0.5;
+  animation: pulse 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.2) translate(30px, -20px);
+  }
+}
+
+/* Content Section with Clean Layout */
+.enhanced-popup-content {
+  padding: 50px 40px;
+  overflow-y: auto;
+  position: relative;
+  background: linear-gradient(to bottom right, #f8f9ff, #ffffff);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+}
+
+/* Custom scrollbar for content */
+.enhanced-popup-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.enhanced-popup-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+
+.enhanced-popup-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 86, 179, 0.2);
+  border-radius: 10px;
+}
+
+.enhanced-popup-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 86, 179, 0.4);
+}
+
+/* Animated Content Sections */
+.popup-section {
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.enhanced-popup-overlay.active .popup-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.enhanced-popup-overlay.active .popup-section:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.enhanced-popup-overlay.active .popup-section:nth-child(3) {
+  transition-delay: 0.35s;
+}
+
+/* Bold Section Headers with Visual Accent */
+.popup-section-title {
+  font-size: 1.4rem;
+  color: var(--popup-primary);
+  margin-bottom: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.popup-section-title i {
+  margin-right: 15px;
+  background: var(--popup-gradient);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
+}
+
+/* Updated Event Card Design with Better Visual Hierarchy and Auto-Scroll */
+.event-card-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container for auto-scrolling cards */
+.event-card-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  width: 100%;
+  transition: transform 0.8s ease-in-out;
+  padding-bottom: 10px; /* Space for scroll indicator */
+}
+
+.event-card {
+  min-width: 260px;
+  flex: 0 0 calc(50% - 10px); /* Two cards visible at once on desktop */
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06),
+              0 1px 1px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.event-card.active {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12),
+              0 1px 1px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px) scale(1.02);
+  border: 1px solid rgba(0, 86, 179, 0.15);
+  position: relative;
+}
+
+.event-card.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--popup-gradient);
+  z-index: 2;
+  border-radius: var(--popup-radius) var(--popup-radius) 0 0;
+}
+
+/* Scroll controls */
+.event-scroll-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.scroll-control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--popup-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.scroll-control-btn:hover {
+  background: var(--popup-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 86, 179, 0.2);
+}
+
+.scroll-control-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.scroll-pause-btn.paused i:before {
+  content: "\f04b"; /* Font Awesome play icon */
+}
+
+/* Scroll progress indicator */
+.scroll-progress-bar {
+  height: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-progress-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--popup-gradient);
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.3s linear;
+}
+
+/* Auto-scrolling animation for continuous content showcase */
+@keyframes scrollCards {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-280px * var(--card-count) / 2)); /* Half-way through cards */
+  }
+}
+
+/* Add visual cue for card hover */
+.event-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12),
+              0 1px 1px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px);
+}
+
+/* Animation for active card */
+@keyframes pulseActive {
+  0%, 100% { box-shadow: 0 15px 35px rgba(0, 86, 179, 0.12); }
+  50% { box-shadow: 0 15px 35px rgba(0, 86, 179, 0.25); }
+}
+
+.event-card.active {
+  animation: pulseActive 2s infinite;
+}
+
+/* Card pagination dots */
+.event-card-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.card-pagination-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-pagination-dot.active {
+  width: 24px;
+  background: var(--popup-gradient);
+  border-radius: 10px;
+}
+
+/* Enhanced focus state for keyboard navigation */
+.event-card:focus-visible {
+  outline: 2px solid var(--popup-primary);
+  outline-offset: 2px;
+}
+
+/* Scroll indicator visible on cards to indicate scrolling */
+.scroll-indicator-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 86, 179, 0.1);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--popup-primary);
+  opacity: 0;
+  transform: translate(20px, -50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.event-card-grid:hover .scroll-indicator-arrow {
+  opacity: 1;
+  animation: pulseArrow 2s infinite;
+}
+
+@keyframes pulseArrow {
+  0%, 100% { transform: translate(0, -50%); }
+  50% { transform: translate(5px, -50%); }
+}
+
+/* Related events section with auto-scrolling */
+.related-events-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.related-events {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  transition: transform 0.8s ease-in-out;
+}
+
+.related-event-card {
+  min-width: 200px;
+  flex: 0 0 calc(33.333% - 10px); /* Three cards visible at once */
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive adjustments for auto-scrolling */
+@media (max-width: 992px) {
+  .enhanced-event-popup {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto; /* Allow scrolling of entire popup on tablets */
+  }
+  
+  .enhanced-popup-sidebar {
+    border-radius: var(--popup-radius) var(--popup-radius) 0 0;
+    padding: 35px 30px;
+    min-height: 0; /* Don't force height on mobile */
+  }
+  
+  .popup-title {
+    font-size: 2.2rem;
+  }
+  
+  .popup-meta {
+    margin-bottom: 20px; /* Add space below meta on mobile layout */
+    margin-top: 20px; /* Adjust spacing */
+  }
+
+  .enhanced-popup-content {
+    padding: 30px;
+    max-height: none; /* Remove max height for better mobile scrolling */
+  }
+  
+  .event-card {
+    flex: 0 0 calc(100% - 10px); /* One card visible at once on tablets */
+  }
+  
+  .related-event-card {
+    flex: 0 0 calc(50% - 10px); /* Two cards visible on tablets */
+  }
+
+  /* Make scroll controls more finger-friendly */
+  .event-scroll-controls {
+    gap: 25px; /* More space between buttons for touch targets */
+  }
+  
+  .scroll-control-btn {
+    width: 44px; /* Slightly larger for better touch targets */
+    height: 44px;
+  }
+}
+
+/* Optimized for Mobile Phones */
+@media (max-width: 768px) {
+  .enhanced-popup-overlay {
+    padding: 10px; /* Reduce padding to use more screen space */
+    align-items: flex-start; /* Allow scrolling from the top */
+    overflow-y: auto; /* Ensure the overlay itself can scroll */
+  }
+
+  .enhanced-event-popup {
+    width: 100%; /* Full width on mobile */
+    min-height: 0; /* Remove min-height to prevent overflow */
+    max-height: none; /* Let content determine height */
+    transform: rotateX(15deg) scale(0.9) translateY(30px); /* Less dramatic animation for mobile */
+    border-radius: 16px; /* Slightly smaller radius */
+    overflow-y: auto; /* Allow scrolling */
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .enhanced-popup-close {
+    top: 15px; /* Move closer to edge */
+    right: 15px;
+    width: 40px; /* Slightly smaller */
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .enhanced-popup-sidebar {
+    padding: 25px 20px;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .popup-category {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  .popup-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .popup-title::after {
+    width: 60px;
+    height: 4px;
+    bottom: -10px;
+  }
+  
+  .popup-description {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    max-height: 110px;
+  }
+  
+  .popup-meta {
+    padding: 15px;
+  }
+  
+  .popup-meta-item {
+    margin-bottom: 12px;
+  }
+  
+  .popup-meta-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+  }
+  
+  .popup-meta-text {
+    font-size: 0.95rem;
+  }
+
+  /* Content area improvements */
+  .enhanced-popup-content {
+    padding: 25px 20px;
+  }
+  
+  .popup-section {
+    margin-bottom: 30px;
+  }
+  
+  .popup-section-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .popup-section-title i {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  
+  /* Card layout improvements */
+  .event-card-scroll-container,
+  .related-events {
+    gap: 15px;
+  }
+  
+  .event-card {
+    min-width: 100%;
+    margin-right: 0;
+  }
+  
+  .event-card-header {
+    padding: 12px;
+  }
+  
+  .event-card-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .event-card-content {
+    padding: 12px;
+  }
+  
+  .event-card-detail {
+    margin-bottom: 8px;
+  }
+  
+  .related-event-card {
+    flex: 0 0 calc(100% - 10px); /* One card visible on mobile */
+    min-width: 100%;
+    padding: 15px;
+  }
+  
+  /* Footer adjustments */
+  .enhanced-popup-footer {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .popup-share {
+    justify-content: center;
+  }
+  
+  .popup-cta-btn {
+    width: 100%;
+    padding: 14px 20px; /* Taller button for easier tapping */
+    font-size: 1rem;
+  }
+  
+  .popup-share-btn {
+    width: 42px; /* Larger for touch */
+    height: 42px;
+    margin: 0 5px;
+  }
+
+  /* Mobile-optimized scroll controls */
+  .event-scroll-controls {
+    gap: 30px; /* More space for touch targets */
+  }
+
+  .scroll-control-btn {
+    width: 46px; /* Larger for easier touch */
+    height: 46px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .enhanced-popup-overlay {
+    padding: 0; /* No padding to maximize space */
+  }
+
+  .enhanced-event-popup {
+    width: 100%;
+    border-radius: 0; /* Full screen on very small devices */
+    box-shadow: none;
+  }
+  
+  .enhanced-popup-sidebar {
+    padding: 20px 15px;
+    border-radius: 0;
+  }
+  
+  .popup-title {
+    font-size: 1.6rem;
+  }
+  
+  .popup-category {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+  
+  .popup-description {
+    font-size: 0.95rem;
+    max-height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .popup-meta-item {
+    margin-bottom: 10px;
+  }
+  
+  .popup-meta-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+  }
+  
+  .enhanced-popup-content {
+    padding: 20px 15px;
+  }
+  
+  .popup-section-title {
+    font-size: 1.2rem;
+  }
+  
+  .enhanced-popup-footer {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  /* Optimize card display for very small screens */
+  .event-card-header {
+    padding: 10px;
+  }
+  
+  .event-card-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .event-card-title {
+    font-size: 1rem;
+  }
+  
+  .event-card-content {
+    padding: 10px;
+  }
+  
+  .event-card-detail-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Portrait-specific optimizations */
+@media (max-height: 700px) and (orientation: portrait) {
+  .enhanced-popup-overlay {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+  
+  .enhanced-event-popup {
+    max-height: none;
+  }
+  
+  .popup-description {
+    max-height: 80px;
+  }
+  
+  .popup-meta {
+    padding: 15px;
+  }
+  
+  .popup-title {
+    font-size: 1.7rem;
+    margin-bottom: 15px;
+  }
+}
+
+/* Landscape phone orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .enhanced-popup-overlay {
+    padding: 5px;
+  }
+  
+  .enhanced-event-popup {
+    grid-template-columns: 1fr 1.5fr; /* Revert to two columns for landscape */
+    max-height: 95vh;
+    min-height: 0;
+  }
+  
+  .enhanced-popup-sidebar {
+    padding: 20px;
+    border-radius: var(--popup-radius) 0 0 var(--popup-radius);
+  }
+  
+  .popup-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .popup-category {
+    margin-bottom: 15px;
+    padding: 5px 15px;
+  }
+  
+  .popup-description {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    max-height: 80px;
+  }
+  
+  .popup-meta {
+    padding: 12px;
+  }
+  
+  .popup-meta-item {
+    margin-bottom: 8px;
+  }
+  
+  .enhanced-popup-content {
+    padding: 20px;
+  }
+}
+
+/* Touch-specific enhancements */
+@media (hover: none) and (pointer: coarse) {
+  /* Styles specific to touch devices */
+  
+  /* Larger touch targets */
+  .scroll-control-btn,
+  .popup-share-btn,
+  .event-card-pagination .card-pagination-dot {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Add active state for touch feedback */
+  .scroll-control-btn:active,
+  .popup-share-btn:active,
+  .popup-cta-btn:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  
+  .card-pagination-dot {
+    width: 10px; /* Slightly larger dots for touch */
+    height: 10px;
+  }
+  
+  .card-pagination-dot.active {
+    width: 28px;
+  }
+  
+  .event-card-pagination {
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  /* Add scroll indicators for touch swipe */
+  .event-card-grid::before,
+  .event-card-grid::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 0.7;
+    pointer-events: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-card-grid::before {
+    left: 5px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230056b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .event-card-grid::after {
+    right: 5px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230056b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

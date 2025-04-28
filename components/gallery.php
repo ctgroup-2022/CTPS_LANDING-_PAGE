@@ -9,251 +9,241 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800;900&family=Playfair+Display:wght@700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<section class="pg-hero-section">
-    <!-- 3D layers container -->
-    <div class="pg-hero-perspective">
-     
-        
-        <!-- Single background image instead of slider -->
-        <div class="pg-hero-slider">
-            <div class="pg-slide active" style="background-image: url('assets/gallery/gallery4.jpg')"></div>
-        </div>
-        
-
-        
-        <!-- Central content container -->
-        <div class="pg-hero-content-wrapper">
-            <!-- Animated spotlight effect -->
-            <div class="spotlight-effect"></div>
-            
-            <!-- Main content -->
-            <div class="pg-hero-content">
-                <!-- Animated text reveal -->
-                <div class="pg-text-reveal">
-                    <div class="reveal-line">
-                        <span data-text="Innovation">Innovation</span>
-                    </div>
-                    <div class="reveal-line">
-                        <span data-text="Inspiration">Inspiration</span>
-                    </div>
-                    <div class="reveal-line">
-                        <span data-text="Excellence">Excellence</span>
-                    </div>
-                </div>
-                
-                <h1 class="pg-hero-title">
-                    <span class="title-top">Experience the</span>
-                    <span class="gradient-text" data-text="Next Level">Next Level</span>
-                </h1>
-                
-                <p class="pg-hero-subtitle">Begin your journey to excellence with our innovative programs designed to transform your potential into remarkable success</p>
-                
-                <div class="pg-hero-buttons">
-                    <a href="#gallery" class="pg-hero-btn primary">
-                        <span class="btn-text">Explore Gallery</span>
-                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-background"></span>
-                    </a>
-                    <a href="#" class="pg-hero-btn secondary">
-                        <span class="btn-text">Our Vision</span>
-                        <span class="btn-icon"><i class="fas fa-lightbulb"></i></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Interactive scroll indicator -->
-        <div class="pg-scroll-indicator">
-            <div class="pg-mouse">
-                <div class="mouse-wheel"></div>
-            </div>
-            <div class="scroll-text">Discover More</div>
-        </div>
-        
-        <!-- Dynamic decorative ribbon -->
-        <div class="pg-decorative-ribbon">
-            <div class="ribbon-segment"></div>
-            <div class="ribbon-segment"></div>
-            <div class="ribbon-segment"></div>
-        </div>
-    </div>
-</section>
-
-<!-- Enhanced Gallery Section with Modern Bento Grid -->
+<!-- INNOVATIVE GALLERY DESIGN - Hero section removed -->
 <section id="gallery" class="pg-gallery-section">
-    <div class="pg-section-container">
-        <div class="pg-section-header">
-            <h2 class="pg-gallery-title">Our Gallery</h2>
-            <p class="pg-gallery-subtitle">Explore our vibrant community and activities</p>
+    <div class="gallery-glow-bg"></div>
+    
+    <!-- Added centered section heading for features -->
+    <div class="section-header features-header">
+        <div class="section-title-wrap">
+            <h2 class="section-title">Our Facilities</h2>
+            <div class="title-underline"></div>
+        </div>
+        <p>Discover what makes our institution exceptional</p>
+    </div>
+    
+    <!-- Feature blocks with 3D icons -->
+    <div class="feature-blocks">
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/infra.png" alt="Infrastructure">
+                    </div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/infra.png" alt="Infrastructure">
+                    </div>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Infrastructure</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
         </div>
         
-        <!-- Enhanced Bento Grid Layout with Optimized Sizing -->
-        <div class="pg-bento-grid">
-            <!-- Featured Gallery Item 1 (Large) -->
-            <div class="pg-bento-item featured curtain-card" data-aos="fade-up">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery1.jpg" alt="Students participating in our featured workshop" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Featured</span>
-                        <h3>Workshop Series</h3>
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/apple.png" alt="Certified Tutors">
                     </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/apple.png" alt="Certified Tutors">
                     </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <h3>Featured Workshop</h3>
-                            <p>Our students engage in hands-on learning experiences</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery1.jpg">View Larger</button>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Certified Tutors</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+        </div>
+        
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/children.png" alt="Small Class Size">
+                    </div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/children.png" alt="Small Class Size">
+                    </div>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Small Class Size</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+        </div>
+    </div>
+
+    <div class="feature-blocks second-row">
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/conference.png" alt="Infant Care">
+                    </div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/conference.png" alt="Infant Care">
+                    </div>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Infant Care</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+        </div>
+        
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/bus.png" alt="Safety First">
+                    </div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/bus.png" alt="Safety First">
+                    </div>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Safety First</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+        </div>
+        
+        <div class="feature-block">
+            <div class="feature-icon icon-3d">
+                <div class="icon-3d-wrapper">
+                    <div class="icon-3d-front">
+                        <img src="assets/icons/dancing.png" alt="Activities">
+                    </div>
+                    <div class="icon-3d-back">
+                        <img src="assets/icons/dancing.png" alt="Activities">
+                    </div>
+                    <div class="icon-3d-left"></div>
+                    <div class="icon-3d-right"></div>
+                    <div class="icon-3d-top"></div>
+                    <div class="icon-3d-bottom"></div>
+                </div>
+            </div>
+            <h3>Activities</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+        </div>
+    </div>
+
+    <!-- Bento Grid Gallery -->
+    <div class="gallery-container">
+        <div class="section-header">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Our Gallery</h2>
+                <div class="title-underline"></div>
+            </div>
+            <p>Explore our world-class facilities and engaging activities</p>
+        </div>
+        
+        <div class="category-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="campus">Campus</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+            <button class="filter-btn" data-filter="learning">Learning</button>
+            <button class="filter-btn" data-filter="projects">Projects</button>
+        </div>
+        
+        <!-- Bento Grid Layout -->
+        <div class="bento-grid-container">
+            <div class="bento-grid">
+                <!-- Featured Item (Large) -->
+                <div class="bento-item featured" data-category="campus">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery1.jpg" alt="Main Campus Building" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Campus</span>
+                            <h3>Main Building</h3>
+                            <p>Our state-of-the-art main building provides students with modern learning spaces.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery1.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Gallery Item 2 (Vertical) -->
-            <div class="pg-bento-item vertical curtain-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery2.jpg" alt="Student project showcase" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Projects</span>
-                        <h3>Student Innovations</h3>
-                    </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
-                    </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-project-diagram"></i></div>
-                            <h3>Student Projects</h3>
-                            <p>Creative works showcasing talent and innovation</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery2.jpg">View Larger</button>
+                
+                <!-- Vertical Item -->
+                <div class="bento-item vertical" data-category="events">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery2.jpg" alt="Annual Showcase" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Events</span>
+                            <h3>Annual Showcase</h3>
+                            <p>Students present their year-long projects during our showcase event.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery2.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Gallery Item 3 (Horizontal) -->
-            <div class="pg-bento-item horizontal curtain-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery3.jpg" alt="Virtual campus tour experience" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Campus</span>
-                        <h3>Virtual Tour</h3>
-                    </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
-                    </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-university"></i></div>
-                            <h3>Campus Tour</h3>
-                            <p>Explore our state-of-the-art facilities and discover our vibrant campus environment</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery3.jpg">View Larger</button>
+                
+                <!-- Horizontal Item -->
+                <div class="bento-item horizontal" data-category="learning">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery3.jpg" alt="Interactive Learning" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Learning</span>
+                            <h3>Interactive Classes</h3>
+                            <p>Our innovative teaching methods encourage active participation and collaborative learning.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery3.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Gallery Item 4 (Square) -->
-            <div class="pg-bento-item square curtain-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery4.jpg" alt="Annual awards ceremony" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Events</span>
-                        <h3>Awards Night</h3>
-                    </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
-                    </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-award"></i></div>
-                            <h3>Awards Ceremony</h3>
-                            <p>Celebrating achievements and academic excellence in our annual recognition event</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery4.jpg">View Larger</button>
+                
+                <!-- Square Item 1 -->
+                <div class="bento-item square" data-category="projects">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery4.jpg" alt="Innovation Lab" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Projects</span>
+                            <h3>Innovation Lab</h3>
+                            <p>Students work on cutting-edge projects in our fully equipped laboratories.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery4.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Gallery Item 5 (Square) -->
-            <div class="pg-bento-item square curtain-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery5.jpg" alt="Interactive learning session" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Learning</span>
-                        <h3>Interactive Sessions</h3>
-                    </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
-                    </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-laptop-code"></i></div>
-                            <h3>Interactive Learning</h3>
-                            <p>Engaging educational experiences designed to inspire creativity and critical thinking</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery5.jpg">View Larger</button>
+                
+                <!-- Square Item 2 -->
+                <div class="bento-item square" data-category="campus">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery5.jpg" alt="Recreation Area" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Campus</span>
+                            <h3>Recreation Area</h3>
+                            <p>Well-designed spaces for students to relax and engage in activities.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery5.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Gallery Item 6 (Vertical) -->
-            <div class="pg-bento-item vertical curtain-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="card-content">
-                    <img src="assets/gallery/gallery7.jpg" alt="Community engagement event" loading="lazy">
-                    <div class="pg-bento-caption">
-                        <span class="caption-tag">Community</span>
-                        <h3>Engagement</h3>
-                    </div>
-                    
-                    <!-- Curtain Overlay -->
-                    <div class="curtain-wrapper">
-                        <div class="curtain curtain-left"></div>
-                        <div class="curtain curtain-right"></div>
-                    </div>
-                    
-                    <!-- Revealed Content -->
-                    <div class="card-reveal">
-                        <div class="reveal-content">
-                            <div class="overlay-icon pulse-icon"><i class="fas fa-users"></i></div>
-                            <h3>Community Events</h3>
-                            <p>Building connections and fostering relationships through engaging social activities</p>
-                            <button class="pg-view-btn shine-effect" data-image="assets/gallery/gallery7.jpg">View Larger</button>
+                
+                <!-- Vertical Item 2 -->
+                <div class="bento-item vertical" data-category="events">
+                    <div class="bento-card">
+                        <img src="assets/gallery/gallery7.jpg" alt="Cultural Festival" loading="lazy">
+                        <div class="overlay">
+                            <span class="item-category">Events</span>
+                            <h3>Cultural Festival</h3>
+                            <p>Annual celebration of diversity through performances and cultural exchanges.</p>
+                            <button class="view-details" data-image="assets/gallery/gallery7.jpg">View Larger</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-      
     </div>
 </section>
+
+<script src="assets/js/gallery.js"></script>
 </body>
 </html>
