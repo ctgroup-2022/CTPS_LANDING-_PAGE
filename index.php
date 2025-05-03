@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CT Public School - Quality Education from Pre-Nursery to +2</title>
+    <title>Learning Programs</title>
     <meta name="description" content="CT Public School offers quality education from pre-nursery to +2 with modern facilities, experienced faculty, and holistic development approach.">
     <!-- Link Bootstrap CSS from CDN for reliability -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <!-- Global CSS Variables -->
     <link rel="stylesheet" href="assets/css/global-vars.css">
@@ -28,6 +29,7 @@
     <link rel="stylesheet" href="assets/css/testimonial.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/circular-events.css">
+    <link rel="stylesheet" href="assets/css/age-groups.css">
 
     <!-- <link rel="stylesheet" href="assets/css/programs.css"> -->
 
@@ -41,18 +43,13 @@
     <?php include 'components/counter.php'; ?>
     <?php include 'components/legacy.php'; ?>
     <?php include 'components/programs.php'; ?>
-   
+    <?php include 'components/age-groups.php'; ?>
     <?php include 'components/gallery.php'; ?>
     <?php include 'components/events-slider.php'; ?>
     <?php include 'components/testimonial.php'; ?>
     <?php include 'components/faq.php'; ?>
-  
+   
     <?php include 'components/footer.php'; ?>
-
-
-
-
-
 
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>

@@ -11,70 +11,16 @@
     <!-- Circular Events Cards Container -->
     <div class="circular-events-container">
         <!-- Event Card 1 - Latest Events (Green) -->
-        <div class="circular-event-card active" id="event-latest">
+        <div class="circular-event-card" id="event-latest">
             <div class="circle-bg green-bg">
                 <div class="icon-container">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
                 <h3 class="circle-title">Latest Events</h3>
                 <div class="event-preview">
-                    <p>We have several exciting events coming up for students of all ages</p>
+                    <p>Stay up-to-date with our latest events and activities</p>
                 </div>
                 <button class="learn-more-btn">Learn More</button>
-            </div>
-            
-            <!-- Expandable Event List -->
-            <div class="event-details-panel">
-                <div class="panel-header">
-                    <h3>Upcoming Events</h3>
-                    <button class="close-panel"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="event-items-list">
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>CAREER CONNECT PROGRAM</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>20 Mar, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Graduation Ceremony</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>20 Mar, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Annual Sports Day</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>15 Apr, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="#" class="view-all-btn">
-                        <span>View All Events</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -90,60 +36,6 @@
                 </div>
                 <button class="learn-more-btn">Learn More</button>
             </div>
-            
-            <!-- Expandable Event List -->
-            <div class="event-details-panel">
-                <div class="panel-header">
-                    <h3>Important Notices</h3>
-                    <button class="close-panel"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="event-items-list">
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Notice regarding School Uniform</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>21 Apr, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>GOOD FRIDAY</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>19 Apr, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Exam Schedule Posted</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>10 Apr, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="#" class="view-all-btn">
-                        <span>View All Notices</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
         </div>
 
         <!-- Event Card 3 - Spotlight (Purple) -->
@@ -158,60 +50,6 @@
                 </div>
                 <button class="learn-more-btn">Learn More</button>
             </div>
-            
-            <!-- Expandable Event List -->
-            <div class="event-details-panel">
-                <div class="panel-header">
-                    <h3>Current Spotlights</h3>
-                    <button class="close-panel"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="event-items-list">
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>CAREER CONNECT 2025 FOR CLASS XI</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>25 May, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Science Fair Exhibition</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>30 Mar, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Academic Excellence Awards</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>20 Jun, 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="#" class="view-all-btn">
-                        <span>View All Spotlights</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
         </div>
 
         <!-- Event Card 4 - Activities (Orange) -->
@@ -225,60 +63,6 @@
                     <p>Fun and educational activities for student development</p>
                 </div>
                 <button class="learn-more-btn">Learn More</button>
-            </div>
-            
-            <!-- Expandable Event List -->
-            <div class="event-details-panel">
-                <div class="panel-header">
-                    <h3>Regular Activities</h3>
-                    <button class="close-panel"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="event-items-list">
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Arts & Crafts Day</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Every Tuesday</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Sports Activities</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Every Thursday</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item animated">
-                        <div class="event-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="event-details">
-                            <h4>Nature Exploration</h4>
-                            <div class="event-date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Every Friday</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="#" class="view-all-btn">
-                        <span>View All Activities</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -300,4 +84,5 @@
     <link rel="stylesheet" href="assets/css/events-popup.css">
     <script src="assets/js/events-popup.js"></script>
     <script src="assets/js/events-popup-mobile.js"></script>
+    <script src="assets/js/enhanced-event-content.js"></script>
 </section>

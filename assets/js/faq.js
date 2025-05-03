@@ -108,6 +108,42 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
+        // Improve mobile scrolling for category buttons
+        const categoryContainer = document.querySelector('.faq-categories');
+        if (categoryContainer && window.innerWidth <= 768) {
+            // Add visual indicator for scrollable categories
+            const indicator = document.createElement('div');
+            indicator.className = 'scroll-indicator';
+            indicator.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            indicator.style.cssText = 'position:absolute; right:5px; top:50%; transform:translateY(-50%); color:#018CCF; animation:pulse 1.5s infinite; z-index:5; font-size:12px; opacity:0.7;';
+            
+            if (categoryContainer.scrollWidth > categoryContainer.clientWidth) {
+                categoryContainer.style.position = 'relative';
+                categoryContainer.appendChild(indicator);
+                
+                // Hide indicator after user has scrolled
+                categoryContainer.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 30) {
+                        indicator.style.opacity = '0';
+                        setTimeout(() => {
+                            indicator.remove();
+                        }, 300);
+                    }
+                });
+            }
+        }
+        
+        // Adjust answer height calculation for mobile
+        function updateAnswerHeight(item) {
+            const answer = item.querySelector('.faq-answer');
+            const content = item.querySelector('.answer-content');
+            if (answer && content) {
+                // Add extra space on mobile to prevent cut-off
+                const extraSpace = window.innerWidth <= 576 ? 40 : 30;
+                answer.style.maxHeight = (content.offsetHeight + extraSpace) + 'px';
+            }
+        }
+        
         // FAQ Toggle Functionality - Fixed version
         faqItems.forEach(item => {
             if (!item) return;
@@ -142,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.classList.add('active');
                 
                 // Calculate the correct height for the answer
-                answer.style.maxHeight = (content.offsetHeight + 30) + 'px'; // Added more buffer
+                updateAnswerHeight(item);
                 
                 // Scroll item into view if needed
                 const itemRect = item.getBoundingClientRect();
@@ -227,13 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add resize listener for responsive adjustments
         window.addEventListener('resize', () => {
             const activeItems = document.querySelectorAll('.faq-item.active');
-            activeItems.forEach(item => {
-                const answer = item.querySelector('.faq-answer');
-                const content = item.querySelector('.answer-content');
-                if (answer && content) {
-                    answer.style.maxHeight = (content.offsetHeight + 30) + 'px';
-                }
-            });
+            activeItems.forEach(updateAnswerHeight);
         });
         
     } catch (error) {

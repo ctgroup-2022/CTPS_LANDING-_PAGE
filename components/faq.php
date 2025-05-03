@@ -17,6 +17,8 @@
                     <button class="category-btn" data-category="admission">Admission</button>
                     <button class="category-btn" data-category="academics">Academics</button>
                     <button class="category-btn" data-category="facilities">Facilities</button>
+                    <!-- Added aria attributes for accessibility -->
+                    <span class="sr-only">Scroll for more categories</span>
                 </div>
                 
                 <div class="faq-content">

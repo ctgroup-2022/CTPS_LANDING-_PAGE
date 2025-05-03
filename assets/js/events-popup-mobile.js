@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adjust popup for better mobile viewing
         optimizeForMobile();
         
-        // Add special handling for landscape orientation
+        // Add special handling for orientation changes
         handleOrientationChanges();
     }
     
@@ -59,6 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.pauseAutoScroll && typeof window.pauseAutoScroll === 'function') {
                 window.pauseAutoScroll();
             }
+            
+            // Add visual feedback
+            cardContainer.style.transition = 'none';
+            cards.forEach(card => {
+                card.style.transition = 'transform 0.1s ease';
+                card.style.transform = 'scale(0.98)';
+            });
         }
         
         /**
@@ -70,23 +77,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentX = e.touches[0].clientX;
             const diff = currentX - startX;
             
-            // Calculate new translate position
+            // Update the translation with some resistance at edges
             currentTranslate = prevTranslate + diff;
             
-            // Apply boundaries
+            // Apply constraints with resistance
             const maxTranslate = 0;
             const minTranslate = -((cards.length - 1) * cardWidth);
             
             if (currentTranslate > maxTranslate) {
-                currentTranslate = maxTranslate;
+                currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.2;
+            } else if (currentTranslate < minTranslate) {
+                currentTranslate = minTranslate + (currentTranslate - minTranslate) * 0.2;
             }
             
-            if (currentTranslate < minTranslate) {
-                currentTranslate = minTranslate;
-            }
-            
-            // Apply transform with easing
-            cardContainer.style.transition = 'transform 0.1s ease';
             cardContainer.style.transform = `translateX(${currentTranslate}px)`;
         }
         
@@ -96,21 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
         function touchEnd() {
             isDragging = false;
             
-            // Snap to nearest card
-            const cardIndex = Math.round(Math.abs(currentTranslate) / cardWidth);
-            const snappedTranslate = -cardIndex * cardWidth;
+            // Reset card scale
+            cards.forEach(card => {
+                card.style.transform = '';
+            });
             
-            // Apply snapped position
+            // Calculate which card is closest after swipe
+            const cardIndex = Math.round(Math.abs(currentTranslate / cardWidth));
+            const adjustedIndex = Math.min(Math.max(cardIndex, 0), cards.length - 1);
+            
+            // Snap to the nearest card
+            currentTranslate = -adjustedIndex * cardWidth;
+            prevTranslate = currentTranslate;
+            
+            // Apply smooth transition back
             cardContainer.style.transition = 'transform 0.3s ease';
-            cardContainer.style.transform = `translateX(${snappedTranslate}px)`;
-            prevTranslate = snappedTranslate;
-            currentTranslate = snappedTranslate;
+            cardContainer.style.transform = `translateX(${currentTranslate}px)`;
             
-            // Update active card
-            updateActiveCard(cardIndex);
-            
-            // Update card pagination dots
-            updatePaginationDots(cardIndex);
+            // Update active states
+            updateActiveCard(adjustedIndex);
+            updatePaginationDots(adjustedIndex);
             
             // Resume auto-scroll after a delay
             setTimeout(() => {
@@ -152,18 +160,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const popup = document.querySelector('.enhanced-event-popup');
         if (!popup) return;
         
-        const isMobile = window.innerWidth <= 768;
+        // Disable heavy effects that might cause performance issues
+        disableHeavyEffects();
         
-        if (isMobile) {
-            // Disable 3D effects that might cause performance issues
-            disableHeavyEffects();
-            
-            // Make cards accessible for small screens
-            optimizeCards();
-            
-            // Add accessible focus behavior
-            improveAccessibility();
-        }
+        // Make touch targets more finger-friendly
+        improveTouchTargets();
+        
+        // Adjust heights for better viewing
+        adjustPopupHeight();
+        
+        // Make cards accessible for small screens
+        optimizeCards();
     }
     
     /**
@@ -174,33 +181,35 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!popup) return;
         
         // Remove mousemove event listeners that cause 3D effects
-        popup.removeEventListener('mousemove', mouseMoveHandler);
+        popup.removeEventListener('mousemove', window.mouseMoveHandler || function(){});
         
-        // Remove unnecessary transforms that might affect performance
-        const elements = popup.querySelectorAll('.popup-category, .popup-title, .popup-description, .popup-meta-icon');
-        elements.forEach(el => {
-            if (el.style.transform) {
-                // Keep only the essential transforms
-                el.style.transform = el.style.transform.replace(/translateZ\([^)]+\)\s*/g, '');
-            }
-        });
+        // Use simple fade transitions instead of 3D ones
+        popup.style.transition = 'opacity 0.4s ease';
     }
     
     /**
-     * Handle orientation changes
+     * Improve touch targets for mobile
      */
-    function handleOrientationChanges() {
-        window.addEventListener('orientationchange', function() {
-            setTimeout(() => {
-                optimizeForMobile();
-                
-                // Adjust heights for better viewing
-                adjustPopupHeight();
-            }, 300);
+    function improveTouchTargets() {
+        // Make buttons larger and more tappable
+        const buttons = document.querySelectorAll('.scroll-control-btn, .popup-share-btn, .enhanced-popup-close');
+        buttons.forEach(btn => {
+            btn.style.minHeight = '44px';
+            btn.style.minWidth = '44px';
         });
         
-        // Initial height adjustment
-        adjustPopupHeight();
+        // Add active touch states
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'scale(0.95)';
+                btn.style.opacity = '0.9';
+            });
+            
+            btn.addEventListener('touchend', () => {
+                btn.style.transform = '';
+                btn.style.opacity = '';
+            });
+        });
     }
     
     /**
@@ -213,21 +222,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const viewportHeight = window.innerHeight;
         const isLandscape = window.innerWidth > window.innerHeight;
         
-        // For very small heights, make adjustments
+        // Optimize layout based on orientation and screen size
         if (viewportHeight < 500) {
             if (isLandscape) {
-                // Handle landscape on small devices
+                // In landscape on small devices, use horizontal layout
+                popup.style.gridTemplateColumns = '1fr 1.5fr';
                 popup.style.maxHeight = '95vh';
-                popup.style.overflow = 'auto';
-            } else {
-                // Handle portrait on small devices
-                popup.style.maxHeight = 'none';
                 popup.style.height = 'auto';
+            } else {
+                // In portrait on small devices, use vertical layout
+                popup.style.gridTemplateColumns = '1fr';
+                popup.style.maxHeight = 'none';
+                popup.style.height = '95vh';
             }
         } else {
-            // Reset to default
-            popup.style.maxHeight = '';
-            popup.style.height = '';
+            // On larger screens, adapt based on width
+            if (window.innerWidth <= 768) {
+                popup.style.gridTemplateColumns = '1fr';
+            } else {
+                popup.style.gridTemplateColumns = '1fr 1.5fr';
+            }
         }
     }
     
@@ -257,38 +271,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Improve accessibility for mobile
+     * Handle orientation changes
      */
-    function improveAccessibility() {
-        // Add appropriate aria attributes
-        const controls = document.querySelectorAll('.scroll-control-btn');
-        controls.forEach(control => {
-            control.setAttribute('role', 'button');
-            control.setAttribute('tabindex', '0');
-            
-            // Add keyboard support
-            control.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
+    function handleOrientationChanges() {
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                optimizeForMobile();
+            }, 300);
         });
-        
-        // Make carousel accessible
-        const cardContainer = document.querySelector('.event-card-grid');
-        if (cardContainer) {
-            cardContainer.setAttribute('role', 'region');
-            cardContainer.setAttribute('aria-label', 'Event cards carousel');
-        }
-    }
-    
-    /**
-     * Mousemove event handler (for reference, unused in mobile)
-     */
-    function mouseMoveHandler(e) {
-        // This is a placeholder function for the handler that might be attached elsewhere
-        // We remove this in the disableHeavyEffects function
-        console.log('Mouse move event handled');
     }
 });

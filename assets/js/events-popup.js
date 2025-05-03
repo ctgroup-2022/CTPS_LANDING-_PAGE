@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const description = card.querySelector('.event-preview p').textContent;
         const iconClass = card.querySelector('.icon-container i').className;
         
-        // Get event items
-        const eventItems = collectEventItems(card);
+        // Generate dummy event items since we removed the event-items-list
+        const eventItems = generateDummyEvents(category);
         
         // Generate HTML for the popup
         const popupHTML = generatePopupHTML(category, title, description, iconClass, eventItems);
@@ -133,6 +133,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 800);
     }
     
+    /**
+     * Generate dummy events based on category
+     */
+    function generateDummyEvents(category) {
+        const events = {
+            latest: [
+                { title: "Annual Sports Day", date: "May 15, 2025" },
+                { title: "Science Exhibition", date: "June 5, 2025" },
+                { title: "Summer Camp Registration", date: "April 20, 2025" },
+                { title: "Cultural Festival", date: "July 10, 2025" },
+                { title: "Parent-Teacher Meeting", date: "June 25, 2025" }
+            ],
+            notice: [
+                { title: "Fee Payment Deadline", date: "April 30, 2025" },
+                { title: "School Uniform Update", date: "May 5, 2025" },
+                { title: "Exam Schedule", date: "June 12, 2025" },
+                { title: "Holiday Announcement", date: "April 15, 2025" },
+                { title: "School Timing Change", date: "May 20, 2025" }
+            ],
+            spotlight: [
+                { title: "Academic Achievement Awards", date: "June 30, 2025" },
+                { title: "Student of the Month", date: "May 1, 2025" },
+                { title: "National Competition Winners", date: "April 10, 2025" },
+                { title: "Alumni Success Story", date: "May 25, 2025" },
+                { title: "School Ranking Announcement", date: "June 5, 2025" }
+            ],
+            activities: [
+                { title: "Basketball Tournament", date: "May 10, 2025" },
+                { title: "Drama Club Performance", date: "June 8, 2025" },
+                { title: "Chess Competition", date: "April 25, 2025" },
+                { title: "Art Workshop", date: "May 15, 2025" },
+                { title: "Debate Competition", date: "June 20, 2025" }
+            ]
+        };
+        
+        return events[category] || events.latest;
+    }
+
     /**
      * Generate complete HTML for the popup
      */

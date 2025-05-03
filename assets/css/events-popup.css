@@ -642,182 +642,67 @@
   }
 }
 
-/* Optimized for Mobile Phones */
+/* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
   .enhanced-popup-overlay {
-    padding: 10px; /* Reduce padding to use more screen space */
-    align-items: flex-start; /* Allow scrolling from the top */
-    overflow-y: auto; /* Ensure the overlay itself can scroll */
+    padding: 10px;
+    align-items: center;
   }
 
   .enhanced-event-popup {
-    width: 100%; /* Full width on mobile */
-    min-height: 0; /* Remove min-height to prevent overflow */
-    max-height: none; /* Let content determine height */
-    transform: rotateX(15deg) scale(0.9) translateY(30px); /* Less dramatic animation for mobile */
-    border-radius: 16px; /* Slightly smaller radius */
-    overflow-y: auto; /* Allow scrolling */
-    display: flex;
-    flex-direction: column;
-    height: auto;
+    width: 100%;
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    transform: rotateX(0) scale(0.9) translateY(30px);
   }
-  
-  .enhanced-popup-close {
-    top: 15px; /* Move closer to edge */
-    right: 15px;
-    width: 40px; /* Slightly smaller */
-    height: 40px;
-    font-size: 18px;
-  }
-  
+
   .enhanced-popup-sidebar {
-    padding: 25px 20px;
-    border-radius: 16px 16px 0 0;
+    padding: 30px 20px;
+    max-height: none;
+    border-radius: var(--popup-radius) var(--popup-radius) 0 0;
   }
   
-  .popup-category {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    margin-bottom: 20px;
+  .enhanced-popup-content {
+    padding: 25px 20px;
+    max-height: 60vh;
+    overflow-y: auto;
   }
   
   .popup-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 20px;
-  }
-  
-  .popup-title::after {
-    width: 60px;
-    height: 4px;
-    bottom: -10px;
   }
   
   .popup-description {
     font-size: 1rem;
-    margin-bottom: 25px;
-    line-height: 1.6;
-    max-height: 110px;
-  }
-  
-  .popup-meta {
-    padding: 15px;
-  }
-  
-  .popup-meta-item {
-    margin-bottom: 12px;
-  }
-  
-  .popup-meta-icon {
-    width: 36px;
-    height: 36px;
-    margin-right: 12px;
-  }
-  
-  .popup-meta-text {
-    font-size: 0.95rem;
-  }
-
-  /* Content area improvements */
-  .enhanced-popup-content {
-    padding: 25px 20px;
-  }
-  
-  .popup-section {
-    margin-bottom: 30px;
-  }
-  
-  .popup-section-title {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-  }
-  
-  .popup-section-title i {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
-  }
-  
-  /* Card layout improvements */
-  .event-card-scroll-container,
-  .related-events {
-    gap: 15px;
+    margin-bottom: 20px;
+    max-height: 80px;
   }
   
   .event-card {
     min-width: 100%;
-    margin-right: 0;
-  }
-  
-  .event-card-header {
-    padding: 12px;
-  }
-  
-  .event-card-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .event-card-content {
-    padding: 12px;
-  }
-  
-  .event-card-detail {
-    margin-bottom: 8px;
+    flex: 0 0 100%;
   }
   
   .related-event-card {
-    flex: 0 0 calc(100% - 10px); /* One card visible on mobile */
-    min-width: 100%;
-    padding: 15px;
-  }
-  
-  /* Footer adjustments */
-  .enhanced-popup-footer {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .popup-share {
-    justify-content: center;
-  }
-  
-  .popup-cta-btn {
-    width: 100%;
-    padding: 14px 20px; /* Taller button for easier tapping */
-    font-size: 1rem;
-  }
-  
-  .popup-share-btn {
-    width: 42px; /* Larger for touch */
-    height: 42px;
-    margin: 0 5px;
-  }
-
-  /* Mobile-optimized scroll controls */
-  .event-scroll-controls {
-    gap: 30px; /* More space for touch targets */
-  }
-
-  .scroll-control-btn {
-    width: 46px; /* Larger for easier touch */
-    height: 46px;
-    font-size: 1.1rem;
+    min-width: 85%;
+    flex: 0 0 85%;
   }
 }
 
-/* Extra small mobile devices */
+/* Small Mobile View */
 @media (max-width: 480px) {
   .enhanced-popup-overlay {
-    padding: 0; /* No padding to maximize space */
-  }
-
-  .enhanced-event-popup {
-    width: 100%;
-    border-radius: 0; /* Full screen on very small devices */
-    box-shadow: none;
+    padding: 0;
   }
   
+  .enhanced-event-popup {
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+  }
+
   .enhanced-popup-sidebar {
     padding: 20px 15px;
     border-radius: 0;
@@ -827,15 +712,9 @@
     font-size: 1.6rem;
   }
   
-  .popup-category {
-    font-size: 0.8rem;
-    padding: 6px 14px;
-  }
-  
   .popup-description {
     font-size: 0.95rem;
-    max-height: 100px;
-    margin-bottom: 20px;
+    max-height: 70px;
   }
   
   .popup-meta-item {
@@ -843,183 +722,84 @@
   }
   
   .popup-meta-icon {
-    width: 34px;
-    height: 34px;
-    margin-right: 10px;
+    width: 36px;
+    height: 36px;
   }
   
   .enhanced-popup-content {
-    padding: 20px 15px;
+    padding: 15px;
   }
   
   .popup-section-title {
     font-size: 1.2rem;
+    margin-bottom: 15px;
   }
   
-  .enhanced-popup-footer {
-    padding: 15px;
-    gap: 15px;
-  }
-
-  /* Optimize card display for very small screens */
-  .event-card-header {
-    padding: 10px;
+  .event-card-pagination .card-pagination-dot {
+    width: 10px;
+    height: 10px;
   }
   
-  .event-card-icon {
-    width: 36px;
-    height: 36px;
+  .popup-cta-btn {
+    width: 100%;
+    padding: 14px 20px;
     font-size: 1rem;
   }
-  
-  .event-card-title {
-    font-size: 1rem;
-  }
-  
-  .event-card-content {
-    padding: 10px;
-  }
-  
-  .event-card-detail-text {
-    font-size: 0.85rem;
-  }
 }
 
-/* Portrait-specific optimizations */
-@media (max-height: 700px) and (orientation: portrait) {
-  .enhanced-popup-overlay {
-    align-items: flex-start;
-    padding-top: 10px;
-  }
-  
-  .enhanced-event-popup {
-    max-height: none;
-  }
-  
-  .popup-description {
-    max-height: 80px;
-  }
-  
-  .popup-meta {
-    padding: 15px;
-  }
-  
-  .popup-title {
-    font-size: 1.7rem;
-    margin-bottom: 15px;
-  }
-}
-
-/* Landscape phone orientation */
-@media (max-height: 500px) and (orientation: landscape) {
-  .enhanced-popup-overlay {
-    padding: 5px;
-  }
-  
-  .enhanced-event-popup {
-    grid-template-columns: 1fr 1.5fr; /* Revert to two columns for landscape */
-    max-height: 95vh;
-    min-height: 0;
-  }
-  
-  .enhanced-popup-sidebar {
-    padding: 20px;
-    border-radius: var(--popup-radius) 0 0 var(--popup-radius);
-  }
-  
-  .popup-title {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-  
-  .popup-category {
-    margin-bottom: 15px;
-    padding: 5px 15px;
-  }
-  
-  .popup-description {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    max-height: 80px;
-  }
-  
-  .popup-meta {
-    padding: 12px;
-  }
-  
-  .popup-meta-item {
-    margin-bottom: 8px;
-  }
-  
-  .enhanced-popup-content {
-    padding: 20px;
-  }
-}
-
-/* Touch-specific enhancements */
+/* Touch-specific improvements */
 @media (hover: none) and (pointer: coarse) {
-  /* Styles specific to touch devices */
-  
-  /* Larger touch targets */
   .scroll-control-btn,
   .popup-share-btn,
-  .event-card-pagination .card-pagination-dot {
-    transition: transform 0.3s ease, background-color 0.3s ease;
+  .popup-close-btn,
+  .learn-more-btn {
+    min-height: 44px; /* Apple's recommended minimum touch target size */
+    min-width: 44px;
+  }
+  
+  .card-pagination-dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+  }
+  
+  .event-card-pagination {
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
   
   /* Add active state for touch feedback */
   .scroll-control-btn:active,
   .popup-share-btn:active,
-  .popup-cta-btn:active {
-    transform: scale(0.95);
-    opacity: 0.9;
-  }
-  
-  .card-pagination-dot {
-    width: 10px; /* Slightly larger dots for touch */
-    height: 10px;
-  }
-  
-  .card-pagination-dot.active {
-    width: 28px;
-  }
-  
-  .event-card-pagination {
-    margin-top: 20px;
-    gap: 10px;
-  }
-  
-  /* Add scroll indicators for touch swipe */
-  .event-card-grid::before,
-  .event-card-grid::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
+  .popup-cta-btn:active,
+  .learn-more-btn:active {
     opacity: 0.7;
-    pointer-events: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+  }
+}
+
+/* Handle very small screens (iPhone 5/SE etc.) */
+@media (max-width: 375px) {
+  .popup-title {
+    font-size: 1.4rem;
   }
   
-  .event-card-grid::before {
-    left: 5px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230056b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
+  .popup-category {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    margin-bottom: 15px;
   }
   
-  .event-card-grid::after {
-    right: 5px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230056b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
+  .popup-description {
+    margin-bottom: 15px;
+    max-height: 60px;
+  }
+  
+  .popup-meta {
+    padding: 10px;
+  }
+  
+  .event-scroll-controls {
+    gap: 15px;
   }
 }

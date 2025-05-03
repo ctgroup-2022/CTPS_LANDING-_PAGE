@@ -1,0 +1,922 @@
+/* Age Groups Section Styling with Enhanced 3D Effects */
+:root {
+    --primary: #0056b3;
+    --primary-dark: #003d7a;
+    --primary-light: #4a90e2;
+    --accent: #00a8ff;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --bg-light: #f0f7ff;
+    --bg-white: #ffffff;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px rgba(0, 0, 150, 0.1);
+    --shadow-lg: 0 15px 30px rgba(0, 0, 150, 0.15);
+    --gradient-blue: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
+    
+    /* 3D Variables */
+    --perspective: 1000px;
+    --depth-small: 10px;
+    --depth-medium: 20px;
+    --depth-large: 30px;
+    --transition-fast: 0.3s;
+    --transition-medium: 0.5s;
+    --transition-slow: 5s;
+}
+
+.age-groups-section {
+    padding: 100px 0;
+    background-color: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    perspective: var(--perspective);
+}
+
+/* Decorative shapes */
+.decorative-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 168, 255, 0.05) 0%, rgba(0, 168, 255, 0) 70%);
+    top: -200px;
+    left: -200px;
+}
+
+.shape-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 86, 179, 0.05) 0%, rgba(0, 86, 179, 0) 70%);
+    bottom: -250px;
+    right: -250px;
+}
+
+.shape-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.05) 0%, rgba(74, 144, 226, 0) 70%);
+    top: 30%;
+    left: 40%;
+}
+
+.shape-dots {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    right: 10%;
+    background-image: radial-gradient(circle, var(--primary-light) 1px, transparent 1.5px);
+    background-size: 15px 15px;
+    opacity: 0.1;
+}
+
+/* Left side content styling */
+.age-groups-content {
+    position: relative;
+    padding: 20px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding-left: 40px;
+}
+
+.badge-wrapper {
+    margin-bottom: 15px;
+    display: inline-block;
+    position: relative;
+}
+
+.subtitle {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(0, 168, 255, 0.1);
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.age-groups-content .title {
+    color: var(--text-dark);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.age-groups-content .title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-blue);
+    border-radius: 2px;
+}
+
+.age-groups-content .description {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 90%;
+}
+
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gradient-blue);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.learn-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-dark);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.learn-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+.learn-more-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Simplified Tree Illustration */
+.tree-illustration.left-aligned {
+    position: absolute;
+    left: -20px; /* Moved more to the left */
+    top: 0;
+    height: 100%;
+    width: 60px;
+    z-index: 1;
+}
+
+.main-branch {
+    position: absolute;
+    width: 18px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8B5E3C, #6D4C3D);
+    left: 25px;
+    top: 0;
+    border-radius: 10px;
+    box-shadow: inset 2px 0 rgba(255, 255, 255, 0.1), inset -2px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Just one branch */
+.branch-1 {
+    position: absolute;
+    width: 14px;
+    height: 50px;
+    background: linear-gradient(to top right, #8B5E3C, #6D4C3D);
+    left: 40px;
+    top: 40%;
+    border-radius: 8px;
+    transform: rotate(35deg);
+}
+
+/* Adjusted leaf positions for simplified tree */
+.leaf-1 {
+    top: 15%;
+    left: 15px;
+}
+
+.leaf-2 {
+    top: 38%;
+    left: 42px;
+}
+
+.leaf-3 {
+    bottom: 30%;
+    left: 20px;
+}
+
+/* Simplified tree-root */
+.tree-root {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 40px;
+    height: 15px;
+    background: #6D4C3D;
+    border-radius: 50% 50% 0 0;
+    transform: scaleY(0.5);
+}
+
+/* Enhanced Age cards styling */
+.age-card {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    border: 2px solid rgba(255, 255, 255, 0.1);  /* Adding subtle border */
+}
+
+.age-card:hover {
+    transform: translateY(-8px) scale(1.02) rotateY(5deg);
+    box-shadow: var(--shadow-lg), 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+.age-content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.age-number {
+    font-size: 2.8rem;  /* Slightly larger */
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.85));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.age-card h3 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    letter-spacing: 0.5px;
+}
+
+.card-highlight {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    transition: left 0.8s ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.age-card:hover .card-highlight {
+    left: 100%;
+}
+
+/* Enhanced Age card icons */
+.age-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-size: 1.1rem;
+    color: white;
+    opacity: 0.9;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateZ(var(--depth-small));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+}
+
+.age-card:hover .age-icon {
+    transform: translateZ(var(--depth-medium)) rotate(360deg) scale(1.2);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Individual card positioning and coloring */
+.main-card {
+    grid-column: 1 / 6;
+    grid-row: 3 / 8;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #0a4f97 100%);
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0, 61, 122, 0.3);
+}
+
+.main-card h3 {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.main-card h3::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: #ffffff;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Age groups cards layout - enhancing the grid layout */
+.age-groups-cards {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 30px);
+    gap: 18px;  /* Increased gap slightly */
+    height: 100%;
+    perspective: var(--perspective);
+    padding: 10px 0;
+}
+
+/* Common card styling */
+.age-card {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.age-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.age-content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.age-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.age-card h3 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card-highlight {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    transition: left 0.8s ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.age-card:hover .card-highlight {
+    left: 100%;
+}
+
+/* Age card icons */
+.age-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+    color: white;
+    opacity: 0.9;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateZ(var(--depth-small));
+}
+
+.age-card:hover .age-icon {
+    transform: translateZ(var(--depth-medium)) rotate(360deg) scale(1.2);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual card positioning and coloring */
+.main-card {
+    grid-column: 1 / 6;
+    grid-row: 3 / 8;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #0a4f97 100%);
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0, 61, 122, 0.3);
+}
+
+.main-card h3 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-3-5 {
+    grid-column: 9 / 13;
+    grid-row: 1 / 5;
+    background: linear-gradient(135deg, var(--accent) 0%, #2ebdff 100%);
+    z-index: 2;
+    box-shadow: 0 15px 25px rgba(0, 168, 255, 0.3);
+}
+
+.card-6-8 {
+    grid-column: 9 / 13;
+    grid-row: 6 / 10;
+    background: linear-gradient(135deg, var(--primary) 0%, #1a75d2 100%);
+    z-index: 2;
+    box-shadow: 0 15px 25px rgba(0, 86, 179, 0.3);
+}
+
+.card-9-11 {
+    grid-column: 5 / 10;
+    grid-row: 9 / 13;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #77b6ff 100%);
+    z-index: 2;
+    box-shadow: 0 15px 25px rgba(74, 144, 226, 0.3);
+}
+
+.card-12-15 {
+    grid-column: 10 / 13;
+    grid-row: 10 / 13;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #609fe6 100%);
+    z-index: 2;
+    box-shadow: 0 15px 25px rgba(74, 144, 226, 0.3);
+}
+
+.card-16-18 {
+    grid-column: 6 / 10; /* Changed from 7 / 11 to move left */
+    grid-row: 5 / 8;
+    background: linear-gradient(135deg, var(--primary) 0%, #0068d7 100%);
+    z-index: 2;
+    box-shadow: 0 15px 25px rgba(0, 86, 179, 0.3);
+}
+
+/* Main Section Heading Styles */
+.section-header {
+    margin-bottom: 60px;
+    position: relative;
+    padding: 0 15px;
+}
+
+.main-heading {
+    color: var(--primary-dark);
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.heading-underline {
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-blue);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .age-number {
+        font-size: 2.2rem;
+    }
+    
+    .age-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .age-groups-content .title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .age-groups-section {
+        padding: 70px 0;
+    }
+    
+    .age-groups-content {
+        margin-bottom: 60px;
+    }
+    
+    .age-groups-content .title {
+        font-size: 2rem;
+    }
+    
+    .age-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .content-wrapper {
+        padding-right: 20px;
+    }
+    
+    .main-card h3 {
+        font-size: 1.8rem;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .main-heading {
+        font-size: 2.4rem;
+    }
+    
+    .tree-illustration.left-aligned {
+        opacity: 0.6; /* Make the tree more subtle on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .age-groups-cards {
+        grid-template-rows: repeat(20, 20px);
+        margin-top: 50px;
+    }
+    
+    .main-card {
+        grid-column: 1 / 7;
+        grid-row: 1 / 6;
+    }
+    
+    .card-3-5 {
+        grid-column: 7 / 13;
+        grid-row: 1 / 6;
+    }
+    
+    .card-6-8 {
+        grid-column: 1 / 7;
+        grid-row: 7 / 12;
+    }
+    
+    .card-9-11 {
+        grid-column: 7 / 13;
+        grid-row: 7 / 12;
+    }
+    
+    .card-12-15 {
+        grid-column: 1 / 7;
+        grid-row: 13 / 18;
+    }
+    
+    .card-16-18 {
+        grid-column: 7 / 13;
+        grid-row: 13 / 18;
+    }
+    
+    .age-number {
+        font-size: 1.8rem;
+    }
+    
+    .age-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .age-groups-content .title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .content-wrapper {
+        text-align: center;
+    }
+    
+    .age-groups-content .description {
+        margin: 0 auto 30px;
+        max-width: 100%;
+    }
+    
+    .leaf {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .leaf-4, .leaf-5 {
+        opacity: 0.5;
+    }
+
+    .age-groups-section {
+        padding: 60px 0 70px;
+    }
+    
+    .main-heading {
+        font-size: 2.2rem;
+        padding: 0 10px;
+    }
+    
+    .content-wrapper {
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .age-groups-content .title {
+        font-size: 1.8rem;
+        margin-top: 20px;
+    }
+    
+    .age-groups-content .title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .age-groups-content .description {
+        text-align: center;
+        margin: 0 auto 30px;
+    }
+    
+    .tree-illustration.left-aligned {
+        opacity: 0.3; /* Further reduce visibility on mobile */
+        left: -10px;
+    }
+    
+    .badge-wrapper {
+        text-align: center;
+        display: block;
+    }
+    
+    .subtitle {
+        margin: 0 auto;
+    }
+    
+    .age-groups-cards {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .age-groups-section {
+        padding: 50px 0;
+    }
+    
+    .age-groups-content .title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        padding: 6px 14px;
+    }
+    
+    .description {
+        font-size: 0.9rem;
+    }
+    
+    .learn-more-btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+    }
+    
+    .age-groups-cards {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(30, 15px);
+        gap: 10px;
+    }
+    
+    .main-card {
+        grid-column: 1 / 7;
+        grid-row: 1 / 6;
+    }
+    
+    .card-3-5 {
+        grid-column: 1 / 4;
+        grid-row: 7 / 12;
+    }
+    
+    .card-6-8 {
+        grid-column: 4 / 7;
+        grid-row: 7 / 12;
+    }
+    
+    .card-9-11 {
+        grid-column: 1 / 4;
+        grid-row: 13 / 18;
+    }
+    
+    .card-12-15 {
+        grid-column: 4 / 7;
+        grid-row: 13 / 18;
+    }
+    
+    .card-16-18 {
+        grid-column: 1 / 7;
+        grid-row: 19 / 24;
+    }
+    
+    .tree-illustration {
+        width: 40px;
+    }
+    
+    .branch {
+        width: 15px;
+        left: 15px;
+    }
+    
+    .leaf {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .content-wrapper {
+        padding-left: 20px;
+    }
+    
+    .main-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .age-number {
+        font-size: 1.5rem;
+    }
+    
+    .age-card h3 {
+        font-size: 1rem;
+    }
+    
+    .age-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .main-heading {
+        font-size: 1.9rem;
+    }
+    
+    .age-groups-section {
+        padding: 50px 0 60px;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .tree-illustration.left-aligned {
+        width: 40px;
+    }
+    
+    .main-branch {
+        width: 14px;
+        left: 15px;
+    }
+    
+    .branch-1 {
+        width: 10px;
+        height: 40px;
+        left: 25px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .age-card:hover, .learn-more-btn:hover {
+        transform: none;
+    }
+    
+    .leaf {
+        animation: none;
+    }
+    
+    .subtitle::before, .card-highlight {
+        display: none;
+    }
+}
