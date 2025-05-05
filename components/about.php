@@ -127,5 +127,33 @@
             </svg>
         </div>
         
-        <img src="assets/about/1.JPG" alt="Happy student mascot" class="mascot" id="mascot">
+        <style>
+            /* Mobile responsiveness - Show only CTPS image */
+            @media screen and (max-width: 768px) {
+                .secondary-image {
+                    display: none !important;
+                }
+                
+                .floating-cards {
+                    display: none !important;
+                }
+                
+                .main-image-wrapper {
+                    width: 100%;
+                    max-width: 350px;
+                    margin: 0 auto;
+                }
+                
+                .main-image {
+                    min-height: auto;
+                    max-height: none;
+                }
+            }
+            
+            @media screen and (max-width: 480px) {
+                .main-image-wrapper {
+                    max-width: 280px;
+                }
+            }
+        </style>
     </section>

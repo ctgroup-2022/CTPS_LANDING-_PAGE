@@ -259,22 +259,19 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(popup);
         }
 
-        // Generate HTML for circular popup content matching the image exactly
+        // Generate HTML for new circular popup content
         const popupHTML = `
             <div class="popup-content circular-popup">
                 <div class="popup-close"><i class="fas fa-times"></i></div>
                 <div class="popup-inner">
-                    <h3 class="popup-title">Sign Up For 5% Off</h3>
-                    <h4 class="popup-subtitle">Your 1st Order</h4>
-                    <p class="popup-description">
-                        Approved by you - No spammy promotional emails, just cool stuff we think you'll like ♥
-                    </p>
-                    <div class="popup-action">
-                        <input type="email" placeholder="Your Email" class="popup-input">
-                        <button class="popup-button">Yes, Please! <i class="fas fa-arrow-right"></i></button>
+                    <div class="circular-icon">
+                        <i class="fas ${iconClass}"></i>
                     </div>
-                    <div class="popup-footer">
-                        <a href="#" class="popup-no-thanks">No, Thanks</a>
+                    <h3 class="popup-title">${title}</h3>
+                    <div class="popup-divider"></div>
+                    <p class="popup-description">${description}</p>
+                    <div class="popup-action">
+                        <button class="popup-button">Learn More <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -286,14 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add event listeners for closing popup
         const closeBtn = popup.querySelector('.popup-close');
         closeBtn.addEventListener('click', closePopup);
-        
-        const noThanksBtn = popup.querySelector('.popup-no-thanks');
-        if (noThanksBtn) {
-            noThanksBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                closePopup();
-            });
-        }
         
         popup.addEventListener('click', function(e) {
             if (e.target === popup) {
@@ -374,14 +363,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.querySelector('.card-title').textContent;
             const programDescription = card.querySelector('.program-description') ? 
                 card.querySelector('.program-description').textContent : '';
+            const programImageSrc = card.querySelector('.card-bg-image').getAttribute('src');
+            const programColor = card.getAttribute('data-color');
             
-            // Create circular popup with this program's data
-            createExactCircularPopup(programId, programTitle, programDescription);
+            // Create image-first popup with this program's data
+            createImageFirstPopup(programId, programTitle, programDescription, programImageSrc, programColor);
         });
     });
     
-    // Function to create circular popup exactly matching the reference image
-    function createExactCircularPopup(id, title, description) {
+    // Function to create popup that shows image first, then transitions to content
+    function createImageFirstPopup(id, title, description, imageSrc, color) {
         // Create popup container if it doesn't exist
         let popup = document.getElementById('program-popup');
         
@@ -392,22 +383,41 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(popup);
         }
         
-        // Generate HTML for circular popup content
+        // Generate HTML for popup with image-first design
         const popupHTML = `
-            <div class="popup-content circular-popup">
+            <div class="popup-content image-first-popup" data-color="${color}">
                 <div class="popup-close"><i class="fas fa-times"></i></div>
-                <div class="popup-inner">
-                    <h3 class="popup-title">Sign Up For 5% Off</h3>
-                    <h4 class="popup-subtitle">Your 1st Order</h4>
-                    <p class="popup-description">
-                        Approved by you - No spammy promotional emails, just cool stuff we think you'll like ♥
-                    </p>
-                    <div class="popup-action">
-                        <input type="email" placeholder="Your Email" class="popup-input">
-                        <button class="popup-button">Yes, Please! <i class="fas fa-arrow-right"></i></button>
+                <div class="popup-stages">
+                    <div class="popup-stage image-stage active">
+                        <div class="popup-image-container">
+                            <img src="${imageSrc}" alt="${title}" class="popup-image">
+                            <div class="popup-image-overlay"></div>
+                            <h3 class="popup-image-title">${title}</h3>
+                            <div class="continue-button">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="popup-footer">
-                        <a href="#" class="popup-no-thanks">No, Thanks</a>
+                    <div class="popup-stage content-stage">
+                        <div class="popup-content-header">
+                            <h3 class="popup-content-title">${title}</h3>
+                        </div>
+                        <div class="popup-content-body">
+                            <p class="popup-content-description">${description}</p>
+                            <div class="popup-content-details">
+                                <h4>Program Highlights</h4>
+                                <ul class="program-highlights">
+                                    <li><i class="fas fa-check-circle"></i> Expert instructors with industry experience</li>
+                                    <li><i class="fas fa-check-circle"></i> Hands-on learning with practical applications</li>
+                                    <li><i class="fas fa-check-circle"></i> Career guidance and placement assistance</li>
+                                </ul>
+                            </div>
+                            <div class="popup-action">
+                                <button class="enroll-button">Enroll Now</button>
+                                <button class="back-to-image">Back</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -420,13 +430,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const closeBtn = popup.querySelector('.popup-close');
         closeBtn.addEventListener('click', closePopup);
         
-        const noThanksBtn = popup.querySelector('.popup-no-thanks');
-        if (noThanksBtn) {
-            noThanksBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                closePopup();
-            });
-        }
+        // Add event listener for transitioning from image to content
+        const continueBtn = popup.querySelector('.continue-button');
+        continueBtn.addEventListener('click', function() {
+            const imageStage = popup.querySelector('.image-stage');
+            const contentStage = popup.querySelector('.content-stage');
+            
+            imageStage.classList.remove('active');
+            contentStage.classList.add('active');
+        });
+        
+        // Add event listener for going back to image
+        const backBtn = popup.querySelector('.back-to-image');
+        backBtn.addEventListener('click', function() {
+            const imageStage = popup.querySelector('.image-stage');
+            const contentStage = popup.querySelector('.content-stage');
+            
+            contentStage.classList.remove('active');
+            imageStage.classList.add('active');
+        });
         
         popup.addEventListener('click', function(e) {
             if (e.target === popup) {
