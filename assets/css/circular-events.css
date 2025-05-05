@@ -356,3 +356,98 @@
 .event-items-list::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
+/* Enhanced Mobile Responsiveness for Circular Events */
+@media (max-width: 768px) {
+    .circular-events-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px; /* Further increased spacing between circles */
+        padding: 0;
+        width: 100%;
+    }
+
+    .circular-event-card {
+        width: 340px; /* Significantly increased width */
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        position: relative;
+    }
+
+    .circle-bg {
+        width: 300px; /* Much larger circle */
+        height: 300px; /* Much larger circle */
+        margin: 0 auto;
+        position: relative;
+        left: 0;
+        transform: translateX(0);
+        padding: 35px; /* Increased padding for more content space */
+    }
+    
+    .icon-container {
+        width: 90px; /* Larger icon container */
+        height: 90px;
+        margin-bottom: 20px; /* More space below icon */
+        font-size: 2.2rem; /* Larger icon */
+    }
+    
+    .circle-title {
+        font-size: 1.8rem; /* Larger title */
+        margin-bottom: 15px; /* More space below title */
+    }
+    
+    .event-preview {
+        font-size: 1rem; /* Larger preview text */
+        line-height: 1.5;
+        margin-bottom: 25px; /* More space before button */
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .learn-more-btn {
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid white;
+        color: white;
+        padding: 12px 30px; /* Even larger padding */
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem; /* Larger font */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .circular-event-card {
+        width: 320px; /* Still quite large for small devices */
+    }
+
+    .circle-bg {
+        width: 280px; /* Larger than before */
+        height: 280px;
+    }
+
+    .icon-container {
+        width: 85px;
+        height: 85px;
+    }
+
+    .circle-title {
+        font-size: 1.7rem;
+    }
+    
+    .event-preview p {
+        font-size: 0.95rem;
+    }
+    
+    .learn-more-btn {
+        padding: 12px 28px;
+    }
+}

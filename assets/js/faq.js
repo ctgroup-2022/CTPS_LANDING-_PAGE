@@ -266,6 +266,107 @@ document.addEventListener('DOMContentLoaded', function() {
             activeItems.forEach(updateAnswerHeight);
         });
         
+        // Add these functions for mobile optimization
+        function fixMobileResponsiveness() {
+            if (window.innerWidth <= 576) {
+                // Fix for heights of active FAQs
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer) {
+                        answer.style.maxHeight = 'none';
+                        answer.style.height = 'auto';
+                        answer.style.overflow = 'visible';
+                    }
+                });
+                
+                // Fix images on mobile
+                document.querySelectorAll('.faq-img img').forEach(img => {
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                    img.style.maxHeight = 'none';
+                    img.style.objectFit = 'contain';
+                    
+                    // Force reload images when they load
+                    img.addEventListener('load', function() {
+                        const faqItem = this.closest('.faq-item');
+                        if (faqItem && faqItem.classList.contains('active')) {
+                            const answer = faqItem.querySelector('.faq-answer');
+                            if (answer) {
+                                setTimeout(() => {
+                                    answer.style.maxHeight = 'none';
+                                    answer.style.height = 'auto';
+                                    answer.style.overflow = 'visible';
+                                }, 10);
+                            }
+                        }
+                    });
+                });
+                
+                // Make category buttons scrollable
+                const categoriesContainer = document.querySelector('.faq-categories');
+                if (categoriesContainer) {
+                    categoriesContainer.style.overflowX = 'auto';
+                    categoriesContainer.style.webkitOverflowScrolling = 'touch';
+                    
+                    // Center active category button
+                    const activeBtn = categoriesContainer.querySelector('.category-btn.active');
+                    if (activeBtn) {
+                        setTimeout(() => {
+                            activeBtn.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest',
+                                inline: 'center'
+                            });
+                        }, 100);
+                    }
+                }
+                
+                // Modify text on tiny screens
+                if (window.innerWidth <= 350) {
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        if (btn.textContent.includes('Questions')) {
+                            btn.textContent = 'All';
+                        }
+                    });
+                }
+            }
+        }
+        
+        // Apply mobile fixes after page loads
+        window.addEventListener('load', fixMobileResponsiveness);
+        window.addEventListener('resize', fixMobileResponsiveness);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(fixMobileResponsiveness, 300);
+        });
+        
+        // Enhance FAQ question clicks for mobile
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            if (!question) return;
+            
+            // Enhance the click behavior
+            const originalClick = question.onclick;
+            question.onclick = function(e) {
+                if (originalClick) {
+                    originalClick.call(this, e);
+                }
+                
+                if (window.innerWidth <= 576) {
+                    // Force answer to display correctly after animation
+                    setTimeout(() => {
+                        if (item.classList.contains('active')) {
+                            const answer = item.querySelector('.faq-answer');
+                            if (answer) {
+                                answer.style.maxHeight = 'none';
+                                answer.style.height = 'auto';
+                                answer.style.overflow = 'visible';
+                            }
+                        }
+                    }, 300);
+                }
+            };
+        });
+        
     } catch (error) {
         console.error('Error in FAQ initialization:', error);
         // Provide fallback for critical functionality

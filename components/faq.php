@@ -137,3 +137,75 @@
         </div>
     </div>
 </section>
+
+<script>
+// Mobile-specific fixes for FAQ section
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on mobile
+    if (window.innerWidth <= 576) {
+        // Apply immediate fixes
+        setTimeout(function() {
+            // Fix question text alignment
+            document.querySelectorAll('.question-text').forEach(function(el) {
+                el.style.justifyContent = 'flex-start';
+                el.style.textAlign = 'left';
+            });
+            
+            document.querySelectorAll('.question-text h3').forEach(function(el) {
+                el.style.textAlign = 'left';
+            });
+            
+            // Make sure active answers are always visible
+            document.querySelectorAll('.faq-item.active').forEach(function(item) {
+                const answer = item.querySelector('.faq-answer');
+                if (answer) {
+                    answer.style.maxHeight = 'none';
+                    answer.style.height = 'auto';
+                    answer.style.overflow = 'visible';
+                }
+            });
+            
+            // Fix image display
+            document.querySelectorAll('.faq-img img').forEach(function(img) {
+                img.style.width = '100%';
+                img.style.height = 'auto';
+                img.style.maxHeight = 'none';
+                img.style.objectFit = 'contain';
+                
+                // Force image reload
+                const currentSrc = img.src;
+                img.src = '';
+                img.src = currentSrc;
+            });
+            
+            // Set viewport for better mobile experience
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            if (!viewportMeta) {
+                const meta = document.createElement('meta');
+                meta.name = 'viewport';
+                meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+                document.head.appendChild(meta);
+            }
+            
+            // Watch for clicks to ensure answers display properly
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.faq-question')) {
+                    // Set multiple timeouts to catch various animation stages
+                    [100, 300, 500].forEach(function(delay) {
+                        setTimeout(function() {
+                            document.querySelectorAll('.faq-item.active').forEach(function(item) {
+                                const answer = item.querySelector('.faq-answer');
+                                if (answer) {
+                                    answer.style.maxHeight = 'none';
+                                    answer.style.height = 'auto';
+                                    answer.style.overflow = 'visible';
+                                }
+                            });
+                        }, delay);
+                    });
+                }
+            });
+        }, 100);
+    }
+});
+</script>

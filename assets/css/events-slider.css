@@ -1309,6 +1309,38 @@
     }
 }
 
+@media (max-width: 768px) {
+    /* Improve container padding for mobile */
+    .events-slider-section {
+        padding: 50px 0;
+    }
+
+    /* Center the floating elements on mobile */
+    .floating-icon {
+        display: none; /* Hide floating icons on mobile for cleaner look */
+    }
+    
+    /* Center events heading on mobile */
+    .events-heading-container {
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+    
+    .events-heading {
+        font-size: 2rem;
+    }
+    
+    .events-subheading {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    /* Adjust background shapes for mobile */
+    .events-shape {
+        opacity: 0.05; /* Reduce opacity of background shapes */
+    }
+}
+
 @media (max-width: 576px) {
     .events-slider-section {
         padding: 60px 0;
@@ -1338,6 +1370,12 @@
     
     .event-details h4 {
         font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-heading {
+        font-size: 1.7rem;
     }
 }
 
