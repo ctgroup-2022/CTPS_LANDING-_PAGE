@@ -2,7 +2,7 @@
  * Dynamic form handling for the school website
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Contact form handling
+    // Contact form handling (if you have one)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -13,66 +13,130 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Application form handling
     const applicationForm = document.getElementById('application-form');
-    if (applicationForm) {
-        applicationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+    const formSubmitBtn = document.getElementById('form-submit-btn');
+    
+    if (applicationForm && formSubmitBtn) {
+        // Use click event on button instead of submit event on form
+        formSubmitBtn.addEventListener('click', function() {
             // Show loading state
-            const submitBtn = this.querySelector('.submit-btn');
+            const submitBtn = this;
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = 'Processing...';
             submitBtn.disabled = true;
             
             // Clear previous error states
-            this.querySelectorAll('.error-field').forEach(field => {
+            applicationForm.querySelectorAll('.error-field').forEach(field => {
                 field.classList.remove('error-field');
             });
             
-            const formMessage = this.querySelector('.form-message');
-            formMessage.innerHTML = '';
-            formMessage.className = 'form-message';
+            const formMessage = applicationForm.querySelector('.form-message');
+            if (formMessage) {
+                formMessage.innerHTML = '';
+                formMessage.className = 'form-message';
+            }
             
             // Collect form data
-            const formData = new FormData(this);
+            const formData = new FormData(applicationForm);
             
-            // Send data via AJAX
+            // Enhanced client-side validation
+            const requiredFields = ['name', 'email'];
+            let hasErrors = false;
+            let errorMessages = [];
+            
+            requiredFields.forEach(field => {
+                const fieldElement = applicationForm.querySelector(`[name="${field}"]`);
+                if (!fieldElement || !fieldElement.value.trim()) {
+                    hasErrors = true;
+                    errorMessages.push(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`);
+                    if (fieldElement) {
+                        fieldElement.closest('.form-input-container').classList.add('error-field');
+                    }
+                }
+            });
+            
+            const email = applicationForm.querySelector('[name="email"]')?.value || '';
+            if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                hasErrors = true;
+                errorMessages.push('Please enter a valid email address');
+                applicationForm.querySelector('[name="email"]').closest('.form-input-container').classList.add('error-field');
+            }
+            
+            // Stop here if we have validation errors
+            if (hasErrors) {
+                showToast(errorMessages[0] || 'Please correct the errors before submitting.', 'error');
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Debug: Log form data
+            console.log('Form data being sent:', Object.fromEntries(formData));
+            
+            // If validation passes, send data to backend
             fetch('backend/process_registration.php', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch(e) {
+                        console.error('Failed to parse server response:', text);
+                        throw new Error('Invalid server response format');
+                    }
+                });
+            })
             .then(data => {
                 // Reset button
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
                 
+                console.log('Server response:', data); // Debug log
+                
                 // Display response
                 if (data.success) {
-                    formMessage.className = 'form-message success';
-                    formMessage.innerHTML = data.message;
-                    applicationForm.reset();
-                } else {
-                    formMessage.className = 'form-message error';
-                    formMessage.innerHTML = data.message;
+                    // Show success toast
+                    showToast(data.message, 'success');
                     
-                    // Highlight fields with errors
+                    // Reset form after successful submission
+                    applicationForm.reset();
+                    
+                    // Add success animation
+                    animateFormSuccess(applicationForm);
+                } else {
+                    // Show error toast
+                    showToast(data.message || 'Form submission failed', 'error');
+                    
+                    // Highlight fields with errors if available
                     if (data.errors) {
                         Object.keys(data.errors).forEach(field => {
-                            const input = applicationForm.querySelector(`[name="${field}"]`);
-                            if (input) {
-                                input.classList.add('error-field');
+                            const fieldElement = applicationForm.querySelector(`[name="${field}"]`);
+                            if (fieldElement) {
+                                fieldElement.closest('.form-input-container').classList.add('error-field');
                             }
                         });
                     }
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Form submission error:', error);
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
-                formMessage.className = 'form-message error';
-                formMessage.innerHTML = 'An error occurred. Please try again.';
+                showToast('Connection error: ' + error.message, 'error');
             });
+        });
+        
+        // Prevent normal form submission and redirect
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            return false;
         });
     }
     
@@ -296,4 +360,62 @@ document.addEventListener('DOMContentLoaded', function() {
                        '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
+    
+    /**
+     * Show an enhanced toast message
+     * @param {string} message - Message to display
+     * @param {string} type - success or error
+     */
+    function showToast(message, type) {
+        // Remove any existing toasts
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) {
+            existingToast.remove();
+        }
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast-notification ${type}`;
+        
+        // Add icon based on type
+        const icon = type === 'success' ? '✓' : '✕';
+        
+        toast.innerHTML = `
+            <div class="toast-icon">${icon}</div>
+            <div class="toast-message">${message}</div>
+            <button class="toast-close">&times;</button>
+        `;
+        
+        // Add to document body
+        document.body.appendChild(toast);
+        
+        // Add show class after a small delay (for animation)
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+        
+        // Add click event to close button
+        toast.querySelector('.toast-close').addEventListener('click', () => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        });
+        
+        // Auto remove after 5 seconds for success, 7 seconds for errors
+        const duration = type === 'success' ? 5000 : 7000;
+        setTimeout(() => {
+            if (document.body.contains(toast)) {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        toast.remove();
+                    }
+                }, 300);
+            }
+        }, duration);
+    }
+    
+    // Make showToast available globally (optional)
+    window.showToast = showToast;
 });
