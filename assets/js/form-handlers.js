@@ -16,7 +16,63 @@ document.addEventListener('DOMContentLoaded', function() {
     if (applicationForm) {
         applicationForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            handleFormSubmission(this, 'application');
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Processing...';
+            submitBtn.disabled = true;
+            
+            // Clear previous error states
+            this.querySelectorAll('.error-field').forEach(field => {
+                field.classList.remove('error-field');
+            });
+            
+            const formMessage = this.querySelector('.form-message');
+            formMessage.innerHTML = '';
+            formMessage.className = 'form-message';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            
+            // Send data via AJAX
+            fetch('backend/process_registration.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Reset button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Display response
+                if (data.success) {
+                    formMessage.className = 'form-message success';
+                    formMessage.innerHTML = data.message;
+                    applicationForm.reset();
+                } else {
+                    formMessage.className = 'form-message error';
+                    formMessage.innerHTML = data.message;
+                    
+                    // Highlight fields with errors
+                    if (data.errors) {
+                        Object.keys(data.errors).forEach(field => {
+                            const input = applicationForm.querySelector(`[name="${field}"]`);
+                            if (input) {
+                                input.classList.add('error-field');
+                            }
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = 'An error occurred. Please try again.';
+            });
         });
     }
     
