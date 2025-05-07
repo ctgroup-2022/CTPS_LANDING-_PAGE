@@ -46,3 +46,12 @@ Stack trace:
 [06-May-2025 10:24:12 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=Madhav Arora, email=aroradiksha341@gmail.com, phone=9877275894, course=Arts
 [06-May-2025 10:24:12 Europe/Berlin] Record inserted successfully with ID: 2
 [06-May-2025 10:24:12 Europe/Berlin] Verified: Record exists in database with ID: 2
+[07-May-2025 06:49:17 Europe/Berlin] Form submission received: Array
+(
+    [name] => kashish
+    [phone] => 8707773540
+    [email] => kashish.2201656@stu.ctgroup.in
+    [course] => Science
+    [message] => xdcvbnm
+)
+
