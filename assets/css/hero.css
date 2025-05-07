@@ -143,32 +143,6 @@
     background-color: var(--accent);
 }
 
-.floating-icon {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    z-index: 2;
-    animation: float 6s ease-in-out infinite;
-}
-
-.icon-balloon {
-    top: 15%;
-    left: 15%;
-    animation: float 6s ease-in-out infinite;
-}
-
-.icon-book {
-    top: 20%;
-    right: 15%;
-    animation: float 7s ease-in-out infinite;
-}
-
-.icon-bee {
-    bottom: 25%;
-    left: 10%;
-    animation: float 5s ease-in-out infinite;
-}
-
 @keyframes float {
     0% {
         transform: translateY(0px);
