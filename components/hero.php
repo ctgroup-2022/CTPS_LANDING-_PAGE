@@ -2,56 +2,52 @@
         <!-- Background Slider -->
         <div class="bg-slider">
             <div class="bg-slide active" style="background-image: url('assets/hero/hero1.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('assets/hero/hero.JPG')"></div>
             <div class="bg-slide" style="background-image: url('assets/hero/hero2.JPG')"></div>
             <div class="bg-slide" style="background-image: url('assets/hero/hero3.JPG')"></div>
             <div class="bg-slide" style="background-image: url('assets/hero/hero4.JPG')"></div>
         </div>
-
-        <!-- 3D Floating Icons -->
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%232196F3' d='M336,120c-4.4,0-8,3.6-8,8v40c0,4.4,3.6,8,8,8s8-3.6,8-8v-40c0-4.4-3.6-8-8-8Z'/%3E%3Cpath fill='%2300BCD4' d='M256,8C119,8,8,119,8,256S119,504,256,504,504,393,504,256,393,8,256,8Z'/%3E%3Cpath fill='%230097A7' d='M256,56c-110.5,0-200,89.5-200,200s89.5,200,200,200,200-89.5,200-200S366.5,56,256,56Z'/%3E%3Cpath fill='%23B3E5FC' d='M336,256c0,44.1-35.9,80-80,80s-80-35.9-80-80,35.9-80,80-80,80,35.9,80,80Z'/%3E%3Cpath fill='%232196F3' d='M336,120c-4.4,0-8,3.6-8,8v40c0,4.4,3.6,8,8,8s8-3.6,8-8v-40c0-4.4-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M392,176h-40c-4.4,0-8,3.6-8,8s3.6,8,8,8h40c4.4,0,8-3.6,8-8s-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M336,328c-4.4,0-8,3.6-8,8v40c0,4.4,3.6,8,8,8s8-3.6,8-8v-40c0-4.4-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M392,256h-40c-4.4,0-8,3.6-8,8s3.6,8,8,8h40c4.4,0,8-3.6,8-8s-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M176,120c-4.4,0-8,3.6-8,8v40c0,4.4,3.6,8,8,8s8-3.6,8-8v-40c0-4.4-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M160,192c0,4.4,3.6,8,8,8h40c4.4,0,8-3.6,8-8s-3.6-8-8-8h-40c-4.4,0-8,3.6-8,8Z'/%3E%3Cpath fill='%232196F3' d='M176,328c-4.4,0-8,3.6-8,8v40c0,4.4,3.6,8,8,8s8-3.6,8-8v-40c0-4.4-3.6-8-8-8Z'/%3E%3Cpath fill='%232196F3' d='M208,256h-40c-4.4,0-8,3.6-8,8s3.6,8,8,8h40c4.4,0,8-3.6,8-8s-3.6-8-8-8Z'/%3E%3C/svg%3E" class="floating-icon icon-balloon" alt="3D Hot Air Balloon">
-
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%231E88E5' d='M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M64,384v-64c0-17.7,14.3-32,32-32h320c17.7,0,32,14.3,32,32v64c0,17.7-14.3,32-32,32H96C78.3,416,64,401.7,64,384z M96,192c0-17.7,14.3-32,32-32h256c17.7,0,32,14.3,32,32v64c0,17.7-14.3,32-32,32H128c-17.7,0-32-14.3-32-32V192z'/%3E%3Cpath fill='%23FFFFFF' d='M128,160h256c17.7,0,32,14.3,32,32v64c0,17.7-14.3,32-32,32H128c-17.7,0-32-14.3-32-32V192C96,174.3,110.3,160,128,160z'/%3E%3Cpath fill='%23FFFFFF' d='M96,288h320c17.7,0,32,14.3,32,32v64c0,17.7-14.3,32-32,32H96c-17.7,0-32-14.3-32-32v-64C64,302.3,78.3,288,96,288z'/%3E%3Cpath fill='%232196F3' d='M152,184h208c4.4,0,8,3.6,8,8v48c0,4.4-3.6,8-8,8H152c-4.4,0-8-3.6-8-8v-48C144,187.6,147.6,184,152,184z'/%3E%3Cpath fill='%231E88E5' d='M152,312h208c4.4,0,8,3.6,8,8v48c0,4.4-3.6,8-8,8H152c-4.4,0-8-3.6-8-8v-48C144,315.6,147.6,312,152,312z'/%3E%3C/svg%3E" class="floating-icon icon-book" alt="3D Book">
-
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cellipse cx='256' cy='256' rx='192' ry='128' fill='%232196F3'/%3E%3Cellipse cx='256' cy='256' rx='96' ry='64' fill='%23FFECB3'/%3E%3Ccircle cx='160' cy='192' r='32' fill='%23FFFFFF'/%3E%3Ccircle cx='176' cy='176' r='16' fill='%23000000'/%3E%3Ccircle cx='352' cy='192' r='32' fill='%23FFFFFF'/%3E%3Ccircle cx='336' cy='176' r='16' fill='%23000000'/%3E%3Cpath fill='%23795548' d='M224,280v32c0,17.7,14.3,32,32,32s32-14.3,32-32v-32H224z'/%3E%3Cpath fill='%23000000' d='M288,280c0,17.7-14.3,32-32,32s-32-14.3-32-32H288z'/%3E%3Cpath fill='%23795548' d='M256,384c-70.7,0-128-57.3-128-128h32c0,53,43,96,96,96s96-43,96-96h32C384,326.7,326.7,384,256,384z'/%3E%3C/svg%3E" class="floating-icon icon-bee" alt="3D Bee">
 
         <div class="hero-content">
             <h1 class="hero-title">CT PUBLIC SCHOOL <span>Empowering Minds,</span> Inspiring Futures</h1>
             <p class="hero-subtitle">CT Public School is dedicated to fostering intellectual growth and character development, empowering students to shape a brighter future.</p>
         </div>
 
-        <div class="hero-form-container">
-            <div class="form-header">
-                <h2 class="hero-form-title">Apply Now</h2>
-                <p class="hero-form-subtitle">Start your journey with us</p>
+        <div class="hero-form-container" style="padding: 20px; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 86, 179, 0.05); border: 1px solid rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: relative; overflow: hidden;">
+            <!-- Decorative elements -->
+            <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: linear-gradient(135deg, rgba(0, 168, 255, 0.2), rgba(0, 86, 179, 0.1)); border-radius: 50%; z-index: 0;"></div>
+            <div style="position: absolute; bottom: -30px; left: -30px; width: 80px; height: 80px; background: linear-gradient(135deg, rgba(0, 168, 255, 0.15), rgba(0, 86, 179, 0.05)); border-radius: 50%; z-index: 0;"></div>
+            
+            <div class="form-header" style="position: relative; z-index: 1; text-align: center; margin-bottom: 15px; border-bottom: 2px solid rgba(0, 86, 179, 0.1); padding-bottom: 10px;">
+                <h2 class="hero-form-title" style="margin: 0 0 5px 0; font-size: 1.5rem; background: linear-gradient(135deg, #0056b3, #00a8ff); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700;">Apply Now</h2>
+                <p class="hero-form-subtitle" style="margin: 0 0 5px 0; font-size: 0.9rem; color: #6c757d;">Start your journey with us</p>
             </div>
 
-            <form id="application-form" onsubmit="return false;" class="modern-form">
-                <div class="form-group">
-                    <label><i class="fas fa-user"></i> Full Name</label>
-                    <div class="form-input-container">
-                        <input type="text" name="name" placeholder="Enter your full name" required>
+            <form id="application-form" onsubmit="return false;" class="modern-form" style="display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1;">
+                <div class="form-group" style="margin-bottom: 6px; position: relative;">
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-user" style="color: #00a8ff; margin-right: 5px;"></i> Full Name</label>
+                    <div class="form-input-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <input type="text" name="name" placeholder="Enter your full name" required style="height: 35px; padding: 5px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem;">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-phone"></i> Phone Number</label>
-                    <div class="form-input-container">
-                        <input type="tel" name="phone" placeholder="Enter your phone number">
+                <div class="form-group" style="margin-bottom: 6px; position: relative;">
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-phone" style="color: #00a8ff; margin-right: 5px;"></i> Phone Number</label>
+                    <div class="form-input-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <input type="tel" name="phone" placeholder="Enter your phone number" style="height: 35px; padding: 5px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem;">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-envelope"></i> Email Address</label>
-                    <div class="form-input-container">
-                        <input type="email" name="email" placeholder="Enter your email address" required>
+                <div class="form-group" style="margin-bottom: 6px; position: relative;">
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-envelope" style="color: #00a8ff; margin-right: 5px;"></i> Email Address</label>
+                    <div class="form-input-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <input type="email" name="email" placeholder="Enter your email address" required style="height: 35px; padding: 5px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem;">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-graduation-cap"></i> Course</label>
-                    <div class="form-input-container select-container">
-                        <select name="course">
+                <div class="form-group" style="margin-bottom: 6px; position: relative;">
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-graduation-cap" style="color: #00a8ff; margin-right: 5px;"></i> Course</label>
+                    <div class="form-input-container select-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <select name="course" style="height: 35px; padding: 5px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem;">
                             <option value="">Select a Course</option>
                             <option value="Science">Science</option>
                             <option value="Commerce">Commerce</option>
@@ -61,21 +57,65 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-comment"></i> Message (Optional)</label>
-                    <div class="form-input-container">
-                        <textarea name="message" placeholder="How can we help you?"></textarea>
+                <div class="form-group" style="margin-bottom: 15px; position: relative;">
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057; display: flex; align-items: center; justify-content: space-between;">
+                        <span><i class="fas fa-comment" style="color: #00a8ff; margin-right: 5px;"></i> Message</span>
+                        <span style="font-size: 0.7rem; font-weight: normal; font-style: italic; color: #6c757d; background: rgba(0,168,255,0.1); padding: 2px 8px; border-radius: 10px;">Optional</span>
+                    </label>
+                    <div class="form-input-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+                        <textarea name="message" placeholder="How can we help you?" style="height: 55px; min-height: 55px; padding: 8px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem; background-image: linear-gradient(to bottom, #ffffff, #fcfdff); resize: none;"></textarea>
+                        <div style="position: absolute; bottom: 5px; right: 10px; font-size: 0.7rem; color: #adb5bd; pointer-events: none;">
+                            <i class="fas fa-pen-fancy" style="opacity: 0.5;"></i>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Form message container -->
-                <div class="form-message"></div>
-
-                <!-- Submit button with improved styling -->
-                <button type="button" class="submit-btn" id="form-submit-btn">
+                
+                <!-- Add spacing after message field -->
+                <div style="height: 20px;"></div>
+                
+                <script>
+                    // Enhanced textarea effects
+                    const messageArea = document.querySelector('textarea[name="message"]');
+                    const messageContainer = messageArea.parentNode;
+                    
+                    messageArea.addEventListener('focus', function() {
+                        this.style.height = '70px';
+                        messageContainer.style.boxShadow = '0 0 0 2px rgba(0, 168, 255, 0.25), 0 5px 15px rgba(0, 86, 179, 0.1)';
+                        messageContainer.style.borderColor = 'rgba(0, 168, 255, 0.3)';
+                    });
+                    
+                    messageArea.addEventListener('blur', function() {
+                        this.style.height = '55px';
+                        messageContainer.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                        messageContainer.style.borderColor = 'rgba(0,0,0,0.1)';
+                    });
+                </script>
+                
+                <div class="form-message" style="margin: 5px 0; text-align: center; min-height: 20px; font-size: 0.85rem;"></div>
+                
+                <button type="button" class="submit-btn" id="form-submit-btn" style="padding: 10px 15px; border-radius: 8px; background: linear-gradient(135deg, #0056b3, #00a8ff); color: white; border: none; font-weight: 600; margin-top: 5px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3); position: relative; overflow: hidden;">
                     <span class="btn-text">Submit Application</span>
-                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-arrow-right" style="font-size: 0.9rem; position: relative; z-index: 2;"></i>
+                    <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.5s ease; z-index: 1;" class="btn-shine"></div>
                 </button>
+                
+                <script>
+                    // Add shine effect to button
+                    const submitButton = document.getElementById('form-submit-btn');
+                    const shine = submitButton.querySelector('.btn-shine');
+                    
+                    submitButton.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-2px)';
+                        this.style.boxShadow = '0 6px 20px rgba(0, 86, 179, 0.4)';
+                        shine.style.left = '100%';
+                    });
+                    
+                    submitButton.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = '0 4px 15px rgba(0, 86, 179, 0.3)';
+                        shine.style.left = '-100%';
+                    });
+                </script>
             </form>
         </div>
     </section>
