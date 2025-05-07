@@ -46,3 +46,27 @@ Stack trace:
 [06-May-2025 10:24:12 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=Madhav Arora, email=aroradiksha341@gmail.com, phone=9877275894, course=Arts
 [06-May-2025 10:24:12 Europe/Berlin] Record inserted successfully with ID: 2
 [06-May-2025 10:24:12 Europe/Berlin] Verified: Record exists in database with ID: 2
+[06-May-2025 12:01:42 Europe/Berlin] Form submission received: Array
+(
+    [name] => Kashish Singh
+    [phone] => 8707773540
+    [email] => singhkashish364@gmail.com
+    [course] => Commerce
+    [message] => hgfcxgh
+)
+
+[06-May-2025 12:01:42 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=Kashish Singh, email=singhkashish364@gmail.com, phone=8707773540, course=Commerce
+[06-May-2025 12:01:42 Europe/Berlin] Record inserted successfully with ID: 3
+[06-May-2025 12:01:42 Europe/Berlin] Verified: Record exists in database with ID: 3
+[07-May-2025 06:52:28 Europe/Berlin] Form submission received: Array
+(
+    [name] => gvghvgh
+    [phone] => 8707773540
+    [email] => admin@ctechx.com
+    [course] => Science
+    [message] => ghghv g 
+)
+
+[07-May-2025 06:52:28 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=gvghvgh, email=admin@ctechx.com, phone=8707773540, course=Science
+[07-May-2025 06:52:28 Europe/Berlin] Record inserted successfully with ID: 4
+[07-May-2025 06:52:28 Europe/Berlin] Verified: Record exists in database with ID: 4
