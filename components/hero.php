@@ -13,47 +13,37 @@
         </div>
 
         <div class="hero-form-container">
-            <h2 class="hero-form-title">Apply Now</h2>
-            <p class="hero-form-subtitle">Start your journey with us</p>
+            <div class="form-header">
+                <h2 class="hero-form-title">Apply Now</h2>
+                <p class="hero-form-subtitle">Start your journey with us</p>
+            </div>
 
-            <form id="application-form" action="backend/process_registration.php" method="post">
+            <form id="application-form" onsubmit="return false;" class="modern-form">
                 <div class="form-group">
-                    <label>Full Name</label>
+                    <label><i class="fas fa-user"></i> Full Name</label>
                     <div class="form-input-container">
-                        <div class="form-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <input type="text" name="name" class="form-input" placeholder="Enter your name" required>
+                        <input type="text" name="name" placeholder="Enter your full name" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Phone Number</label>
+                    <label><i class="fas fa-phone"></i> Phone Number</label>
                     <div class="form-input-container">
-                        <div class="form-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <input type="tel" name="phone" class="form-input" placeholder="Enter your phone number" required>
+                        <input type="tel" name="phone" placeholder="Enter your phone number">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Email Address</label>
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
                     <div class="form-input-container">
-                        <div class="form-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
+                        <input type="email" name="email" placeholder="Enter your email address" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Course</label>
-                    <div class="form-input-container">
-                        <div class="form-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <select name="course" class="form-input" required>
+                    <label><i class="fas fa-graduation-cap"></i> Course</label>
+                    <div class="form-input-container select-container">
+                        <select name="course">
                             <option value="">Select a Course</option>
                             <option value="Science">Science</option>
                             <option value="Commerce">Commerce</option>
@@ -64,17 +54,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Message (Optional)</label>
+                    <label><i class="fas fa-comment"></i> Message (Optional)</label>
                     <div class="form-input-container">
-                        <div class="form-icon">
-                            <i class="fas fa-comment"></i>
-                        </div>
-                        <textarea name="message" class="form-input" placeholder="Any specific requirements or questions?"></textarea>
+                        <textarea name="message" placeholder="How can we help you?"></textarea>
                     </div>
                 </div>
 
+                <!-- Form message container -->
                 <div class="form-message"></div>
-                <button type="submit" class="submit-btn">Submit Application</button>
+
+                <!-- Submit button with improved styling -->
+                <button type="button" class="submit-btn" id="form-submit-btn">
+                    <span class="btn-text">Submit Application</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
         </div>
     </section>

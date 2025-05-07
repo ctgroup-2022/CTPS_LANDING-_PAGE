@@ -1,0 +1,48 @@
+[06-May-2025 07:35:37 Europe/Berlin] Form submission received: Array
+(
+    [name] => Kashish Singh
+    [email] => singhkashish364@gmail.com
+    [phone] => 8707773540
+    [course] => B.tech
+    [message] => v
+)
+
+[06-May-2025 07:35:37 Europe/Berlin] SQL Query: INSERT INTO leads (name, email, phone, course, message, created_at) 
+            VALUES ('Kashish Singh', 'singhkashish364@gmail.com', '8707773540', 'B.tech', 'v', NOW())
+[06-May-2025 07:44:34 Europe/Berlin] Form submission received: Array
+(
+    [name] => Madhav Arora
+    [phone] => 9877275894
+    [email] => madhavarora132005@gmail.com
+    [course] => Computer Science
+    [message] => yfdrdtr
+)
+
+[06-May-2025 07:44:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::debugDumpParams() in C:\xampp\htdocs\CTPS_LAND\CTPS_LANDING-_PAGE\backend\process_registration.php:47
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CTPS_LAND\CTPS_LANDING-_PAGE\backend\process_registration.php on line 47
+[06-May-2025 09:14:56 Europe/Berlin] Form submission received: Array
+(
+    [name] => madhav
+    [phone] => 1234567890
+    [email] => madhavarora132005@gmail.com
+    [course] => Commerce
+    [message] => vyyhvyh bhgcg
+)
+
+[06-May-2025 09:14:56 Europe/Berlin] Created database ctps_landing
+[06-May-2025 09:14:56 Europe/Berlin] Created leads table successfully
+[06-May-2025 09:14:56 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=madhav, email=madhavarora132005@gmail.com, phone=1234567890, course=Commerce
+[06-May-2025 10:24:12 Europe/Berlin] Form submission received: Array
+(
+    [name] => Madhav Arora
+    [phone] => 9877275894
+    [email] => aroradiksha341@gmail.com
+    [course] => Arts
+    [message] => fyrstyu
+)
+
+[06-May-2025 10:24:12 Europe/Berlin] SQL Query: INSERT INTO leads with data: name=Madhav Arora, email=aroradiksha341@gmail.com, phone=9877275894, course=Arts
+[06-May-2025 10:24:12 Europe/Berlin] Record inserted successfully with ID: 2
+[06-May-2025 10:24:12 Europe/Berlin] Verified: Record exists in database with ID: 2

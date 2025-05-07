@@ -19,6 +19,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/hero.css">
+    <link rel="stylesheet" href="assets/css/hero-form.css">
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/counter.css">
     <link rel="stylesheet" href="assets/css/legacy.css">
@@ -30,6 +31,9 @@
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/circular-events.css">
     <link rel="stylesheet" href="assets/css/age-groups.css">
+    <link rel="stylesheet" href="assets/css/toast.css">
+    <!-- Add form animations CSS -->
+    <link rel="stylesheet" href="assets/css/form-animations.css">
 
     <!-- <link rel="stylesheet" href="assets/css/programs.css"> -->
 
@@ -74,6 +78,7 @@
     <script src="assets/js/faq.js"></script>
     <script src="assets/js/events-slider.js"></script>
     <script src="assets/js/circular-events.js"></script>
+    <script src="assets/js/form-handlers.js"></script>
     <!-- <script src="assets/js/programs.js"></script> -->
     
 </body>
