@@ -9,13 +9,12 @@
         
         <nav class="nav-container">
             <div class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">About Us</a>
-                <a href="#" class="nav-link">Programs</a>
-                <a href="#" class="nav-link">Gallery</a>
-                <a href="#" class="nav-link">Activities</a>
-                <a href="#" class="nav-link">Testimonials</a>
-                <a href="#" class="nav-link">FAQ</a>
+                <a href="#hero-section" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#events-slider" class="nav-link">Activities</a>
+                <a href="#testimonial" class="nav-link">Testimonials</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </div>
             <!-- Single Apply button that works for both desktop and mobile -->
             <button class="apply-btn"><i class="fas fa-paper-plane"></i>VIRTUAL TOUR</button>
@@ -29,3 +28,60 @@
             <span></span>
         </button>
     </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get the target section ID from the href attribute
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Close mobile menu if open
+                    const navContainer = document.querySelector('.nav-container');
+                    const hamburger = document.querySelector('.hamburger');
+                    if (navContainer.classList.contains('active')) {
+                        navContainer.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                    
+                    // Scroll to the target section smoothly
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80, // Offset to account for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add click event for Virtual Tour button
+        const virtualTourBtn = document.querySelector('.apply-btn');
+        if (virtualTourBtn) {
+            virtualTourBtn.addEventListener('click', function() {
+                const virtualTourSection = document.querySelector('#virtual-tour');
+                if (virtualTourSection) {
+                    // Close mobile menu if open
+                    const navContainer = document.querySelector('.nav-container');
+                    const hamburger = document.querySelector('.hamburger');
+                    if (navContainer.classList.contains('active')) {
+                        navContainer.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                    
+                    // Scroll to the virtual tour section
+                    window.scrollTo({
+                        top: virtualTourSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+</script>

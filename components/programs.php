@@ -1,4 +1,4 @@
-<section id="programs-section" class="programs-container">
+<section id="programs-section programs" class="programs-container">
     <!-- Background decorative elements -->
     <div class="bg-decoration circle-1"></div>
     <div class="bg-decoration circle-2"></div>

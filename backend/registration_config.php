@@ -1,9 +1,9 @@
 <?php
 // Database configuration
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "registration_db";
+$username = "ctpsadmin";
+$password = "HA2$,L@iE4%@";
+$dbname = "CTPS_APPLY";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);

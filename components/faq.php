@@ -1,4 +1,4 @@
-<section class="faq-section">
+<section class="faq-section" id="faq">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title1">Frequently <span>Asked Questions</span></h2>

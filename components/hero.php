@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/css/form-fix.css">
+
 <section class="hero-section">
         <!-- Background Slider -->
         <div class="bg-slider">
@@ -45,14 +47,26 @@
                 </div>
 
                 <div class="form-group" style="margin-bottom: 6px; position: relative;">
-                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-graduation-cap" style="color: #00a8ff; margin-right: 5px;"></i> Course</label>
+                    <label style="margin-bottom: 4px; display: block; font-size: 0.85rem; font-weight: 600; color: #495057;"><i class="fas fa-graduation-cap" style="color: #00a8ff; margin-right: 5px;"></i> Class</label>
                     <div class="form-input-container select-container" style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                         <select name="course" style="height: 35px; padding: 5px 12px; width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.9rem;">
-                            <option value="">Select a Course</option>
-                            <option value="Science">Science</option>
-                            <option value="Commerce">Commerce</option>
-                            <option value="Arts">Arts</option>
-                            <option value="Computer Science">Computer Science</option>
+                            <option value="">Select a Class</option>
+                            <option value="Pre-Nursery">Pre-Nursery</option>
+                            <option value="Nursery">Nursery</option>
+                            <option value="LKG">LKG</option>
+                            <option value="UKG">UKG</option>
+                            <option value="1st">1st</option>
+                            <option value="2nd">2nd</option>
+                            <option value="3rd">3rd</option>
+                            <option value="4th">4th</option>
+                            <option value="5th">5th</option>
+                            <option value="6th">6th</option>
+                            <option value="7th">7th</option>
+                            <option value="8th">8th</option>
+                            <option value="9th">9th</option>
+                            <option value="10th">10th</option>
+                            <option value="11th">11th</option>
+                            <option value="12th">12th</option>
                         </select>
                     </div>
                 </div>
@@ -114,6 +128,105 @@
                         this.style.transform = 'translateY(0)';
                         this.style.boxShadow = '0 4px 15px rgba(0, 86, 179, 0.3)';
                         shine.style.left = '-100%';
+                    });
+                    
+                    // Form submission handling
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const form = document.getElementById('application-form');
+                        const submitBtn = document.getElementById('form-submit-btn');
+                        const btnText = submitBtn.querySelector('.btn-text');
+                        const formMessage = document.querySelector('.form-message');
+                        let isSubmitting = false;
+                        
+                        // Handle form submission
+                        submitBtn.addEventListener('click', function() {
+                            // Prevent multiple submissions
+                            if (isSubmitting) return;
+                            
+                            // Validate form
+                            const name = form.querySelector('input[name="name"]').value.trim();
+                            const email = form.querySelector('input[name="email"]').value.trim();
+                            
+                            if (!name) {
+                                showMessage('Please enter your name', 'error');
+                                return;
+                            }
+                            
+                            if (!email) {
+                                showMessage('Please enter your email', 'error');
+                                return;
+                            }
+                            
+                            if (!isValidEmail(email)) {
+                                showMessage('Please enter a valid email address', 'error');
+                                return;
+                            }
+                            
+                            // Set submitting state
+                            isSubmitting = true;
+                            btnText.textContent = 'Submitting...';
+                            submitBtn.disabled = true;
+                            submitBtn.style.opacity = '0.7';
+                            submitBtn.style.cursor = 'not-allowed';
+                            formMessage.textContent = '';
+                            
+                            // Collect form data
+                            const formData = new FormData(form);
+                            
+                            // Send AJAX request
+                            fetch('backend/process_registration.php', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Success
+                                    showMessage(data.message, 'success');
+                                    form.reset();
+                                } else {
+                                    // Error from server
+                                    showMessage(data.message || 'Failed to submit form. Please try again.', 'error');
+                                }
+                            })
+                            .catch(error => {
+                                // Network or other error
+                                showMessage('Network error. Please check your connection and try again.', 'error');
+                                console.error('Submission error:', error);
+                            })
+                            .finally(() => {
+                                // Reset button state
+                                isSubmitting = false;
+                                btnText.textContent = 'Submit Application';
+                                submitBtn.disabled = false;
+                                submitBtn.style.opacity = '1';
+                                submitBtn.style.cursor = 'pointer';
+                            });
+                        });
+                        
+                        // Helper functions
+                        function showMessage(message, type) {
+                            formMessage.textContent = message;
+                            formMessage.style.padding = '8px 12px';
+                            formMessage.style.borderRadius = '6px';
+                            formMessage.style.marginTop = '10px';
+                            formMessage.style.marginBottom = '10px';
+                            
+                            if (type === 'success') {
+                                formMessage.style.backgroundColor = 'rgba(40, 167, 69, 0.1)';
+                                formMessage.style.color = '#28a745';
+                                formMessage.style.border = '1px solid rgba(40, 167, 69, 0.2)';
+                            } else {
+                                formMessage.style.backgroundColor = 'rgba(220, 53, 69, 0.1)';
+                                formMessage.style.color = '#dc3545';
+                                formMessage.style.border = '1px solid rgba(220, 53, 69, 0.2)';
+                            }
+                        }
+                        
+                        function isValidEmail(email) {
+                            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            return re.test(email.toLowerCase());
+                        }
                     });
                 </script>
             </form>

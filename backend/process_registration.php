@@ -38,7 +38,7 @@ try {
         exit;
     }
     
-    // Create db_config.php with default settings if it doesn't exist
+    // Create db_config.php with correct settings if it doesn't exist
     if (!file_exists(__DIR__ . '/db_config.php')) {
         $config_content = '<?php
 /**
@@ -46,9 +46,9 @@ try {
  */
 $db_config = [
     "host" => "localhost",
-    "username" => "root", 
-    "password" => "",
-    "dbname" => "ctps_landing"
+    "username" => "ctpsadmin", 
+    "password" => "HA2$,L@iE4%@",
+    "dbname" => "CTPS_APPLY"
 ];
 ?>';
         file_put_contents(__DIR__ . '/db_config.php', $config_content);
@@ -116,7 +116,7 @@ $db_config = [
     $tableExists = $conn->query("SHOW TABLES LIKE 'leads'")->num_rows > 0;
     
     if (!$tableExists) {
-        // Create leads table if it doesn't exist
+        // Create leads table if it doesn't exist based on hero.php form fields
         $createTableSQL = "CREATE TABLE `leads` (
             `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `name` VARCHAR(100) NOT NULL,

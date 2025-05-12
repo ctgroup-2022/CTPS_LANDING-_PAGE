@@ -1,0 +1,12 @@
+/* Remove duplicate dropdown arrow */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none; /* This ensures only our custom arrow is displayed */
+}
+
+/* For IE10+ */
+select::-ms-expand {
+  display: none;
+}
