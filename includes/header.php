@@ -18,7 +18,7 @@
                 <a href="#" class="nav-link">FAQ</a>
             </div>
             <!-- Single Apply button that works for both desktop and mobile -->
-            <button class="apply-btn"><i class="fas fa-paper-plane"></i> APPLY NOW</button>
+            <button class="apply-btn"><i class="fas fa-paper-plane"></i>VIRTUAL TOUR</button>
         </nav>
 
         <!-- Remove extra apply buttons -->

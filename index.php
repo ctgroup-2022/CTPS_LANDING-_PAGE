@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="assets/css/faq.css">
     <link rel="stylesheet" href="assets/css/gallery.css">
     <link rel="stylesheet" href="assets/css/events-slider.css">
+    <link rel="stylesheet" href="assets/css/events-popup.css">
     <link rel="stylesheet" href="assets/css/testimonial.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/circular-events.css">

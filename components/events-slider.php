@@ -80,9 +80,7 @@
         <div class="floating-icon icon5"><i class="fas fa-calculator"></i></div>
     </div>
     
-    <!-- Link the improved popup CSS and JS files -->
-    <link rel="stylesheet" href="assets/css/events-popup.css">
+    <!-- Link the necessary JS files -->
     <script src="assets/js/events-popup.js"></script>
-    <script src="assets/js/events-popup-mobile.js"></script>
-    <script src="assets/js/enhanced-event-content.js"></script>
+    <script src="assets/js/animations.js"></script>
 </section>

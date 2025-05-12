@@ -70,16 +70,16 @@
                     </div>
                 </div>
                 
-                <!-- Add spacing after message field -->
-                <div style="height: 20px;"></div>
+                <!-- Add minimal spacing after message field -->
+                <div style="height: 10px;"></div>
                 
                 <script>
-                    // Enhanced textarea effects
+                    // Enhanced textarea effects with reduced height
                     const messageArea = document.querySelector('textarea[name="message"]');
                     const messageContainer = messageArea.parentNode;
                     
                     messageArea.addEventListener('focus', function() {
-                        this.style.height = '70px';
+                        this.style.height = '60px';
                         messageContainer.style.boxShadow = '0 0 0 2px rgba(0, 168, 255, 0.25), 0 5px 15px rgba(0, 86, 179, 0.1)';
                         messageContainer.style.borderColor = 'rgba(0, 168, 255, 0.3)';
                     });
