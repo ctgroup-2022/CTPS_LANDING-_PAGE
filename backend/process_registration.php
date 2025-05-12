@@ -48,7 +48,7 @@ $db_config = [
     "host" => "localhost",
     "username" => "ctpsadmin", 
     "password" => "HA2$,L@iE4%@",
-    "dbname" => "CTPS_APPLY"
+    "dbname" => "CTPS_Apply"
 ];
 ?>';
         file_put_contents(__DIR__ . '/db_config.php', $config_content);

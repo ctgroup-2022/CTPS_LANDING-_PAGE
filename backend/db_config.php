@@ -6,7 +6,7 @@ $db_config = [
     'host' => 'localhost',
     'username' => 'ctpsadmin',
     'password' => 'HA2$,L@iE4%@',
-    'dbname' => 'CTPS_APPLY'
+    'dbname' => 'CTPS_Apply'
 ];
 
 // Connect to the database

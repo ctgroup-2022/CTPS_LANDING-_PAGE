@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "ctpsadmin";
 $password = "HA2$,L@iE4%@";
-$dbname = "CTPS_APPLY";
+$dbname = "CTPS_Apply";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
