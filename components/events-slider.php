@@ -20,7 +20,7 @@
                 <div class="event-preview">
                     <p>Stay up-to-date with our latest events and activities</p>
                 </div>
-                <button class="learn-more-btn">Learn More</button>
+               
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                 <div class="event-preview">
                     <p>Important announcements and notices for students and parents</p>
                 </div>
-                <button class="learn-more-btn">Learn More</button>
+               
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                 <div class="event-preview">
                     <p>Highlighting special achievements and upcoming featured events</p>
                 </div>
-                <button class="learn-more-btn">Learn More</button>
+               
             </div>
         </div>
 
@@ -62,7 +62,7 @@
                 <div class="event-preview">
                     <p>Fun and educational activities for student development</p>
                 </div>
-                <button class="learn-more-btn">Learn More</button>
+             
             </div>
         </div>
     </div>
