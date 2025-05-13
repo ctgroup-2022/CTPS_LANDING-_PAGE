@@ -19,14 +19,14 @@
         
         <div class="facilities-grid">
             <!-- Large Card -->
-            <div class="facility-card large" data-title="Main Building" data-description="Our state-of-the-art main building provides students with modern learning spaces designed to inspire creativity and academic excellence. The architecture blends contemporary design with functional spaces that support various learning styles.">
+            <div class="facility-card large" data-title="Hands-On Robotics Learning" data-description="In this engaging classroom setting, students dive into the world of robotics through practical, real-world tasks. The image captures a young learner focused intently on assembling and programming a robot, highlighting the school's commitment to experiential learning. By providing access to tools and technology, students are encouraged to innovate, collaborate, and develop critical thinking skills essential for the future.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery1.jpg" alt="Main Building" loading="lazy">
+                    <img src="assets/gallery/gallery10.jpg" alt="Hands-On Robotics Learning" loading="lazy">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
-                    <h3>MAIN BUILDING</h3>
-                    <p>Our state-of-the-art main building provides students with modern learning spaces.</p>
+                    <h3>HANDS-ON ROBOTICS LEARNING</h3>
+                    <p>In this engaging classroom setting, students dive into the world of robotics through practical, real-world tasks.</p>
                     <div class="view-btn">View More</div>
                 </div>
             </div>
@@ -44,52 +44,52 @@
                 </div>
             </div>
             
-            <div class="facility-card small" data-title="Interactive Classes" data-description="Our innovative teaching methods encourage active participation and collaborative learning. Interactive classes ensure that students are engaged, motivated, and developing critical thinking skills through hands-on experiences.">
+            <div class="facility-card small" data-title="Celebrating Culture Through Young Performers" data-description="Dressed in vibrant traditional attire, the young children take the stage with confidence and charm, performing a colorful cultural dance. The beautifully decorated backdrop and coordinated costumes bring regional heritage to life, creating a joyful and educational experience for both performers and audience. Events like these nurture confidence, teamwork, and cultural pride among students from an early age.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery3.jpg" alt="Interactive Classes" loading="lazy">
+                    <img src="assets/gallery/gallery4.jpg" alt="Celebrating Culture Through Young Performers" loading="lazy">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
-                    <h3>INTERACTIVE CLASSES</h3>
-                    <p>Our innovative teaching methods encourage active participation and collaborative learning.</p>
+                    <h3>CELEBRATING CULTURE</h3>
+                    <p>Dressed in vibrant traditional attire, the young children take the stage with confidence and charm, performing a colorful cultural dance.</p>
                     <div class="view-btn">View More</div>
                 </div>
             </div>
             
             <!-- Large Card -->
-            <div class="facility-card large" data-title="Innovation Lab" data-description="Students work on cutting-edge projects in our fully equipped laboratories designed to foster innovation and experimentation. Our labs feature the latest technology and resources needed for advanced research and practical learning experiences.">
+            <div class="facility-card large" data-title="Celebrating Culture Through Young Performers" data-description="Dressed in vibrant traditional attire, the young children take the stage with confidence and charm, performing a colorful cultural dance. The beautifully decorated backdrop and coordinated costumes bring regional heritage to life, creating a joyful and educational experience for both performers and audience. Events like these nurture confidence, teamwork, and cultural pride among students from an early age.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery4.jpg" alt="Innovation Lab" loading="lazy">
+                    <img src="assets/gallery/gallery9.jpg" alt="Celebrating Culture Through Young Performers" loading="lazy">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
-                    <h3>INNOVATION LAB</h3>
-                    <p>Students work on cutting-edge projects in our fully equipped laboratories.</p>
+                    <h3>CELEBRATING CULTURE</h3>
+                    <p>Dressed in vibrant traditional attire, the young children take the stage with confidence and charm, performing a colorful cultural dance.</p>
                     <div class="view-btn">View More</div>
                 </div>
             </div>
             
             <!-- Extra Large Cards (Last Row) -->
-            <div class="facility-card extra-large" data-title="Recreation Area" data-description="Well-designed spaces for students to relax and engage in activities that promote mental well-being and social interaction. Our recreation areas include comfortable seating, game zones, and serene environments that help students unwind between classes.">
+            <div class="facility-card extra-large" data-title="Interactive Science Learning in the Laboratory" data-description="In a well-equipped science lab, students eagerly observe a hands-on experiment conducted by their teacher. Such interactive sessions not only deepen conceptual understanding but also ignite curiosity and critical thinking. The practical approach helps students connect textbook theories with real-world applications, making science both fun and meaningful.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery5.jpg" alt="Recreation Area" loading="lazy">
+                    <img src="assets/gallery/gallery6.jpg" alt="Interactive Science Learning in the Laboratory" loading="lazy">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
-                    <h3>RECREATION AREA</h3>
-                    <p>Well-designed spaces for students to relax and engage in activities that promote mental well-being and social interaction.</p>
+                    <h3>INTERACTIVE SCIENCE LEARNING</h3>
+                    <p>In a well-equipped science lab, students eagerly observe a hands-on experiment conducted by their teacher.</p>
                     <div class="view-btn">View More</div>
                 </div>
             </div>
             
-            <div class="facility-card extra-large" data-title="Cultural Festival" data-description="Annual celebration of diversity through performances and cultural exchanges that showcase our global community. The festival features music, dance, art, cuisine, and traditions from around the world, promoting cultural understanding and appreciation.">
+            <div class="facility-card extra-large" data-title="Skating Into Fitness and Fun" data-description="With safety gear on and excitement in their eyes, the young students enthusiastically participate in a skating activity under the guidance of their coach. This engaging session not only promotes physical fitness but also helps in improving balance, coordination, and confidence. Such activities ensure that learning goes beyond the classroom, making education a joyful and holistic experience.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery7.jpg" alt="Cultural Festival" loading="lazy">
+                    <img src="assets/gallery/gallery8.png" alt="Skating Into Fitness and Fun" loading="lazy">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
-                    <h3>CULTURAL FESTIVAL</h3>
-                    <p>Annual celebration of diversity through performances and cultural exchanges that showcase our global community.</p>
+                    <h3>SKATING INTO FITNESS AND FUN</h3>
+                    <p>With safety gear on and excitement in their eyes, the young students enthusiastically participate in a skating activity under the guidance of their coach.</p>
                     <div class="view-btn">View More</div>
                 </div>
             </div>
