@@ -58,4 +58,105 @@
             </a>
         </div>
     </div>
+
+    <!-- Add enhanced lazy loading script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if IntersectionObserver is supported
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            
+                            // Add loading class for animation
+                            img.classList.add('image-loading');
+                            
+                            // Create high-res version
+                            const highResImage = new Image();
+                            highResImage.src = img.src;
+                            
+                            // When high-res image loads, replace and animate in
+                            highResImage.onload = function() {
+                                img.src = highResImage.src;
+                                img.classList.remove('image-loading');
+                                img.classList.add('image-loaded');
+                            };
+                            
+                            // Handle image loading errors
+                            highResImage.onerror = function() {
+                                img.classList.remove('image-loading');
+                                img.classList.add('image-error');
+                            };
+                            
+                            // Stop observing after loading
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px', // Start loading when within 50px
+                    threshold: 0.1 // 10% visibility triggers loading
+                });
+                
+                // Observer all campus gallery images
+                document.querySelectorAll('.campus-image-grid img').forEach(img => {
+                    // Add placeholder blur effect
+                    img.style.filter = 'blur(5px)';
+                    img.style.transition = 'filter 0.5s ease-out';
+                    
+                    // Start observing
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Optimize AOS animations to trigger only when in viewport
+            if (typeof AOS !== 'undefined') {
+                // Disable AOS on mobile for better performance
+                if (window.innerWidth < 768) {
+                    AOS.init({
+                        disable: true
+                    });
+                } else {
+                    AOS.init({
+                        once: true, // Only animate once
+                        offset: 100, // Trigger earlier
+                        delay: 0 // Reduce delay for better performance
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <style>
+        /* Enhanced lazy loading styles */
+        .campus-image-grid img {
+            will-change: filter; /* Hint to browser for optimization */
+            transform: translateZ(0); /* Force GPU acceleration */
+        }
+        
+        .image-loading {
+            opacity: 0.7;
+        }
+        
+        .image-loaded {
+            filter: blur(0) !important;
+            opacity: 1;
+        }
+        
+        .image-error {
+            opacity: 0.5;
+            filter: grayscale(100%) !important;
+        }
+        
+        /* Optimize grid for better performance */
+        .campus-image-grid {
+            contain: layout style; /* Improve rendering performance */
+        }
+        
+        /* Optimize animation performance */
+        [data-aos] {
+            transform: translateZ(0); /* Force GPU acceleration */
+            backface-visibility: hidden; /* Reduce paints */
+        }
+    </style>
 </section>
