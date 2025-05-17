@@ -61,6 +61,71 @@
             });
         });
 
+        // Add lazy loading for gallery and testimonial images
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize lazy loading for Gallery section
+            const gallerySection = document.querySelector('#gallery');
+            if (gallerySection) {
+                const galleryImages = gallerySection.querySelectorAll('.facility-image img');
+                galleryImages.forEach(img => {
+                    if (!img.hasAttribute('loading')) {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+            }
+            
+            // Initialize lazy loading for Testimonial section
+            const testimonialSection = document.querySelector('#testimonial');
+            if (testimonialSection) {
+                const testimonialImages = testimonialSection.querySelectorAll('.testimonial-img img, .testimonial-author-img');
+                testimonialImages.forEach(img => {
+                    if (!img.hasAttribute('loading')) {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+            }
+            
+            // Use IntersectionObserver for more advanced lazy loading if supported
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            // If there's a data-src attribute, load the image from there
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            observer.unobserve(img);
+                        }
+                    });
+                }, { rootMargin: '0px 0px 200px 0px' }); // Start loading 200px before image comes into view
+                
+                // Apply to gallery images
+                if (gallerySection) {
+                    const lazyImages = gallerySection.querySelectorAll('.facility-image img:not([loading="lazy"])');
+                    lazyImages.forEach(img => {
+                        // Replace src with data-src for non-visible images
+                        const src = img.getAttribute('src');
+                        img.setAttribute('data-src', src);
+                        img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');
+                        imageObserver.observe(img);
+                    });
+                }
+                
+                // Apply to testimonial images
+                if (testimonialSection) {
+                    const lazyTestimonialImages = testimonialSection.querySelectorAll('.testimonial-img img:not([loading="lazy"]), .testimonial-author-img:not([loading="lazy"])');
+                    lazyTestimonialImages.forEach(img => {
+                        const src = img.getAttribute('src');
+                        img.setAttribute('data-src', src);
+                        img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');
+                        imageObserver.observe(img);
+                    });
+                }
+            }
+        });
+
         // Add click event for Virtual Tour button
         const virtualTourBtn = document.querySelector('.apply-btn');
         if (virtualTourBtn) {

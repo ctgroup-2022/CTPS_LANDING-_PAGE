@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="assets/css/form-fix.css">
 
 <section class="hero-section">
-        <!-- Background Slider -->
+        <!-- Background Slider with Lazy Loading -->
         <div class="bg-slider">
-            <div class="bg-slide active" style="background-image: url('assets/hero/hero1.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('assets/hero/hero2.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('assets/hero/hero3.JPG')"></div>
-            <div class="bg-slide" style="background-image: url('assets/hero/hero4.JPG')"></div>
+            <div class="bg-slide active" data-bg-img="assets/hero/hero1.JPG" style="background-image: url('assets/hero/hero1.JPG')"></div>
+            <div class="bg-slide" data-bg-img="assets/hero/hero2.JPG"></div>
+            <div class="bg-slide" data-bg-img="assets/hero/hero3.JPG"></div>
+            <div class="bg-slide" data-bg-img="assets/hero/hero4.JPG"></div>
         </div>
 
         <div class="hero-content">
@@ -109,7 +109,7 @@
                 
                 <button type="button" class="submit-btn" id="form-submit-btn" style="padding: 10px 15px; border-radius: 8px; background: linear-gradient(135deg, #0056b3, #00a8ff); color: white; border: none; font-weight: 600; margin-top: 5px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3); position: relative; overflow: hidden;">
                     <span class="btn-text">Submit Application</span>
-                    <i class="fas fa-arrow-right" style="font-size: 0.9rem; position: relative; z-index: 2;"></i>
+                    <i class="fas fa-arrow-right" style="font-size: 0.9rem; position: relative, z-index: 2;"></i>
                     <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.5s ease; z-index: 1;" class="btn-shine"></div>
                 </button>
                 
@@ -232,3 +232,33 @@
             </form>
         </div>
     </section>
+
+    <script>
+    // Lazy loading script for hero background images
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lazy load hero background images
+        const bgSlides = document.querySelectorAll('.bg-slide:not(.active)');
+        
+        // Function to load background image
+        function loadBackgroundImage(slide) {
+            const bgImg = slide.getAttribute('data-bg-img');
+            if (bgImg) {
+                // Create a new image to preload
+                const img = new Image();
+                img.onload = function() {
+                    // Once loaded, apply as background
+                    slide.style.backgroundImage = `url('${bgImg}')`;
+                    slide.classList.add('bg-loaded');
+                };
+                img.src = bgImg;
+            }
+        }
+        
+        // Load non-active slides after a short delay
+        setTimeout(() => {
+            bgSlides.forEach(slide => {
+                loadBackgroundImage(slide);
+            });
+        }, 1000); // 1 second delay
+    });
+    </script>

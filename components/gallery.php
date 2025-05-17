@@ -22,7 +22,8 @@
             <!-- Large Card -->
             <div class="facility-card large" data-title="Hands-On Robotics Learning" data-description="In this engaging classroom setting, students dive into the world of robotics through practical, real-world tasks. The image captures a young learner focused intently on assembling and programming a robot, highlighting the school's commitment to experiential learning. By providing access to tools and technology, students are encouraged to innovate, collaborate, and develop critical thinking skills essential for the future.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery10.jpg" alt="Hands-On Robotics Learning" loading="lazy" width="800" height="420">
+                    <!-- First visible image loads normally -->
+                    <img src="assets/gallery/gallery10.jpg" alt="Hands-On Robotics Learning" loading="lazy" width="800" height="420" class="lazy-image">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
@@ -35,7 +36,8 @@
             <!-- Small Cards -->
             <div class="facility-card small" data-title="Annual Showcase" data-description="Students present their year-long projects during our showcase event, demonstrating their creativity, innovation, and academic growth. This event brings together parents, teachers, and industry professionals to celebrate student achievements.">
                 <div class="facility-image">
-                    <img src="assets/gallery/gallery2.jpg" alt="Annual Showcase" loading="lazy" width="400" height="420">
+                    <!-- Use data-src for deferred loading -->
+                    <img data-src="assets/gallery/gallery2.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 420' %3E%3C/svg%3E" alt="Annual Showcase" loading="lazy" width="400" height="420" class="lazy-image">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-content">
@@ -366,6 +368,29 @@
         z-index: 10;
     }
     
+    /* Enhanced lazy loading styles */
+    .lazy-image {
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+    
+    .lazy-image.loaded {
+        opacity: 1;
+    }
+    
+    /* Placeholder pulse animation for lazy images */
+    @keyframes placeholderPulse {
+        0% { background-color: rgba(0, 86, 179, 0.1); }
+        50% { background-color: rgba(0, 86, 179, 0.05); }
+        100% { background-color: rgba(0, 86, 179, 0.1); }
+    }
+    
+    .facility-image img[data-src] {
+        animation: placeholderPulse 1.5s ease-in-out infinite;
+        background-color: rgba(0, 86, 179, 0.1);
+        min-height: 100px;
+    }
+    
     /* Responsive styles */
     @media (max-width: 992px) {
         .facilities-grid {
@@ -486,32 +511,68 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    // Lazy load images that are not immediately visible
+    // Improved lazy loading for all gallery images
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
                     if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                    observer.unobserve(img);
-                }
-            });
-        });
-        
-        // Images that are below the fold
-        document.querySelectorAll('.facility-card:nth-child(n+4) img').forEach(img => {
-            if (img.getAttribute('loading') !== 'lazy') {
-                const src = img.getAttribute('src');
-                img.setAttribute('data-src', src);
-                img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');
-                imageObserver.observe(img);
-            }
-        });
-    }
-});
-</script>
-</body>
+                        // Create a temporary image to preload
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            // Only swap the src when image is loaded
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            img.removeAttribute('data-src');
+                        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html></body></script>});    }        });            img.classList.add('loaded');        document.querySelectorAll('.lazy-image:not([data-src])').forEach(img => {        // Mark all other images as loaded                });            img.classList.add('loaded');            img.removeAttribute('data-src');            img.src = img.dataset.src;        document.querySelectorAll('.lazy-image[data-src]').forEach(img => {        // Fallback for browsers without IntersectionObserver    } else {        });            imageObserver.observe(img);        document.querySelectorAll('.lazy-image').forEach(img => {        // Apply to all gallery images                });            threshold: 0.01 // Trigger with just 1% visibility            rootMargin: '100px 0px', // Start loading earlier        }, {            });                }                    observer.unobserve(img);                    }                        img.classList.add('loaded');                        // For images without data-src, just mark as loaded                    } else {                        tempImg.src = img.dataset.src;
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html></body></script>});    }        });            }                imageObserver.observe(img);                img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');                img.setAttribute('data-src', src);                const src = img.getAttribute('src');            if (img.getAttribute('loading') !== 'lazy') {        document.querySelectorAll('.facility-card:nth-child(n+4) img').forEach(img => {        // Images that are below the fold                });            });                }                    observer.unobserve(img);                    }                        img.removeAttribute('data-src');                        img.src = img.dataset.src;                    if (img.dataset.src) {                    const img = entry.target;                if (entry.isIntersecting) {</body>
 </html>
