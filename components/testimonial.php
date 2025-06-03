@@ -1,3 +1,10 @@
+<?php 
+// Include optimization helpers if not already included
+if (!function_exists('get_optimized_image_url')) {
+    include_once __DIR__ . '/../includes/optimization-helpers.php';
+}
+?>
+
 <div class="testi_container" id="testimonial">
     <div class="testimonial-main-heading">
         <h2>What Our Clients Say</h2>
@@ -6,7 +13,7 @@
     
     <div class="slider-container1">
         <div class="slider1">
-            <!-- Slide 1 -->
+            <!-- Slide 1 - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -14,7 +21,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/srithi gupta.jpeg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/srithi gupta.jpeg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>NAME SURNAME</h3>
@@ -32,7 +43,7 @@
                 </div>
             </div>
             
-            <!-- Slide 2 -->
+            <!-- Slide 2 - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -40,7 +51,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/kanika sagar1.jpeg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/kanika sagar1.jpeg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>JANE DOE</h3>
@@ -58,7 +73,7 @@
                 </div>
             </div>
             
-            <!-- Slide 3 -->
+            <!-- Slide 3 - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -66,7 +81,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/kanika sagar.jpg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/kanika sagar.jpg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>JOHN SMITH</h3>
@@ -84,7 +103,7 @@
                 </div>
             </div>
             
-            <!-- Slide 4 (Copy of Slide 1) -->
+            <!-- Slide 4 (Copy of Slide 1) - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -92,7 +111,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/amit kumar.jpg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/amit kumar.jpg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>Amit Kumar</h3>
@@ -110,7 +133,7 @@
                 </div>
             </div>
             
-            <!-- Slide 5 -->
+            <!-- Slide 5 - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -118,7 +141,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/babbal shoor.jpg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/babbal shoor.jpg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>MICHAEL BROWN</h3>
@@ -136,7 +163,7 @@
                 </div>
             </div>
             
-            <!-- Slide 6 -->
+            <!-- Slide 6 - Optimized image -->
             <div class="slide1">
                 <div class="testimonial-card1">
                     <div class="yellow-shape1"></div>
@@ -144,7 +171,11 @@
                         <h2>Client</h2>
                         <h1>TESTIMONIAL</h1>
                     </div>
-                    <img src="assets/Teatimonial/Dr. jaskirat arora.jpg" alt="Client Profile" class="profile-img1">
+                    <img src="<?php echo get_placeholder_svg(150, 150, 'eaeaea'); ?>" 
+                         data-src="assets/Teatimonial/Dr. jaskirat arora.jpg" 
+                         width="150" height="150"
+                         alt="Client Profile" 
+                         class="profile-img1 lazy-load-img">
                     <div class="quote-box1">
                         <span class="quote-marks left-quote1">"</span>
                         <h3>EMILY DAVIS</h3>
@@ -179,13 +210,48 @@
 </div>
 
 
-<!-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Set animation delay for cards
-        const cards = document.querySelectorAll('.testimonial-card1');
-        cards.forEach((card, index) => {
-            card.style.setProperty('--card-index', index);
-        });
+        // Lazy load testimonial images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            // Create a new image element to preload
+                            const newImg = new Image();
+                            newImg.onload = function() {
+                                // Only replace src after image has loaded
+                                img.src = img.dataset.src;
+                                img.classList.add('loaded');
+                            };
+                            newImg.onerror = function() {
+                                // Handle loading error
+                                img.classList.add('error');
+                            };
+                            newImg.src = img.dataset.src;
+                        }
+                        imageObserver.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px',
+                threshold: 0.1
+            });
+            
+            // Apply to all testimonial images
+            document.querySelectorAll('.lazy-load-img').forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            document.querySelectorAll('.lazy-load-img').forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+            });
+        }
         
         // Update pagination dots to match slide count
         updatePaginationDots();
@@ -274,6 +340,23 @@
             }
         });
     }
-</script> -->
+</script>
+
+<style>
+/* Add these lazy loading styles */
+.lazy-load-img {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.lazy-load-img.loaded {
+    opacity: 1;
+}
+
+.lazy-load-img.error {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

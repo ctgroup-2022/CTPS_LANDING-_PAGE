@@ -1,3 +1,10 @@
+<?php 
+// Include optimization helpers if not already included
+if (!function_exists('get_optimized_image_url')) {
+    include_once __DIR__ . '/../includes/optimization-helpers.php';
+}
+?>
+
 <section class="faq-section" id="faq">
     <div class="container">
         <div class="section-header">
@@ -37,7 +44,11 @@
                             <div class="answer-content">
                                 <p>CT Public School offers comprehensive education from pre-nursery to senior secondary level with a focus on holistic development through academic excellence, sports, arts, and character building.</p>
                                 <div class="faq-img">
-                                    <img src="assets/about/ctps.png" alt="CT School Programs">
+                                    <img src="<?php echo get_placeholder_svg(300, 200, 'f1f1f1'); ?>" 
+                                         data-src="assets/about/ctps.png"
+                                         width="300" height="200"
+                                         alt="CT School Programs"
+                                         class="lazy-faq-image">
                                 </div>
                             </div>
                         </div>
@@ -208,4 +219,63 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Lazy load FAQ images when questions are expanded
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '20px'
+        });
+        
+        // Observe all FAQ images
+        document.querySelectorAll('.lazy-faq-image').forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        document.querySelectorAll('.lazy-faq-image').forEach(img => {
+            if (img.dataset.src) img.src = img.dataset.src;
+        });
+    }
+    
+    // Load image when FAQ item is clicked
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.closest('.faq-item');
+            if (faqItem) {
+                const img = faqItem.querySelector('.lazy-faq-image');
+                if (img && img.dataset.src && img.src !== img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                }
+            }
+        });
+    });
+});
+
 </script>
+
+<style>
+/* Add these styles for FAQ image optimization */
+.lazy-faq-image {
+    transition: opacity 0.3s ease;
+    background-color: #f1f1f1;
+    opacity: 0.5;
+}
+
+.lazy-faq-image.loaded {
+    opacity: 1;
+}
+</style>

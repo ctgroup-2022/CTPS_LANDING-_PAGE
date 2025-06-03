@@ -234,31 +234,101 @@
     </section>
 
     <script>
-    // Lazy loading script for hero background images
+    // Enhanced lazy loading for hero background images
     document.addEventListener('DOMContentLoaded', function() {
-        // Lazy load hero background images
-        const bgSlides = document.querySelectorAll('.bg-slide:not(.active)');
-        
-        // Function to load background image
-        function loadBackgroundImage(slide) {
-            const bgImg = slide.getAttribute('data-bg-img');
-            if (bgImg) {
-                // Create a new image to preload
-                const img = new Image();
-                img.onload = function() {
-                    // Once loaded, apply as background
-                    slide.style.backgroundImage = `url('${bgImg}')`;
-                    slide.classList.add('bg-loaded');
-                };
-                img.src = bgImg;
+        // Create WebP versions for faster loading if supported
+        function supportsWebP() {
+            const elem = document.createElement('canvas');
+            if (elem.getContext && elem.getContext('2d')) {
+                return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
             }
+            return false;
         }
         
-        // Load non-active slides after a short delay
-        setTimeout(() => {
-            bgSlides.forEach(slide => {
-                loadBackgroundImage(slide);
-            });
-        }, 1000); // 1 second delay
+        const hasWebPSupport = supportsWebP();
+        
+        // Load active slide immediately
+        const activeSlide = document.querySelector('.bg-slide.active');
+        if (activeSlide) {
+            // Set background image priority
+            activeSlide.style.backgroundImage = `url('${activeSlide.getAttribute('data-bg-img')}')`;
+        }
+        
+        // Optimize background loading for other slides
+        const bgSlides = document.querySelectorAll('.bg-slide:not(.active)');
+        
+        // Function to load background image with progressive enhancement
+        function loadBackgroundImage(slide, index) {
+            // Staggered loading with increasing delays based on slide position
+            setTimeout(() => {
+                const bgImg = slide.getAttribute('data-bg-img');
+                if (bgImg) {
+                    // Use WebP if supported (assuming you have WebP versions available)
+                    const imgUrl = hasWebPSupport ? 
+                        bgImg.replace(/\.(jpg|jpeg|png)$/i, '.webp') : 
+                        bgImg;
+                    
+                    // Load low quality version first if available
+                    const lowQualityImg = imgUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '-small.$1');
+                    
+                    // Create a temporary low quality image to preload
+                    const lowImg = new Image();
+                    lowImg.onload = function() {
+                        // Apply low quality image first
+                        slide.style.backgroundImage = `url('${lowQualityImg}')`;
+                        slide.classList.add('bg-loading');
+                        
+                        // Then load high quality image
+                        const highImg = new Image();
+                        highImg.onload = function() {
+                            // Apply high quality image with smooth transition
+                            slide.style.backgroundImage = `url('${imgUrl}')`;
+                            slide.classList.remove('bg-loading');
+                            slide.classList.add('bg-loaded');
+                        };
+                        highImg.onerror = function() {
+                            // Fall back to original image if WebP fails
+                            slide.style.backgroundImage = `url('${bgImg}')`;
+                            slide.classList.remove('bg-loading');
+                            slide.classList.add('bg-loaded');
+                        };
+                        highImg.src = imgUrl;
+                    };
+                    lowImg.onerror = function() {
+                        // If low quality image fails, load high quality directly
+                        const highImg = new Image();
+                        highImg.onload = function() {
+                            slide.style.backgroundImage = `url('${imgUrl}')`;
+                            slide.classList.add('bg-loaded');
+                        };
+                        highImg.src = imgUrl;
+                    };
+                    lowImg.src = lowQualityImg;
+                }
+            }, index * 300); // Staggered loading with 300ms between slides
+        }
+        
+        // Load slides in order
+        bgSlides.forEach((slide, index) => {
+            loadBackgroundImage(slide, index);
+        });
     });
     </script>
+
+    <style>
+/* Add these styles to handle background transitions smoothly */
+.bg-slide {
+    transition: background-image 0.5s ease-in-out;
+}
+
+.bg-loading {
+    filter: blur(8px);
+    transform: scale(1.02);
+}
+
+.bg-loaded {
+    filter: none;
+    transform: scale(1);
+    transition: filter 0.5s ease-out, transform 0.5s ease-out;
+}
+</style>

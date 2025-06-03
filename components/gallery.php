@@ -478,13 +478,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const title = card.getAttribute('data-title');
             const description = card.getAttribute('data-description');
             
-            modalImage.setAttribute('src', image);
-            modalImage.setAttribute('alt', title);
+            // Create a loading state for modal image
+            modalImage.classList.add('loading');
+            modalImage.style.filter = 'blur(10px)';
+            
+            // Set initial data
             modalTitle.textContent = title;
             modalDescription.textContent = description;
             
+            // Show modal
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Preload the high-res image before showing
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                modalImage.setAttribute('src', image);
+                modalImage.setAttribute('alt', title);
+                setTimeout(() => {
+                    modalImage.classList.remove('loading');
+                    modalImage.style.filter = '';
+                }, 100);
+            };
+            tempImg.onerror = function() {
+                modalImage.setAttribute('src', 'assets/placeholders/error-image.jpg');
+                modalImage.setAttribute('alt', 'Image failed to load');
+                modalImage.classList.remove('loading');
+                modalImage.style.filter = '';
+            };
+            tempImg.src = image;
         }
         // Handle card clicks
         else if (e.target.closest('.facility-card') && !e.target.closest('.view-btn')) {
@@ -493,86 +515,68 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Close modal
-    modalClose.addEventListener('click', closeModal);
+    // Close modal functions
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        // Clear modal image after transition
+        setTimeout(() => {
+            modalImage.setAttribute('src', '');
+        }, 500);
+    }
     
-    // Close modal when clicking outside content
+    modalClose.addEventListener('click', closeModal);
     modal.addEventListener('click', function(e) {
         if (e.target === modal) closeModal();
     });
-    
-    // Close modal with ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
     
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    // Improved lazy loading for all gallery images
+    // Optimized lazy loading implementation
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
+                    
                     if (img.dataset.src) {
-                        // Create a temporary image to preload
-                        const tempImg = new Image();
-                        tempImg.onload = function() {
-                            // Only swap the src when image is loaded
+                        // Load full image
+                        const fullImg = new Image();
+                        fullImg.onload = function() {
                             img.src = img.dataset.src;
                             img.classList.add('loaded');
                             img.removeAttribute('data-src');
                         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html></body></script>});    }        });            img.classList.add('loaded');        document.querySelectorAll('.lazy-image:not([data-src])').forEach(img => {        // Mark all other images as loaded                });            img.classList.add('loaded');            img.removeAttribute('data-src');            img.src = img.dataset.src;        document.querySelectorAll('.lazy-image[data-src]').forEach(img => {        // Fallback for browsers without IntersectionObserver    } else {        });            imageObserver.observe(img);        document.querySelectorAll('.lazy-image').forEach(img => {        // Apply to all gallery images                });            threshold: 0.01 // Trigger with just 1% visibility            rootMargin: '100px 0px', // Start loading earlier        }, {            });                }                    observer.unobserve(img);                    }                        img.classList.add('loaded');                        // For images without data-src, just mark as loaded                    } else {                        tempImg.src = img.dataset.src;
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html></body></script>});    }        });            }                imageObserver.observe(img);                img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');                img.setAttribute('data-src', src);                const src = img.getAttribute('src');            if (img.getAttribute('loading') !== 'lazy') {        document.querySelectorAll('.facility-card:nth-child(n+4) img').forEach(img => {        // Images that are below the fold                });            });                }                    observer.unobserve(img);                    }                        img.removeAttribute('data-src');                        img.src = img.dataset.src;                    if (img.dataset.src) {                    const img = entry.target;                if (entry.isIntersecting) {</body>
+                        fullImg.onerror = function() {
+                            img.src = 'assets/placeholders/error-image.jpg';
+                            img.classList.add('error');
+                        };
+                        fullImg.src = img.dataset.src;
+                    } else {
+                        img.classList.add('loaded');
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '100px 0px',
+            threshold: 0.01
+        });
+        
+        // Observe all lazy images
+        document.querySelectorAll('.lazy-image, .facility-image img').forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        document.querySelectorAll('[data-src]').forEach(img => {
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+        });
+    }
+});
+</script>
+</body>
 </html>

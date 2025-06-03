@@ -1,3 +1,10 @@
+<?php 
+// Include optimization helpers if not already included
+if (!function_exists('get_optimized_image_url')) {
+    include_once __DIR__ . '/../includes/optimization-helpers.php';
+}
+?>
+
 <section id="programs-section programs" class="programs-container">
     <!-- Background decorative elements -->
     <div class="bg-decoration circle-1"></div>
@@ -64,9 +71,22 @@
         ];
         
         foreach ($programs as $index => $program) :
+            // Generate image dimensions
+            $imgWidth = 400;
+            $imgHeight = 300;
+            
+            // Only first 2 program cards load immediately, others lazy load
+            $lazyLoad = $index >= 2;
+            $imageSrc = $lazyLoad ? get_placeholder_svg($imgWidth, $imgHeight) : $program['image'];
+            $dataSrc = $lazyLoad ? $program['image'] : '';
         ?>
             <div class="program-card" data-id="<?php echo $program['id']; ?>" data-color="<?php echo $program['color']; ?>">
-                <img src="<?php echo $program['image']; ?>" class="card-bg-image" alt="<?php echo $program['title']; ?>">
+                <img src="<?php echo $imageSrc; ?>" 
+                     <?php if($lazyLoad): ?>data-src="<?php echo $dataSrc; ?>"<?php endif; ?>
+                     width="<?php echo $imgWidth; ?>" 
+                     height="<?php echo $imgHeight; ?>"
+                     class="card-bg-image <?php echo $lazyLoad ? 'lazy-program-image' : ''; ?>" 
+                     alt="<?php echo $program['title']; ?>">
                 <div class="program-icon-wrapper">
                     <i class="fas fa-<?php echo $program['icon']; ?> program-icon"></i>
                 </div>
@@ -84,4 +104,59 @@
             </div>
         <?php endforeach; ?>
     </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Optimize program card images with lazy loading
+        if ('IntersectionObserver' in window) {
+            const programImgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            const newImg = new Image();
+                            newImg.onload = function() {
+                                img.src = img.dataset.src;
+                                img.classList.add('loaded');
+                            };
+                            newImg.src = img.dataset.src;
+                        }
+                        programImgObserver.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px',
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.lazy-program-image').forEach(img => {
+                programImgObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            document.querySelectorAll('.lazy-program-image').forEach(img => {
+                if (img.dataset.src) img.src = img.dataset.src;
+            });
+        }
+        
+        // ...existing code...
+    });
+    </script>
+    
+    <style>
+    /* Add optimization styles */
+    .lazy-program-image {
+        transition: opacity 0.3s ease;
+        opacity: 0.5;
+    }
+    
+    .lazy-program-image.loaded {
+        opacity: 1;
+    }
+    
+    /* Add contain property to improve layout shift */
+    .program-card {
+        contain: layout paint style;
+    }
+    </style>
 </section>
