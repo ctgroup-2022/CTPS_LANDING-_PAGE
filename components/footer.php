@@ -4,7 +4,7 @@
             <!-- Left Section -->
             <div class="col-md-5 mb-4 mb-md-0">
                 <div class="d-flex align-items-center mb-4">
-                    <img src="assets/logo/ctpslogo.png" 
+                    <img src="assets/Logo/ctpslogo.png" 
                          alt="CT Logo" 
                          loading="lazy"
                          class="footer-logo">
