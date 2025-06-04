@@ -68,7 +68,7 @@
 
 @keyframes floatCard {
     0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(0.3deg); }
+    50% { transform: translateY(-8px) rotate(0.3deg); }
     100% { transform: translateY(0) rotate(0deg); }
 }
 
@@ -82,21 +82,29 @@
     align-items: center;
     padding: 28px 22px;
     box-sizing: border-box;
-    background-color: var(--bg-white);
+    background: rgba(255, 255, 255, 1);
     border-radius: var(--card-border-radius);
-    box-shadow: var(--shadow-md), 0 10px 30px rgba(74, 144, 226, 0.08);
+    box-shadow: 
+        0 10px 30px rgba(74, 144, 226, 0.12),
+        0 5px 15px rgba(0, 86, 179, 0.07);
     position: relative;
     transition: all 0.5s var(--transition-bounce);
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     animation: floatCard 8s ease-in-out infinite;
     animation-delay: calc(var(--card-index, 0) * 1.2s);
     transform-origin: center bottom;
     backdrop-filter: blur(10px);
+    /* Modern glass morphism effect */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .testimonial-card1:hover {
     transform: translateY(-15px) scale(1.03);
-    box-shadow: var(--shadow-lg), 0 20px 40px rgba(74, 144, 226, 0.15);
+    box-shadow: 
+        0 20px 40px rgba(74, 144, 226, 0.2),
+        0 10px 20px rgba(0, 86, 179, 0.1);
     border-color: rgba(74, 144, 226, 0.2);
     animation-play-state: paused;
 }
@@ -106,17 +114,19 @@
     top: 0;
     right: 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 80%);
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
     z-index: 1;
     opacity: 0.9;
     transition: all 0.3s ease;
+    /* Add subtle glow */
+    box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
 }
 
 .testimonial-card1:hover .yellow-shape1 {
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
     opacity: 1;
 }
 
@@ -173,21 +183,29 @@
     object-fit: cover;
     border: 5px solid var(--accent);
     margin: 10px 0 15px;
-    box-shadow: 0 8px 25px rgba(0,168,255,0.4);
+    box-shadow: 0 8px 25px rgba(0, 168, 255, 0.4);
     transition: all 0.6s var(--transition-bounce);
+    /* Add subtle shine effect */
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes rotateImage {
-    0% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(-5deg) scale(1.08); }
-    75% { transform: rotate(5deg) scale(1.08); }
-    100% { transform: rotate(0deg) scale(1); }
+.profile-img1::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.testimonial-card1:hover .profile-img1 {
-    transform: scale(1.15) translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,168,255,0.6);
-    animation: rotateImage 2.5s var(--transition-bounce) 1;
+.testimonial-card1:hover .profile-img1::after {
+    opacity: 1;
 }
 
 .quote-box1 {
@@ -202,16 +220,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* Add subtle background */
+    background: rgba(240, 247, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 8px 0;
 }
 
 .quote-marks {
-    font-size: 2.5rem;
-    color: rgba(0,168,255,0.2);
+    font-size: 2.8rem;
+    color: rgba(0, 168, 255, 0.2);
     position: absolute;
     line-height: 1;
-    transition: all 0.3s ease;
-    opacity: 0.3;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    opacity: 0.4;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-card1:hover .quote-marks {
@@ -255,6 +278,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+    letter-spacing: 0.5px;
 }
 
 .quote-box1 h3::after {
@@ -315,6 +339,11 @@
     letter-spacing: 4px;
     filter: drop-shadow(0 2px 3px rgba(0,168,255,0.2));
     transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
 }
 
 .testimonial-card1:hover .stars1 {
@@ -333,7 +362,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: var(--bg-light);
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -593,93 +622,35 @@
 
     .testimonial-card1 {
         padding: 22px 18px;
-        min-height: 310px;
+        min-height: 300px;
         max-height: none;
         margin: 0 auto;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
-
-    .testimonial-card1:hover {
-        transform: translateY(-5px) rotateX(5deg) scale(1.02);
-    }
-
-    .quote-box1 p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-        -webkit-line-clamp: 3;
-    }
-
-    .slider-controls1 {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 25px;
-        padding: 0 15px;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        z-index: 10;
-        background: rgba(240, 247, 255, 0.7);
-        backdrop-filter: blur(5px);
-        border-radius: 30px;
-        padding: 5px;
-    }
-
-    .control-btn {
-        width: 38px;
-        height: 38px;
-        background: var(--bg-white);
-        border: 1px solid var(--primary);
-        box-shadow: 0 5px 15px rgba(0,86,179,0.3);
-    }
-
-    .control-btn i {
-        color: var(--primary);
-        font-size: 14px;
-    }
-
-    .control-btn:hover {
-        background: var(--gradient-blue);
-    }
-
-    .control-btn:hover i {
-        color: white;
-    }
-
-    .pagination-dots {
-        position: absolute;
-        bottom: 5px;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .dot {
-        width: 25px;
-        height: 4px;
-        border-radius: 2px;
-        background-color: rgba(221, 221, 221, 0.8);
-    }
-
-    .dot.active {
-        background: var(--gradient-blue);
-        width: 35px;
-    }
-
-    .header1 {
-        margin-bottom: 12px;
     }
     
-    .header1 h1 {
-        font-size: 1.3rem;
+    .yellow-shape1 {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-img1 {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .quote-box1 h3 {
+        font-size: 1.1rem;
     }
 }
 
-/* Enhanced animations for better visual appeal */
+/* Remove old slider controls styles that are no longer needed */
+.slider-controls1,
+.control-btn,
+.pagination-dots,
+.dot {
+    display: none;
+}
+
+/* Enhance animation for better visual appeal */
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
