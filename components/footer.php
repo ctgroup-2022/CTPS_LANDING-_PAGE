@@ -6,7 +6,7 @@
                 <div class="d-flex align-items-center mb-4">
                     <img src="assets/Logo/ctpslogo.png" 
                          alt="CT Logo" 
-                         loading="lazy"
+                       
                          class="footer-logo">
                 </div>
                 
