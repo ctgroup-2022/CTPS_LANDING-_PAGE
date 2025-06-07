@@ -3,6 +3,14 @@
     background: linear-gradient(to bottom, var(--bg-light), white);
     position: relative;
     overflow: hidden;
+    contain: content; /* Improve browser rendering performance */
+}
+
+/* Optimize decorative pseudo-elements with content-visibility */
+.campus-gallery-section::before,
+.campus-gallery-section::after {
+    content-visibility: auto;
+    contain: strict;
 }
 
 .campus-gallery-section::before {
@@ -79,6 +87,7 @@
     grid-auto-rows: 200px;
     gap: 15px;
     margin: 0 auto;
+    contain: layout style; /* Optimize layout calculations */
 }
 
 .grid-item {
@@ -87,9 +96,11 @@
     overflow: hidden;
     grid-column: span 4;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Simplified transition */
     transform: translateY(30px);
     opacity: 0;
+    will-change: transform, opacity; /* Hint for browser optimization */
+    contain: layout paint; /* Optimize painting and layout */
 }
 
 .grid-item.large {
@@ -106,7 +117,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    transition: transform 0.4s ease; /* Simplified transition */
+    will-change: transform; /* GPU acceleration hint */
+    backface-visibility: hidden; /* Prevent flickering in some browsers */
 }
 
 .image-overlay {
@@ -119,7 +132,8 @@
     color: white;
     transform: translateY(20px);
     opacity: 0;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease; /* Faster transition */
+    pointer-events: none; /* Performance improvement */
 }
 
 .image-overlay h3 {
@@ -134,7 +148,7 @@
 }
 
 .grid-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Reduced scale for better performance */
 }
 
 .grid-item:hover .image-overlay {
@@ -181,6 +195,41 @@
 [data-aos="fade-up"].aos-animate {
     transform: translateY(0);
     opacity: 1;
+}
+
+/* Animation to reveal images when scrolled into view - simplified for performance */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Image optimization styles - moved from inline */
+.optimized-image {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: #f0f7ff; /* Light background color while loading */
+}
+
+/* Progressive loading animation with reduced complexity */
+.loading {
+    opacity: 0.5;
+    animation: pulse 1.5s infinite alternate;
+}
+
+.loaded {
+    opacity: 1;
+}
+
+.error {
+    opacity: 0.7;
+    filter: grayscale(100%);
+}
+
+@keyframes pulse {
+    from { opacity: 0.3; }
+    to { opacity: 0.6; }
 }
 
 /* Responsive Adjustments */
@@ -255,14 +304,23 @@
     }
 }
 
-/* Animation to reveal images when scrolled into view */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+/* More efficient media queries with container queries where supported */
+@supports (container-type: inline-size) {
+    .campus-image-grid {
+        container-type: inline-size;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    /* Use container queries instead of viewport queries for better performance */
+    @container (max-width: 992px) {
+        .grid-item {
+            grid-column: span 3;
+        }
+        
+        .grid-item.large {
+            grid-column: span 6;
+        }
     }
+    /* Fallback to regular media queries below */
 }
+
+/* Regular media queries as fallback */
