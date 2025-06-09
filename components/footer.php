@@ -4,10 +4,10 @@
             <!-- Left Section -->
             <div class="col-md-5 mb-4 mb-md-0">
                 <div class="d-flex align-items-center mb-4">
-                    <img src="assets\about\ctps.png" 
+                    <img src="assets/Logo/ctpslogo.png" 
                          alt="CT Logo" 
-                            width="50" height="50"
-                         class="footer-logo">
+                            width="100" height="100"
+                         >
                 </div>
                 
                 <p class="footer-text">
